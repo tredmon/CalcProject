@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import view.MyPanel;
 import model.Converters;
 
-public class Driver {
+public class CalcProjectDriver {
 	public static void main (String[] args) throws Exception {
 		JFrame frame = new JFrame("Converting between number systems");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
