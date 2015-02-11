@@ -51,10 +51,8 @@ public class TheMath {
 			}
 		}
 		String z = "";
-		for(int y = x.length() - 1; y >= 0; y--)
-		{
-			 for(int i = 0; i < z.length(); i++)
-				 z += x.charAt(y);
+		for(int i = x.length(); i > 0; i--){
+				 z += x.charAt(i);
 		}
 		return z;
 	}
@@ -81,7 +79,7 @@ public class TheMath {
 					value += (o7);
 			}
 		}
-		return value + "\n";
+		return value;
 	}
 	
 	public static String hexToBinary(String input){
@@ -122,6 +120,6 @@ public class TheMath {
 				value += (hf);
 			}
 		}
-		return value + "\n";
+		return value;
 	}
 }
