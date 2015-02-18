@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import view.MyPanel;
-import model.Converters;
+//import model.Converters;
 
 public class CalcProjectDriver {
 	public static void main (String[] args) throws Exception {
