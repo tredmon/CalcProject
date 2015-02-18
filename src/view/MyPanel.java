@@ -16,8 +16,9 @@ public class MyPanel extends JPanel implements ActionListener{
 	JButton button;
 	
 	public MyPanel() {
-
+		this.setLayout(new GridBagLayout());
 		GridBagConstraints c =  new GridBagConstraints();
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = 0.5;
 
 		// Calculator setup		
@@ -25,6 +26,47 @@ public class MyPanel extends JPanel implements ActionListener{
 		c.gridx = 0;
 		c.gridy = 0;
 		this.add(button, c);
+		
+		button = new JButton("2");
+		c.gridx = 1;
+		c.gridy = 0;
+		this.add(button, c);
+		
+		button = new JButton("3");
+		c.gridx = 2;
+		c.gridy = 0;
+		this.add(button, c);
+		
+		button = new JButton("4");
+		c.gridx = 0;
+		c.gridy = 1;
+		this.add(button, c);
+		
+		button = new JButton("5");
+		c.gridx = 1;
+		c.gridy = 1;
+		this.add(button, c);
+		
+		button = new JButton("6");
+		c.gridx = 2;
+		c.gridy = 1;
+		this.add(button, c);
+		
+		button = new JButton("7");
+		c.gridx = 0;
+		c.gridy = 2;
+		this.add(button, c);
+		
+		button = new JButton("8");
+		c.gridx = 1;
+		c.gridy = 2;
+		this.add(button, c);
+		
+		button = new JButton("9");
+		c.gridx = 2;
+		c.gridy = 2;
+		this.add(button, c);
+		
 		
 		/*
 		this.fromText = new JLabel("Convert from:");
@@ -49,7 +91,6 @@ public class MyPanel extends JPanel implements ActionListener{
 		
 		this.submitButton.addActionListener(this);
 		
-		this.setLayout(new GridBagLayout());
 		
 		this.add(numberField);
 		this.add(fromText);
