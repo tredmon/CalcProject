@@ -9,35 +9,35 @@ public class TheMath {
 	
 	
 	
-	public static String o0 = "000"; 
-	public static String o1 = "001";
-	public static String o2 = "010";
-	public static String o3 = "011";
-	public static String o4 = "100";
-	public static String o5 = "101";
-	public static String o6 = "110";
-	public static String o7 = "111";
+	private  String o0 = "000"; 
+	private  String o1 = "001";
+	private  String o2 = "010";
+	private  String o3 = "011";
+	private  String o4 = "100";
+	private  String o5 = "101";
+	private  String o6 = "110";
+	private  String o7 = "111";
 	
-	public static String h0 = "0000"; 
-	public static String h1 = "0001";
-	public static String h2 = "0010";
-	public static String h3 = "0011";
-	public static String h4 = "0100";
-	public static String h5 = "0101";
-	public static String h6 = "0110";
-	public static String h7 = "0111";
-	public static String h8 = "1000";
-	public static String h9 = "1001";
-	public static String ha = "1010";
-	public static String hb = "1011";
-	public static String hc = "1100";
-	public static String hd = "1101";
-	public static String he = "1110";
-	public static String hf = "1111";
+	private  String h0 = "0000"; 
+	private  String h1 = "0001";
+	private  String h2 = "0010";
+	private  String h3 = "0011";
+	private  String h4 = "0100";
+	private  String h5 = "0101";
+	private  String h6 = "0110";
+	private  String h7 = "0111";
+	private  String h8 = "1000";
+	private  String h9 = "1001";
+	private  String ha = "1010";
+	private  String hb = "1011";
+	private  String hc = "1100";
+	private  String hd = "1101";
+	private  String he = "1110";
+	private  String hf = "1111";
 	
-//	private static ArrayList <Integer> list = new ArrayList <Integer>();
+//	private  ArrayList <Integer> list = new ArrayList <Integer>();
 	
-	public static String deciToBinary(String input){
+	public  String deciToBinary(String input){
 		String x = "";
 		int newinput = Integer.parseInt(input);
 		
@@ -59,7 +59,7 @@ public class TheMath {
 		return z;
 	}
 	
-	public static String octToBinary(String input){
+	public  String octToBinary(String input){
 		String value = "";
 		for(int x = 0; x < input.length(); x++){
 			switch(input.charAt(x)){
@@ -92,7 +92,7 @@ public class TheMath {
 		return value;
 	}
 	
-	public static String hexToBinary(String input){
+	public  String hexToBinary(String input){
 		String value = "";
 		for(int x = 0; x < input.length(); x++){
 			switch(input.charAt(x)){
@@ -149,19 +149,19 @@ public class TheMath {
 		return value;
 	}
 	
-	public static int binToDecimal(String input){
+	public  int binToDecimal(String input){
 		return Integer.parseInt(input, 2);
 	}
 	
-	public static int octToDecimal(String input){
+	public  int octToDecimal(String input){
 		return Integer.parseInt(input, 8);
 	}
 	
-	public static int hexToDecimal(String input){
+	public  int hexToDecimal(String input){
 		return Integer.parseInt(input, 16);
 	}
 	
-	public static String deciToHex(String input){
+	public  String deciToHex(String input){
 		String x = "";
 		int newinput = Integer.parseInt(input);
 		
@@ -176,17 +176,17 @@ public class TheMath {
 		return z;
 	}
 	
-	public static int octToHex(String input){
+	public  int octToHex(String input){
 		return binToHex(octToBinary(input));
 	}
 	
-	public static int binToHex(String input){
+	public  int binToHex(String input){
 		int num = Integer.parseInt(input, 2);
 		String result = Integer.toHexString(num);
 		return Integer.parseInt(result, 16);
 	}
 	
-	public static String deciToOctal(String input){
+	public  String deciToOctal(String input){
 		String x = "";
 		int newinput = Integer.parseInt(input);
 		
@@ -208,11 +208,11 @@ public class TheMath {
 		return z;
 	}
 	
-	public static int hexToOctal(String input){
+	public  int hexToOctal(String input){
 		return binToOctal(hexToBinary(input));
 	}
 	
-	public static int binToOctal(String input){
+	public  int binToOctal(String input){
 		int num = Integer.parseInt(input, 2);
 		String result = Integer.toOctalString(num);
 		return Integer.parseInt(result, 8);

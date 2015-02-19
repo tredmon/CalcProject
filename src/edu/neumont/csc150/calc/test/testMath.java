@@ -6,7 +6,9 @@ public class testMath {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		IUserInterface ui = UserInterfaceFactories.getInstance();
+		String input = ui.promptStringInput();
+		System.out.println(TheMath.deciToBinary(input));
 
 	}
 
