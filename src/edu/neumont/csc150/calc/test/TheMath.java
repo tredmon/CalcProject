@@ -37,7 +37,7 @@ public class TheMath {
 	
 //	private  ArrayList <Integer> list = new ArrayList <Integer>();
 	
-	public  String deciToBinary(String input){
+	public static String deciToBinary(String input){
 		String x = "";
 		int newinput = Integer.parseInt(input);
 		
@@ -59,7 +59,7 @@ public class TheMath {
 		return z;
 	}
 	
-	public  String octToBinary(String input){
+	public static String octToBinary(String input){
 		String value = "";
 		for(int x = 0; x < input.length(); x++){
 			switch(input.charAt(x)){
@@ -92,7 +92,7 @@ public class TheMath {
 		return value;
 	}
 	
-	public  String hexToBinary(String input){
+	public static String hexToBinary(String input){
 		String value = "";
 		for(int x = 0; x < input.length(); x++){
 			switch(input.charAt(x)){
@@ -149,19 +149,19 @@ public class TheMath {
 		return value;
 	}
 	
-	public  int binToDecimal(String input){
+	public static int binToDecimal(String input){
 		return Integer.parseInt(input, 2);
 	}
 	
-	public  int octToDecimal(String input){
+	public static int octToDecimal(String input){
 		return Integer.parseInt(input, 8);
 	}
 	
-	public  int hexToDecimal(String input){
+	public static int hexToDecimal(String input){
 		return Integer.parseInt(input, 16);
 	}
 	
-	public  String deciToHex(String input){
+	public static String deciToHex(String input){
 		String x = "";
 		int newinput = Integer.parseInt(input);
 		
@@ -176,17 +176,17 @@ public class TheMath {
 		return z;
 	}
 	
-	public  int octToHex(String input){
+	public static int octToHex(String input){
 		return binToHex(octToBinary(input));
 	}
 	
-	public  int binToHex(String input){
+	public static int binToHex(String input){
 		int num = Integer.parseInt(input, 2);
 		String result = Integer.toHexString(num);
 		return Integer.parseInt(result, 16);
 	}
 	
-	public  String deciToOctal(String input){
+	public static String deciToOctal(String input){
 		String x = "";
 		int newinput = Integer.parseInt(input);
 		
@@ -208,11 +208,11 @@ public class TheMath {
 		return z;
 	}
 	
-	public  int hexToOctal(String input){
+	public static int hexToOctal(String input){
 		return binToOctal(hexToBinary(input));
 	}
 	
-	public  int binToOctal(String input){
+	public static int binToOctal(String input){
 		int num = Integer.parseInt(input, 2);
 		String result = Integer.toOctalString(num);
 		return Integer.parseInt(result, 8);
