@@ -4,16 +4,77 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>20</x>
-      <y>20</y>
+      <x>840</x>
+      <y>300</y>
+      <w>210</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>TheMath
+--
+- TheMath()
+--
+_+decToBin(String):String_
+_+octToBin(String):String_
+_+hexToBin(String):String_
+_+binToBin(String):String_
+_+octToDec(String):String_
+_+hexToDec(String):String_
+_+decToHex(String):String_
+_+octToHex(String):String_
+_+binToHex(String):String_
+_+decToOct(String):String_
+_+hexToOct(String):String_
+_+bintoOct(String):String_
+_+binToDou(String):String_
+_+octToDou(String):String_
+_+decToDou(String):String_
+_+hexToDou(String):String_
+ </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>610</x>
+      <y>300</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
-    <panel_attributes>
+    <panel_attributes>MyPanel
+--
+_+MyPanel()_
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>300</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>GraphPanel
 --
 
 --
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>300</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>CalcProjectDriver
+--
+_+main(String[]):void_
+ </panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
