@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 
 public class MyPanel extends JPanel implements ActionListener{
 	JButton button;
+	private final int numOffY = 0;
+	private final int numOffX = 0;
 	
 	public MyPanel() {
 		this.setLayout(new GridBagLayout());
@@ -23,48 +25,48 @@ public class MyPanel extends JPanel implements ActionListener{
 
 		// Calculator setup		
 		button = new JButton("1");
-		c.gridx = 0;
-		c.gridy = 0;
+		c.gridx = numOffX + 0;
+		c.gridy = numOffY + 0;
 		this.add(button, c);
 		
 		button = new JButton("2");
-		c.gridx = 1;
-		c.gridy = 0;
+		c.gridx = numOffX + 1;
+		c.gridy = numOffY + 0;
 		this.add(button, c);
 		
 		button = new JButton("3");
-		c.gridx = 2;
-		c.gridy = 0;
+		c.gridx = numOffX + 2;
+		c.gridy = numOffY + 0;
 		this.add(button, c);
 		
 		button = new JButton("4");
-		c.gridx = 0;
-		c.gridy = 1;
+		c.gridx = numOffX + 0;
+		c.gridy = numOffY + 1;
 		this.add(button, c);
 		
 		button = new JButton("5");
-		c.gridx = 1;
-		c.gridy = 1;
+		c.gridx = numOffX + 1;
+		c.gridy = numOffY + 1;
 		this.add(button, c);
 		
 		button = new JButton("6");
-		c.gridx = 2;
-		c.gridy = 1;
+		c.gridx = numOffX + 2;
+		c.gridy = numOffY + 1;
 		this.add(button, c);
 		
 		button = new JButton("7");
-		c.gridx = 0;
-		c.gridy = 2;
+		c.gridx = numOffX + 0;
+		c.gridy = numOffY + 2;
 		this.add(button, c);
 		
 		button = new JButton("8");
-		c.gridx = 1;
-		c.gridy = 2;
+		c.gridx = numOffX + 1;
+		c.gridy = numOffY + 2;
 		this.add(button, c);
 		
 		button = new JButton("9");
-		c.gridx = 2;
-		c.gridy = 2;
+		c.gridx = numOffX + 2;
+		c.gridy = numOffY + 2;
 		this.add(button, c);
 		
 		
