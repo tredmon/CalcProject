@@ -8,34 +8,33 @@ public class TheMath {
 	
 	
 	
+	public static String o0 = "000"; 
+	public static String o1 = "001";
+	public static String o2 = "010";
+	public static String o3 = "011";
+	public static String o4 = "100";
+	public static String o5 = "101";
+	public static String o6 = "110";
+	public static String o7 = "111";
 	
-	private  String o0 = "000"; 
-	private  String o1 = "001";
-	private  String o2 = "010";
-	private  String o3 = "011";
-	private  String o4 = "100";
-	private  String o5 = "101";
-	private  String o6 = "110";
-	private  String o7 = "111";
+	public static String h0 = "0000"; 
+	public static String h1 = "0001";
+	public static String h2 = "0010";
+	public static String h3 = "0011";
+	public static String h4 = "0100";
+	public static String h5 = "0101";
+	public static String h6 = "0110";
+	public static String h7 = "0111";
+	public static String h8 = "1000";
+	public static String h9 = "1001";
+	public static String ha = "1010";
+	public static String hb = "1011";
+	public static String hc = "1100";
+	public static String hd = "1101";
+	public static String he = "1110";
+	public static String hf = "1111";
 	
-	private  String h0 = "0000"; 
-	private  String h1 = "0001";
-	private  String h2 = "0010";
-	private  String h3 = "0011";
-	private  String h4 = "0100";
-	private  String h5 = "0101";
-	private  String h6 = "0110";
-	private  String h7 = "0111";
-	private  String h8 = "1000";
-	private  String h9 = "1001";
-	private  String ha = "1010";
-	private  String hb = "1011";
-	private  String hc = "1100";
-	private  String hd = "1101";
-	private  String he = "1110";
-	private  String hf = "1111";
-	
-//	private  ArrayList <Integer> list = new ArrayList <Integer>();
+//	private static ArrayList <Integer> list = new ArrayList <Integer>();
 	
 	public static String deciToBinary(String input){
 		String x = "";
@@ -216,5 +215,57 @@ public class TheMath {
 		int num = Integer.parseInt(input, 2);
 		String result = Integer.toOctalString(num);
 		return Integer.parseInt(result, 8);
+	}
+	
+	public static double sin(String input){
+		return Math.sin(Double.parseDouble(input));
+	}
+	
+	public static double cosine(String input){
+		return Math.cos(Double.parseDouble(input));
+	}
+	
+	public static double tangent(String input){
+		return Math.tan(Double.parseDouble(input));
+	}
+	
+	public static double secant(String input){
+		return 1/cosine(input);
+	}
+	
+	public static double cosecant(String input){
+		return 1/sin(input);
+	}
+	
+	public static double cotangent(String input){
+		return 1/tangent(input);
+	}
+	
+	public static double arcsine(String input){
+		return Math.asin(Double.parseDouble(input));
+	}
+	
+	public static double arccosine(String input){
+		return Math.acos(Double.parseDouble(input));
+	}
+	
+	public static double arctangent(String input){
+		return Math.atan(Double.parseDouble(input));
+	}
+	
+	public static double radToDegrees(String input){
+		return Math.toDegrees(Double.parseDouble(input));
+	}
+	
+	public static double degToRadians(String input){
+		return Math.toRadians(Double.parseDouble(input));
+	}
+	
+	public static double log(String input){
+		return Math.log10(Double.parseDouble(input));
+	}
+	
+	public static double ln(String input){
+		return Math.log(Double.parseDouble(input));
 	}
 }
