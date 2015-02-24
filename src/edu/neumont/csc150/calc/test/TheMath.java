@@ -148,16 +148,18 @@ public class TheMath {
 		return value;
 	}
 	
-	public static int binToDecimal(String input){
-		return Integer.parseInt(input, 2);
+	public static String binToDecimal(String input){
+		int x = Integer.parseInt(input, 2);
+		return Integer.toString(x, 10);
 	}
 	
-	public static int octToDecimal(String input){
-		return Integer.parseInt(input, 8);
+	public static String octToDecimal(String input){
+		int x = Integer.parseInt(input, 8);
+		return Integer.toString(x, 10);
 	}
 	
-	public static int hexToDecimal(String input){
-		return Integer.parseInt(input, 16);
+	public static String hexToDecimal(String input){
+		return Integer.toString(Integer.parseInt(input, 16), 10);
 	}
 	
 	public static String deciToHex(String input){
@@ -175,14 +177,14 @@ public class TheMath {
 		return z;
 	}
 	
-	public static int octToHex(String input){
+	public static String octToHex(String input){
 		return binToHex(octToBinary(input));
 	}
 	
-	public static int binToHex(String input){
+	public static String binToHex(String input){
 		int num = Integer.parseInt(input, 2);
 		String result = Integer.toHexString(num);
-		return Integer.parseInt(result, 16);
+		return result;
 	}
 	
 	public static String deciToOctal(String input){
@@ -207,26 +209,39 @@ public class TheMath {
 		return z;
 	}
 	
-	public static int hexToOctal(String input){
+	public static String hexToOctal(String input){
 		return binToOctal(hexToBinary(input));
 	}
 	
-	public static int binToOctal(String input){
+	public static String binToOctal(String input){
 		int num = Integer.parseInt(input, 2);
 		String result = Integer.toOctalString(num);
-		return Integer.parseInt(result, 8);
+		return Integer.toString(Integer.parseInt(result, 8),8);
 	}
 	
+
 	public static double sin(String input){
-		return Math.sin(Double.parseDouble(input));
+		double result = Math.sin(Double.parseDouble(input));
+//		if(Double.isNaN(Double.parseDouble(input)))
+//			return Double.parseDouble(input);
+//		else
+		return result;
 	}
 	
 	public static double cosine(String input){
-		return Math.cos(Double.parseDouble(input));
+		double result = Math.cos(Double.parseDouble(input));
+//		if(Double.isNaN(Double.parseDouble(input)))
+//			return Double.parseDouble(input);
+//		else
+		return result;
 	}
 	
 	public static double tangent(String input){
-		return Math.tan(Double.parseDouble(input));
+		double result = Math.tan(Double.parseDouble(input));
+//		if(Double.isNaN(Double.parseDouble(input)))
+//			return Double.parseDouble(input);
+//		else
+		return result;
 	}
 	
 	public static double secant(String input){
