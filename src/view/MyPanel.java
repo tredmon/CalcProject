@@ -26,17 +26,17 @@ public class MyPanel extends JPanel implements ActionListener{
 		// Calculator setup		
 		button = new JButton("1");
 		c.gridx = numOffX + 0;
-		c.gridy = numOffY + 0;
+		c.gridy = numOffY + 2;
 		this.add(button, c);
 		
 		button = new JButton("2");
 		c.gridx = numOffX + 1;
-		c.gridy = numOffY + 0;
+		c.gridy = numOffY + 2;
 		this.add(button, c);
 		
 		button = new JButton("3");
 		c.gridx = numOffX + 2;
-		c.gridy = numOffY + 0;
+		c.gridy = numOffY + 2;
 		this.add(button, c);
 		
 		button = new JButton("4");
@@ -56,19 +56,20 @@ public class MyPanel extends JPanel implements ActionListener{
 		
 		button = new JButton("7");
 		c.gridx = numOffX + 0;
-		c.gridy = numOffY + 2;
+		c.gridy = numOffY + 0;
 		this.add(button, c);
 		
 		button = new JButton("8");
 		c.gridx = numOffX + 1;
-		c.gridy = numOffY + 2;
+		c.gridy = numOffY + 0;
 		this.add(button, c);
 		
 		button = new JButton("9");
 		c.gridx = numOffX + 2;
-		c.gridy = numOffY + 2;
+		c.gridy = numOffY + 0;
 		this.add(button, c);
 		
+		button 
 		
 		/*
 		this.fromText = new JLabel("Convert from:");
