@@ -2,6 +2,7 @@ package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,65 +12,134 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 public class MyPanel extends JPanel implements ActionListener{
-	JButton button;
-	private final int numOffY = 0;
-	private final int numOffX = 0;
+	JButton button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, 
+	buttonClear, buttonBackspace, buttonLeftParen, buttonRightParen, buttonExponent, buttonX, buttonDivide,
+	buttonMultiply, buttonSubtract, buttonAdd, buttonEquals, buttonDecimal;
+	private final int numOffY = 3;
+	private final int numOffX = 3;
 	
 	public MyPanel() {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c =  new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 0.5;
+		c.weightx = .5;
 
 		// Calculator setup		
-		button = new JButton("1");
+		button1 = new JButton("1");
 		c.gridx = numOffX + 0;
 		c.gridy = numOffY + 2;
-		this.add(button, c);
+		this.add(button1, c);
 		
-		button = new JButton("2");
+		button2 = new JButton("2");
 		c.gridx = numOffX + 1;
 		c.gridy = numOffY + 2;
-		this.add(button, c);
+		this.add(button2, c);
 		
-		button = new JButton("3");
+		button3 = new JButton("3");
 		c.gridx = numOffX + 2;
 		c.gridy = numOffY + 2;
-		this.add(button, c);
+		this.add(button3, c);
 		
-		button = new JButton("4");
+		button4 = new JButton("4");
 		c.gridx = numOffX + 0;
 		c.gridy = numOffY + 1;
-		this.add(button, c);
+		this.add(button4, c);
 		
-		button = new JButton("5");
+		button5 = new JButton("5");
 		c.gridx = numOffX + 1;
 		c.gridy = numOffY + 1;
-		this.add(button, c);
+		this.add(button5, c);
 		
-		button = new JButton("6");
+		button6 = new JButton("6");
 		c.gridx = numOffX + 2;
 		c.gridy = numOffY + 1;
-		this.add(button, c);
+		this.add(button6, c);
 		
-		button = new JButton("7");
+		button7 = new JButton("7");
 		c.gridx = numOffX + 0;
 		c.gridy = numOffY + 0;
-		this.add(button, c);
+		this.add(button7, c);
 		
-		button = new JButton("8");
+		button8 = new JButton("8");
 		c.gridx = numOffX + 1;
 		c.gridy = numOffY + 0;
-		this.add(button, c);
+		this.add(button8, c);
 		
-		button = new JButton("9");
+		button9 = new JButton("9");
 		c.gridx = numOffX + 2;
 		c.gridy = numOffY + 0;
-		this.add(button, c);
+		this.add(button9, c);
 		
-		button 
+		button0 = new JButton("0");
+		c.gridx = numOffX + 0;
+		c.gridy = numOffY + 3;
+		this.add(button0, c);
+		
+		buttonLeftParen = new JButton("(");
+		c.gridx = numOffX + 0;
+		c.gridy = numOffY + -1;
+		this.add(buttonLeftParen, c);
+		
+		buttonRightParen = new JButton(")");
+		c.gridx = numOffX + 1;
+		c.gridy = numOffY + -1;
+		this.add(buttonRightParen, c);
+		
+		buttonExponent = new JButton("^");
+		c.gridx = numOffX + 2;
+		c.gridy = numOffY + -1;
+		this.add(buttonExponent, c);
+		
+		buttonX = new JButton("X");
+		c.gridx = numOffX + 3;
+		c.gridy = numOffY + -1;
+		this.add(buttonX, c);
+		
+		buttonDivide = new JButton("/");
+		c.gridx = numOffX + 3;
+		c.gridy = numOffY + 0;
+		this.add(buttonDivide, c);
+		
+		buttonMultiply = new JButton("*");
+		c.gridx = numOffX + 3;
+		c.gridy = numOffY + 1;
+		this.add(buttonMultiply, c);
+		
+		buttonSubtract = new JButton("-");
+		c.gridx = numOffX + 3;
+		c.gridy = numOffY + 2;
+		this.add(buttonSubtract, c);
+		
+		buttonAdd = new JButton("+");
+		c.gridx = numOffX + 3;
+		c.gridy = numOffY + 3;
+		this.add(buttonAdd, c);
+		
+		buttonDecimal = new JButton(".");
+		c.gridx = numOffX + 1;
+		c.gridy = numOffY + 3;
+		this.add(buttonDecimal, c);
+		
+		buttonEquals = new JButton("=");
+		c.gridx = numOffX + 2;
+		c.gridy = numOffY + 3;
+		this.add(buttonEquals, c);
+		
+		
+		buttonClear = new JButton("Clr");
+		c.gridx = numOffX + 0;
+		c.gridy = numOffY + -2;
+		this.add(buttonClear, c);
+		
+		buttonBackspace = new JButton("Backspace");
+		c.gridx = numOffX + 1;
+		c.gridy = numOffY + -2;
+		c.gridwidth = 3;
+		this.add(buttonBackspace, c);
+		c.gridwidth = 0;
 		
 		/*
 		this.fromText = new JLabel("Convert from:");
