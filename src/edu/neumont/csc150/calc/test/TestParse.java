@@ -14,11 +14,6 @@ public class TestParse {
 			System.out.print(p.getName()+" ");
 		}
 		System.out.println();
-		doubtree.sort();
-		for(ParseFunc p : doubtree.getFunctionList()){
-			System.out.print(p.getName()+" ");
-		}
-		System.out.println();
 		
 		doubtree.parse(str);
 		System.out.println(str+" = "+doubtree+" = "+doubtree.eval());

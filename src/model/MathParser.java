@@ -1,8 +1,13 @@
 package model;
 
 public class MathParser extends ParseTreeDouble{
+	private String mstr;
 	public MathParser(){
+		this("");
+	}
+	public MathParser(String mem){
 		super();
+		setMem(mem);
 		add(new ParseFunc<Double>("+",400,"PLUS"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
@@ -127,8 +132,51 @@ public class MathParser extends ParseTreeDouble{
 				return ret;
 			}
 		});
+		add(new ParseFunc<Double>("M",90,"MEM"){
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					MathParser mp = new MathParser();
+					mp.parse(mstr);
+					ret = mp.eval();
+				}
+				return ret;
+			}
+		});
+		add(new ParseFunc<Double>("e",1500,"EULER"){
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					//TODO: use MyMath.E field
+//					ret = MyMath.E;
+					ret = 2.71;
+				}
+				return ret;
+			}
+		});
+		add(new ParseFunc<Double>("π",1500,"PI"){
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					//TODO: use MyMath.PI field
+//					ret = MyMath.PI;
+					ret = 3.14;
+				}
+				return ret;
+			}
+		});
 		
 		add(new ParseGroupFunc<Double>("(",")",100,"PARENTH"));
-
+		sort();
+	}
+	@Override
+	public MathParser parse(String parse){
+		return (MathParser) super.parse(parse);
+	}
+	public void setMem(String mem){
+		mstr = mem;
 	}
 }
