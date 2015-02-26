@@ -4,9 +4,6 @@ import java.util.Collections;
 
 
 public abstract class ParseTree<T> {
-//	public static enum Function{PLUS,MINUS, MULTIPLY,DIVIDE,MODULO, PARENTHESB,PARENTHESE, NOT,BNOT, SHIFTL,SHIFTR, COMPL,COMPLE,COMPG,COMPGE, COMPE,COMPNE, AND, XOR, OR, BAND, BOR};
-//	public static final String[] parsefuncs = new String[]{"+","-","*","/","%", "(",")", "!","~", "<<",">>", "<","<=",">",">=", "==","!=", "&", "^", "|", "&&", "||"};
-//	public static final int[] funcorder = new int[]{400,400, 300,300,300, 100,100, 200, 500,500, 600,600,600,600, 700,700, 800, 900, 1000, 1100, 1200};
 	private ArrayList<ParseFunc<T>> parsefuncs;
 	private T data;
 	private ParseFunc<T> func;
