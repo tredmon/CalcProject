@@ -25,6 +25,10 @@ public class MyPanel extends JPanel implements ActionListener{
 	
 	JButton Mplus, M, rt, Mod, Ln, Log, e, pi;
 	
+	JButton Or, Xor, Not, And, Lsh, Rsh;
+	
+	JTextField textfield;	
+	
 	JRadioButton rbuttonDegrees, rbuttonRadians, rbuttonBinary, rbuttonOctal, rbuttonDecimal, rbuttonHexadecimal;
 	private final int numOffX = 6;
 	private final int numOffY = 3;
@@ -43,6 +47,13 @@ public class MyPanel extends JPanel implements ActionListener{
 		c.gridx = numOffX  -6;
 		c.gridy = numOffY -3;
 		this.add(rbuttonBinary, c);
+		
+		textfield = new JTextField();
+		c.gridwidth = 8;
+		c.gridx = numOffX -4;
+		c.gridy = numOffY -3;
+		this.add(textfield, c);
+		c.gridwidth = 2;
 		
 		rbuttonOctal = new JRadioButton("Octal");
 		c.gridx = numOffX  -6;
@@ -79,10 +90,43 @@ public class MyPanel extends JPanel implements ActionListener{
 		angletype.add(rbuttonDegrees);
 		angletype.add(rbuttonRadians);;
 		
+		Or = new JButton("Or");
+		c.gridx = numOffX -6;
+		c.gridy = numOffY + 1;
+		this.add(Or, c);
+		
+		Xor = new JButton("Xor");
+		c.gridx = numOffX -5;
+		c.gridy = numOffY + 1;
+		this.add(Xor, c);
+		
+		Not = new JButton("Not");
+		c.gridx = numOffX -6;
+		c.gridy = numOffY + 2;
+		this.add(Not, c);
+		
+		And = new JButton("And");
+		c.gridx = numOffX -5;
+		c.gridy = numOffY + 2;
+		this.add(And, c);
+		
+		Lsh = new JButton("Lsh");
+		c.gridx = numOffX -6;
+		c.gridy = numOffY + 3;
+		this.add(Lsh, c);
+		
+		Rsh = new JButton("Rsh");
+		c.gridx = numOffX -5;
+		c.gridy = numOffY + 3;
+		this.add(Rsh, c);
+		
+		c.insets = new Insets(0,10,0,0);
 		sin = new JButton("sin");
 		c.gridx = numOffX -4;
 		c.gridy = numOffY -1;
 		this.add(sin, c);
+		c.insets = new Insets(0,0,0,0);
+
 		
 		cos = new JButton("cos");
 		c.gridx = numOffX -3;
@@ -94,10 +138,12 @@ public class MyPanel extends JPanel implements ActionListener{
 		c.gridy = numOffY -1;
 		this.add(tan, c);
 		
+		c.insets = new Insets(0,10,0,0);
 		arcsin = new JButton("Sin-");
 		c.gridx = numOffX -4;
 		c.gridy = numOffY;
 		this.add(arcsin, c);
+		c.insets = new Insets(0,0,0,0);
 		
 		arccos = new JButton("Cos-");
 		c.gridx = numOffX -3;
@@ -109,10 +155,12 @@ public class MyPanel extends JPanel implements ActionListener{
 		c.gridy = numOffY;
 		this.add(arctan, c);
 		
+		c.insets = new Insets(0,10,0,0);
 		Mplus = new JButton("M+");
 		c.gridx = numOffX -4;
 		c.gridy = numOffY + 1;
 		this.add(Mplus, c);
+		c.insets = new Insets(0,0,0,0);
 		
 		M = new JButton("M");
 		c.gridx = numOffX -3;
@@ -124,10 +172,12 @@ public class MyPanel extends JPanel implements ActionListener{
 		c.gridy = numOffY + 1;
 		this.add(rt, c);
 		
+		c.insets = new Insets(0,10,0,0);
 		Mod = new JButton("Mod");
 		c.gridx = numOffX -4;
 		c.gridy = numOffY + 2;
 		this.add(Mod, c);
+		c.insets = new Insets(0,0,0,0);
 		
 		Ln = new JButton("Ln");
 		c.gridx = numOffX -3;
@@ -139,11 +189,13 @@ public class MyPanel extends JPanel implements ActionListener{
 		c.gridy = numOffY + 2;
 		this.add(Log, c);
 		
+		c.insets = new Insets(0,10,0,0);
 		e = new JButton("e");
 		c.gridx = numOffX -4;
 		c.gridy = numOffY + 3;
 		this.add(e, c);
-		
+		c.insets = new Insets(0,0,0,0);
+
 		pi = new JButton("pi");
 		c.gridx = numOffX -2;
 		c.gridy = numOffY + 3;
@@ -154,10 +206,12 @@ public class MyPanel extends JPanel implements ActionListener{
 		c.gridy = numOffY + 2;
 		this.add(Log, c);
 		
+		c.insets = new Insets(0,6,0,6);
 		buttonHexA = new JButton("A"); 
 		c.gridx = numOffX  -1;
 		c.gridy = numOffY  -2;
 		this.add(buttonHexA, c);
+		
 		
 		buttonHexB = new JButton("B"); 
 		c.gridx = numOffX  -1;
@@ -183,6 +237,8 @@ public class MyPanel extends JPanel implements ActionListener{
 		c.gridx = numOffX  -1;
 		c.gridy = numOffY + 3;
 		this.add(buttonHexF, c);
+		c.insets = new Insets(0,0,0,0);
+
 		
 		button1 = new JButton("1");
 		c.gridx = numOffX + 0;
