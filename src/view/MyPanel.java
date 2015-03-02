@@ -21,6 +21,10 @@ public class MyPanel extends JPanel implements ActionListener{
 	
 	JButton buttonHexA, buttonHexB, buttonHexC, buttonHexD, buttonHexE, buttonHexF;
 	
+	JButton sin, cos, tan, arcsin, arccos, arctan;
+	
+	JButton Mplus, M, rt, Mod, Ln, Log, e, pi;
+	
 	JRadioButton rbuttonDegrees, rbuttonRadians, rbuttonBinary, rbuttonOctal, rbuttonDecimal, rbuttonHexadecimal;
 	private final int numOffX = 6;
 	private final int numOffY = 3;
@@ -29,6 +33,7 @@ public class MyPanel extends JPanel implements ActionListener{
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c =  new GridBagConstraints();
 		ButtonGroup numtype = new ButtonGroup();
+		ButtonGroup angletype = new ButtonGroup();
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = .5;
 
@@ -59,18 +64,95 @@ public class MyPanel extends JPanel implements ActionListener{
 		numtype.add(rbuttonOctal);
 		numtype.add(rbuttonOctal);
 		
-		rbuttonDegrees = new JRadioButton("Degrees");
-		c.gridx = numOffX -4;
-		c.gridy = numOffY -2;
-		this.add(rbuttonDegrees, c);
-		
+		c.gridwidth = 1;
+
 		rbuttonRadians = new JRadioButton("Radians");
 		c.gridx = numOffX -3;
 		c.gridy = numOffY -2;
 		this.add(rbuttonRadians, c);
 		
-		c.gridwidth = 1;
-
+		rbuttonDegrees = new JRadioButton("Degrees");
+		c.gridx = numOffX -4;
+		c.gridy = numOffY -2;
+		this.add(rbuttonDegrees, c);
+		
+		angletype.add(rbuttonDegrees);
+		angletype.add(rbuttonRadians);;
+		
+		sin = new JButton("sin");
+		c.gridx = numOffX -4;
+		c.gridy = numOffY -1;
+		this.add(sin, c);
+		
+		cos = new JButton("cos");
+		c.gridx = numOffX -3;
+		c.gridy = numOffY -1;
+		this.add(cos, c);
+		
+		tan = new JButton("tan");
+		c.gridx = numOffX -2;
+		c.gridy = numOffY -1;
+		this.add(tan, c);
+		
+		arcsin = new JButton("Sin-");
+		c.gridx = numOffX -4;
+		c.gridy = numOffY;
+		this.add(arcsin, c);
+		
+		arccos = new JButton("Cos-");
+		c.gridx = numOffX -3;
+		c.gridy = numOffY;
+		this.add(arccos, c);
+		
+		arctan = new JButton("Tan-");
+		c.gridx = numOffX -2;
+		c.gridy = numOffY;
+		this.add(arctan, c);
+		
+		Mplus = new JButton("M+");
+		c.gridx = numOffX -4;
+		c.gridy = numOffY + 1;
+		this.add(Mplus, c);
+		
+		M = new JButton("M");
+		c.gridx = numOffX -3;
+		c.gridy = numOffY + 1;
+		this.add(M, c);
+		
+		rt = new JButton("rt");
+		c.gridx = numOffX -2;
+		c.gridy = numOffY + 1;
+		this.add(rt, c);
+		
+		Mod = new JButton("Mod");
+		c.gridx = numOffX -4;
+		c.gridy = numOffY + 2;
+		this.add(Mod, c);
+		
+		Ln = new JButton("Ln");
+		c.gridx = numOffX -3;
+		c.gridy = numOffY + 2;
+		this.add(Ln, c);
+		
+		Log = new JButton("Log");
+		c.gridx = numOffX -2;
+		c.gridy = numOffY + 2;
+		this.add(Log, c);
+		
+		e = new JButton("e");
+		c.gridx = numOffX -4;
+		c.gridy = numOffY + 3;
+		this.add(e, c);
+		
+		pi = new JButton("pi");
+		c.gridx = numOffX -2;
+		c.gridy = numOffY + 3;
+		this.add(pi, c);
+		
+		Log = new JButton("Log");
+		c.gridx = numOffX -2;
+		c.gridy = numOffY + 2;
+		this.add(Log, c);
 		
 		buttonHexA = new JButton("A"); 
 		c.gridx = numOffX  -1;
