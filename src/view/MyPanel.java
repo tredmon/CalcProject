@@ -206,7 +206,7 @@ public class MyPanel extends JPanel implements ActionListener{
 		c.gridy = numOffY + 2;
 		this.add(Log, c);
 		
-		c.insets = new Insets(0,6,0,6);
+		c.insets = new Insets(0,10,0,10);
 		buttonHexA = new JButton("A"); 
 		c.gridx = numOffX  -1;
 		c.gridy = numOffY  -2;
