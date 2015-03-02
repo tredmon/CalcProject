@@ -1,150 +1,180 @@
 package edu.neumont.csc150.calc.test;
 
+import java.io.Serializable;
 
 
-public class TheMath {
+
+
+public class TheMath implements Serializable{
 	
 	private TheMath(){}
 	
+	public static final double PI = Math.PI;
+	public static final double E = Math.E;
 	
+	private static String o0 = "000"; 
+	private static String o1 = "001";
+	private static String o2 = "010";
+	private static String o3 = "011";
+	private static String o4 = "100";
+	private static String o5 = "101";
+	private static String o6 = "110";
+	private static String o7 = "111";
 	
-	public static String o0 = "000"; 
-	public static String o1 = "001";
-	public static String o2 = "010";
-	public static String o3 = "011";
-	public static String o4 = "100";
-	public static String o5 = "101";
-	public static String o6 = "110";
-	public static String o7 = "111";
+	private static String h0 = "0000"; 
+	private static String h1 = "0001";
+	private static String h2 = "0010";
+	private static String h3 = "0011";
+	private static String h4 = "0100";
+	private static String h5 = "0101";
+	private static String h6 = "0110";
+	private static String h7 = "0111";
+	private static String h8 = "1000";
+	private static String h9 = "1001";
+	private static String ha = "1010";
+	private static String hb = "1011";
+	private static String hc = "1100";
+	private static String hd = "1101";
+	private static String he = "1110";
+	private static String hf = "1111";
 	
-	public static String h0 = "0000"; 
-	public static String h1 = "0001";
-	public static String h2 = "0010";
-	public static String h3 = "0011";
-	public static String h4 = "0100";
-	public static String h5 = "0101";
-	public static String h6 = "0110";
-	public static String h7 = "0111";
-	public static String h8 = "1000";
-	public static String h9 = "1001";
-	public static String ha = "1010";
-	public static String hb = "1011";
-	public static String hc = "1100";
-	public static String hd = "1101";
-	public static String he = "1110";
-	public static String hf = "1111";
-	
-//	private static ArrayList <Integer> list = new ArrayList <Integer>();
-	
+
 	public static String deciToBinary(String input){
-		String x = "";
-		int newinput = Integer.parseInt(input);
-		
-		while(newinput >= 1){
+		int newinput = 0;
+		boolean again = true;
+		String x = "", z = "";
+		while(again){
+			try{
+				newinput = Integer.parseInt(input);
+				again = false;
+			}
+			catch(NumberFormatException ex){}
 			
-			if(newinput % 2 == 0){
-				newinput = newinput/2;
-				x += "0";
+			while(newinput >= 1){
+				
+				if(newinput % 2 == 0){
+					newinput = newinput/2;
+					x += "0";
+				}
+				else if(newinput % 2 == 1){
+					newinput = newinput/2;
+					x += "1";
+				}
 			}
-			else if(newinput % 2 == 1){
-				newinput = newinput/2;
-				x += "1";
-			}
-		}
-		String z = "";
-		for(int i = x.length() - 1; i >= 0; i--){
+			for(int i = x.length() - 1; i >= 0; i--){
 				 z += x.charAt(i);
+			}
 		}
 		return z;
 	}
 	
 	public static String octToBinary(String input){
+		boolean again = true;
 		String value = "";
-		for(int x = 0; x < input.length(); x++){
-			switch(input.charAt(x)){
-				case '0':
-					value += (o0);
-					break;
-				case '1':
-					value += (o1);
-					break;
-				case '2':
-					value += (o2);
-					break;
-				case '3':
-					value += (o3);
-					break;
-				case '4':
-					value += (o4);
-					break;
-				case '5':
-					value += (o5);
-					break;
-				case '6':
-					value += (o6);
-					break;
-				case '7':
-					value += (o7);
-					break;
-			}
+		while(again){
+			if(input.contains("0")||input.contains("1")||input.contains("2")||input.contains("3")||input.contains("4")||input.contains("5")||input.contains("6")||input.contains("7")){	
+			for(int x = 0; x < input.length(); x++){
+					switch(input.charAt(x)){
+						case '0':
+							value += (o0);
+							break;
+						case '1':
+							value += (o1);
+							break;
+						case '2':
+							value += (o2);
+							break;
+						case '3':
+							value += (o3);
+							break;
+						case '4':
+							value += (o4);
+							break;
+						case '5':
+							value += (o5);
+							break;
+						case '6':
+							value += (o6);
+							break;
+						case '7':
+							value += (o7);
+							break;
+						}
+					}	
+					again = false;
+				}
+			else
+				again = true;
 		}
+	
 		return value;
 	}
 	
+	
 	public static String hexToBinary(String input){
+		boolean again = true;
 		String value = "";
-		for(int x = 0; x < input.length(); x++){
-			switch(input.charAt(x)){
-			case '0':
-				value += (h0);
-				break;
-			case '1':
-				value += (h1);
-				break;
-			case '2':
-				value += (h2);
-				break;
-			case '3':
-				value += (h3);
-				break;
-			case '4':
-				value += (h4);
-				break;
-			case '5':
-				value += (h5);
-				break;
-			case '6':
-				value += (h6);
-				break;
-			case '7':
-				value += (h7);
-				break;
-			case '8':
-				value += (h8);
-				break;
-			case '9':
-				value += (h9);
-				break;
-			case 'a':
-				value += (ha);
-				break;
-			case 'b':
-				value += (hb);
-				break;
-			case 'c':
-				value += (hc);
-				break;
-			case 'd':
-				value += (hd);
-				break;
-			case 'e':
-				value += (he);
-				break;
-			case 'f':
-				value += (hf);
-				break;
+		while(again){
+		for(int i = 0; i < input.length(); i++){
+			if(Character.getNumericValue(input.charAt(i)) >= 0 && Character.getNumericValue(input.charAt(i)) <= 9 || input.charAt(i) >= 'a' && input.charAt(i) <= 'f'){
+				for(int x = 0; x < input.length(); x++){
+					switch(input.charAt(x)){
+					case '0':
+						value += (h0);
+						break;
+					case '1':
+						value += (h1);
+						break;
+					case '2':
+						value += (h2);
+						break;
+					case '3':
+						value += (h3);
+						break;
+					case '4':
+						value += (h4);
+						break;
+					case '5':
+						value += (h5);
+						break;
+					case '6':
+						value += (h6);
+						break;
+					case '7':
+						value += (h7);
+						break;
+					case '8':
+						value += (h8);
+						break;
+					case '9':
+						value += (h9);
+						break;
+					case 'a':
+						value += (ha);
+						break;
+					case 'b':
+						value += (hb);
+						break;
+					case 'c':
+						value += (hc);
+						break;
+					case 'd':
+						value += (hd);
+						break;
+					case 'e':
+						value += (he);
+						break;
+					case 'f':
+						value += (hf);
+						break;
+					}
+				}
 			}
+			else
+				again = true;
 		}
+		}
+		
 		return value;
 	}
 	
@@ -152,6 +182,7 @@ public class TheMath {
 		int x = Integer.parseInt(input, 2);
 		return Integer.toString(x, 10);
 	}
+	
 	
 	public static String octToDecimal(String input){
 		int x = Integer.parseInt(input, 8);
@@ -230,17 +261,11 @@ public class TheMath {
 	
 	public static double cosine(String input){
 		double result = Math.cos(Double.parseDouble(input));
-//		if(Double.isNaN(Double.parseDouble(input)))
-//			return Double.parseDouble(input);
-//		else
 		return result;
 	}
 	
 	public static double tangent(String input){
 		double result = Math.tan(Double.parseDouble(input));
-//		if(Double.isNaN(Double.parseDouble(input)))
-//			return Double.parseDouble(input);
-//		else
 		return result;
 	}
 	
@@ -283,4 +308,17 @@ public class TheMath {
 	public static double ln(String input){
 		return Math.log(Double.parseDouble(input));
 	}
+	
+	public static double mod(String input, String input2){
+		return Double.parseDouble(input)%Double.parseDouble(input2);
+	}
+	
+	public static double root(String base, String root){
+		return Math.pow(Double.parseDouble(base), (1/Double.parseDouble(root)));
+	}
+	public static double ?(String input, String input2){
+	 
+	}
+	
+	
 }

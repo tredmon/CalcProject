@@ -13,8 +13,8 @@ public class testMath {
 	 */
 	public static void main(String[] args) throws IOException {
 		IUserInterface ui = UserInterfaceFactory.getInstance();
-		String input = ui.promptStringInput();
-		System.out.println(TheMath.deciToBinary(input));
+		System.out.println(":D");
+		System.out.println(TheMath.hexToBinary(ui.promptStringInput()));
 
 	}
 
