@@ -140,20 +140,13 @@ public abstract class ParseTree<T> {
 	}
 	public void push(ParseTree<T> p){
 		ParseTree<T> tmp = this.clone();
-		this.clone(p);
 		if(p.getNode1() == null && !tmp.toString().equals("null")){
-			System.out.print("node1 was null:"+p);
 			p.setNode1(tmp);
-			System.out.println(" now:"+p+" set:"+tmp);
 		}
 		else if(p.getNode2() == null && !tmp.toString().equals("null")){
-			System.out.print("node2 was null:"+p);
 			p.setNode2(tmp);
-			System.out.println(" now:"+p+" set:"+tmp);
 		}
-		else if(p.getNode1()!=null && p.getNode2()!=null && !tmp.toString().equals("null")){
-			System.out.println("NO ROOM TO PUSH!! this:\""+p+"\" lost:\""+tmp+"\"");
-		}
+		this.clone(p);
 	}
 	public ParseTree<T> getInstance(){return getInstance(null);};
 	public ParseTree<T> getInstance(T data){return getInstance(data,null);};

@@ -196,6 +196,13 @@ public class MathParser extends ParseTreeDouble{
 		});
 		add(new ParseFunc<Double>("sin",90,"SIN"){
 			@Override
+			public String parse(ParseTree<Double> parent, String str){
+				String ret = super.parse(parent, str);
+				parent.setNode1(parent.getInstance());
+				parent.getNode1().setData(1.0);
+				return ret;
+			}
+			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
