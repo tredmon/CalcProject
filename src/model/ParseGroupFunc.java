@@ -33,9 +33,10 @@ public class ParseGroupFunc<T> extends ParseFunc<T>{
 	public String parse(ParseTree<T> parent, String str){
 		String ret = str;
 		if(parent != null && ret != null){
-			int instr = ret.indexOf(getParse());
-			if(instr == 0){
+			int start = ret.indexOf(getParse());
+			if(start >= 0){
 				int count = 1;
+				int instr = start;
 				int tmplen = getParse().length();
 				while(instr<ret.length() && count>0){
 					int tmpin = ret.indexOf(getParse(), instr+tmplen);
@@ -70,8 +71,16 @@ public class ParseGroupFunc<T> extends ParseFunc<T>{
 				}
 				if(count <= 0){
 					parent.setFunction(this);
-					parent.setNode1(parent.getInstance(parent.getFunctionList(), ret.substring(getParse().length(), instr)));
+					parent.setNode1(parent.getInstance(parent.getFunctionList(), ret.substring(start+getParse().length(), instr)));
+					if(start > 0){
+						parent.push(parent.getInstance(parent.getFunctionList(), ret.substring(0, start)));
+					}
 					ret = ret.substring(instr+getParseEnd().length());
+					if(ret.length() > 0){
+						parent.push(parent.getInstance(parent.getFunctionList(), ret));
+						System.out.println("tree:\""+parent+"\"");
+						ret = "";
+					}
 				}
 				else{
 					System.out.println("\""+getParseEnd()+"\" that matches \""+getParse()+"\" not found:"+count+" in \""+ret+"\" = "+str);

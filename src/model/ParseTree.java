@@ -151,6 +151,9 @@ public abstract class ParseTree<T> {
 			p.setNode2(tmp);
 			System.out.println(" now:"+p+" set:"+tmp);
 		}
+		else if(p.getNode1()!=null && p.getNode2()!=null && !tmp.toString().equals("null")){
+			System.out.println("NO ROOM TO PUSH!! this:\""+p+"\" lost:\""+tmp+"\"");
+		}
 	}
 	public ParseTree<T> getInstance(){return getInstance(null);};
 	public ParseTree<T> getInstance(T data){return getInstance(data,null);};

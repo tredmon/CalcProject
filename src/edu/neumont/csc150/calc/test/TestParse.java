@@ -32,5 +32,13 @@ public class TestParse {
 		tree.parse(str);
 		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalString()+" = "+tree.eval());
 		
+		str = "(((2)))";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalString()+" = "+tree.eval());
+		
+		str = "(2)+1";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalString()+" = "+tree.eval());
+		
 	}
 }
