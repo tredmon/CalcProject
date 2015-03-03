@@ -72,18 +72,10 @@ public class ParseGroupFunc<T> extends ParseFunc<T>{
 				if(count <= 0){
 					parent.setFunction(this);
 					parent.setNode1(parent.getInstance(parent.getFunctionList(), ret.substring(start+getParse().length(), instr)));
-					System.out.print("this:\""+parent+"\"");
 					if(start > 0){
-						System.out.println("\tpre:\""+ret.substring(0, start)+"\"");
 						parent.push(parent.getInstance(parent.getFunctionList(), ret.substring(0, start)));
 					}
 					ret = ret.substring(instr+getParseEnd().length());
-					if(ret.length() > 0){
-						System.out.println("\tpost:\""+ret+"\"");
-						parent.push(parent.getInstance(parent.getFunctionList(), ret));
-						ret = "";
-					}
-					System.out.println("\tfinal:\""+parent+"\"");
 				}
 				else{
 					System.out.println("\""+getParseEnd()+"\" that matches \""+getParse()+"\" not found:"+count+" in \""+ret+"\" = "+str);
