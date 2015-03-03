@@ -78,8 +78,15 @@ public class ParseFunc<T> implements Comparable<ParseFunc<T>>{
 			int instr = ret.indexOf(getParse());
 			if(instr >= 0){
 				parent.setFunction(this);
-				parent.setNode1(parent.getInstance(parent.getFunctionList(), ret.substring(0, instr)));
-				parent.setNode2(parent.getInstance(parent.getFunctionList(), ret.substring(instr+getParse().length())));
+				String ns1 = ret.substring(0, instr);
+				String ns2 = ret.substring(instr+getParse().length());
+				if(ns1.length() > 0){
+					parent.setNode1(parent.getInstance(parent.getFunctionList(), ns1));
+				}
+				if(ns2.length() > 0){
+					parent.setNode2(parent.getInstance(parent.getFunctionList(), ns2));
+				}
+				ret = "";
 			}
 		}
 		return ret;

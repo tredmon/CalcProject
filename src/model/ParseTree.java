@@ -72,12 +72,11 @@ public abstract class ParseTree<T> {
 		}
 	}
 	public ParseTree<T> clone(ParseTree<T> c){
-		setData(c.getData());
-		setFunction(c.getFunction());
-		setNode1(c.getNode1());
-		setNode2(c.getNode2());
-		setFunctionList(c.getFunctionList());
+		init(c.getData(), c.getFunction(), c.getNode1(), c.getNode2(), c.getFunctionList());
 		return this;
+	}
+	public ParseTree<T> clone(){
+		return getInstance(getData(), getFunction(), getNode1(),getNode2(), getFunctionList());
 	}
 	public void add(ParseFunc<T> f){
 		parsefuncs.add(f);
@@ -99,6 +98,9 @@ public abstract class ParseTree<T> {
 			if(ret == null){
 				ret = getNode1().getData();
 			}
+			if(ret == null){
+				ret = def;
+			}
 		}
 		return ret;
 	}
@@ -109,22 +111,46 @@ public abstract class ParseTree<T> {
 			if(ret == null){
 				ret = getNode2().getData();
 			}
+			if(ret == null){
+				ret = def;
+			}
 		}
 		return ret;
 	}
 	
 	public ParseTree<T> parse(String parse){
-		if(parse != null){
-			String parsestr = parse;
-			for(int i=0; i<parsefuncs.size() && parse.equals(parsestr); i++){
-				parsestr = parsefuncs.get(i).parse(this, parse);
+		if(parse != null && parse.length() > 0){
+			this.clone(getInstance(null,null,null,null,getFunctionList()));
+			String parsestr = parse, parsestrlast = "";
+			ParseTree<T> tmptree;
+			while(parsestr.length() > 0 && !parsestr.equals(parsestrlast)){
+				tmptree = getInstance(null,null,null,null,getFunctionList());
+				parsestrlast = parsestr;
+				for(int i=0; i<parsefuncs.size() && parsestrlast.equals(parsestr); i++){
+					parsestr = parsefuncs.get(i).parse(tmptree, parsestr);
+				}
+				push(tmptree);
 			}
-			if(parsestr.length() != 0){
-				setData(parseData(parsestr));
-//				System.out.println("ERR: not able to parse the entire string. \""+parsestr+"\" remaining.");
+			if(parsestr.length() > 0){
+//				setData(parseData(parsestr));
+				System.out.println("ERR: not able to parse the entire string. \""+parsestr+"\" remaining.");
 			}
 		}
 		return this;
+	}
+	public void push(ParseTree<T> p){
+		ParseTree<T> tmp = this.clone();
+		this.clone(p);
+		if(p.getNode1() == null && !tmp.toString().equals("null")){
+			System.out.print("node1 was null:"+p);
+			p.setNode1(tmp);
+			System.out.println(" now:"+p+" set:"+tmp);
+		}
+		else if(p.getNode2() == null && !tmp.toString().equals("null")){
+			System.out.print("node2 was null:"+p);
+			p.setNode2(tmp);
+			System.out.println(" now:"+p+" set:"+tmp);
+		}
 	}
 	public ParseTree<T> getInstance(){return getInstance(null);};
 	public ParseTree<T> getInstance(T data){return getInstance(data,null);};
@@ -139,25 +165,60 @@ public abstract class ParseTree<T> {
 	}
 	public abstract T parseData(String parse);
 	public T eval(){
-		T ret = null;
+		T ret = getData();
 		if(func != null){
 			ret = func.eval(this);
 		}
 		return ret;
 	}
 	
-	public String toString(){
+	public String evalString(){
 		String ret = "";
-		if(func == null){
-			if(data != null){
-				ret = data.toString();
+		if(getFunction() == null){
+			if(getData() != null){
+				ret = getData().toString();
 			}
 			else{
 				ret = "null";
 			}
 		}
 		else{
-			ret = "("+node1+" "+func.getParse()+" "+node2+" ="+eval()+")";
+			String ns1 = "null";
+			String ns2 = "null";
+			if(getNode1() != null){
+				ns1 = getNode1().evalString();
+			}
+			if(getNode2() != null){
+				ns2 = getNode2().evalString();
+			}
+			if(ParseGroupFunc.class.isAssignableFrom(getFunction().getClass())){
+				String funcEnd = ((ParseGroupFunc)getFunction()).getParseEnd();
+				ret = getFunction().getParse() + ns1 +", "+ ns2 +" ="+ eval() + funcEnd;
+			}
+			else{
+				ret = "("+ns1+" "+getFunction().getParse()+" "+ns2+" ="+eval()+")";
+			}
+		}
+		return ret;
+	}
+	public String toString(){
+		String ret = "";
+		if(getFunction() == null){
+			if(getData() != null){
+				ret = getData().toString();
+			}
+			else{
+				ret = "null";
+			}
+		}
+		else{
+			if(ParseGroupFunc.class.isAssignableFrom(getFunction().getClass())){
+				String funcEnd = ((ParseGroupFunc)getFunction()).getParseEnd();
+				ret = getFunction().getParse()+getNode1() +", "+ getNode2() + funcEnd;
+			}
+			else{
+				ret = "("+getNode1() + getFunction().getParse() + getNode2()+")";
+			}
 		}
 		return ret;
 	}

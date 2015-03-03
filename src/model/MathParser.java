@@ -3,7 +3,7 @@ package model;
 public class MathParser extends ParseTreeDouble{
 	private String mstr;
 	public MathParser(){
-		this("");
+		this(null);
 	}
 	public MathParser(String mem){
 		super();
@@ -54,6 +54,32 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					ret = parent.getNodeVal1(0.0) % parent.getNodeVal2(0.0);
+				}
+				return ret;
+			}
+		});
+		add(new ParseFunc<Double>("^",250,"POW"){
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					ret = Math.pow(parent.getNodeVal1(0.0), parent.getNodeVal2(0.0));
+				}
+				return ret;
+			}
+		});
+		add(new ParseFunc<Double>("rt",250,"ROOT"){
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					if(parent.getNode1()==null){
+						ret = Math.sqrt(parent.getNodeVal2(0.0));
+					}
+					else{
+						//TODO: implement a root() function
+//						ret = root(parent.getNodeVal2(0.0), parent.getNodeVal1(2.0));
+					}
 				}
 				return ret;
 			}
@@ -132,7 +158,7 @@ public class MathParser extends ParseTreeDouble{
 				return ret;
 			}
 		});
-		add(new ParseFunc<Double>("M",90,"MEM"){
+		add(new ParseFunc<Double>("M",1010,"MEM"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
@@ -144,7 +170,7 @@ public class MathParser extends ParseTreeDouble{
 				return ret;
 			}
 		});
-		add(new ParseFunc<Double>("e",1500,"EULER"){
+		add(new ParseFunc<Double>("e",1010,"EULER"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
@@ -156,7 +182,7 @@ public class MathParser extends ParseTreeDouble{
 				return ret;
 			}
 		});
-		add(new ParseFunc<Double>("π",1500,"PI"){
+		add(new ParseFunc<Double>("π",1010,"PI"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
@@ -168,15 +194,51 @@ public class MathParser extends ParseTreeDouble{
 				return ret;
 			}
 		});
+		add(new ParseFunc<Double>("sin",90,"SIN"){
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					//TODO: use MyMath.sin() function
+//					ret = MyMath.sin(parent.getNodeVal2(0.0));
+					ret = Math.sin(parent.getNodeVal2(0.0));
+				}
+				return ret;
+			}
+		});
 		
-		add(new ParseGroupFunc<Double>("(",")",100,"PARENTH"));
-		sort();
+		add(new ParseGroupFunc<Double>("(",")",Integer.MAX_VALUE,"PARENTH"));
+		add(new ParseFunc<Double>("0",Integer.MIN_VALUE,"DATA"){
+			@Override
+			public String parse(ParseTree<Double> parent, String parse){
+				String ret = parse;
+				if(parent != null){
+					parent.setData(parent.parseData(parse));
+					ret = "";
+				}
+				return ret;
+			}
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					ret = parent.getData();
+				}
+				return ret;
+			}
+		});
+		sortr();
 	}
 	@Override
 	public MathParser parse(String parse){
 		return (MathParser) super.parse(parse);
 	}
 	public void setMem(String mem){
-		mstr = mem;
+		if(mem == null){
+			mstr = "";
+		}
+		else{
+			mstr = mem;
+		}
 	}
 }

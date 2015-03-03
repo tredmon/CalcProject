@@ -32,26 +32,49 @@ public class ParseGroupFunc<T> extends ParseFunc<T>{
 	@Override
 	public String parse(ParseTree<T> parent, String str){
 		String ret = str;
-		if(parent != null && str != null){
+		if(parent != null && ret != null){
 			int instr = ret.indexOf(getParse());
 			if(instr == 0){
-				int i, count = instr + 1;
-				for(i=count; i<ret.length() && count>0 && instr>=0; i++){
-					int tmpin = ret.indexOf(getParse(), instr);
-					int tmpend = ret.indexOf(getParseEnd(), instr);
-					if(tmpin < tmpend && tmpin>=0){
-						instr = tmpin;
-						count++;
+				int count = 1;
+				int tmplen = getParse().length();
+				while(instr<ret.length() && count>0){
+					int tmpin = ret.indexOf(getParse(), instr+tmplen);
+					int tmpend = ret.indexOf(getParseEnd(), instr+tmplen);
+					if(tmpend >= 0 && tmpin >= 0){
+						if(tmpin<tmpend){
+							instr = tmpin;
+							tmplen = getParse().length();
+							count++;
+						}
+						else{
+							instr = tmpend;
+							tmplen = getParseEnd().length();
+							count--;
+						}
 					}
-					else if(tmpend >= 0){
-						instr = tmpend;
-						count--;
+					else{
+						if(tmpin >= 0){
+							instr = tmpin;
+							tmplen = getParse().length();
+							count++;
+						}
+						if(tmpend >= 0){
+							instr = tmpend;
+							tmplen = getParseEnd().length();
+							count--;
+						}
+						else{
+							break;
+						}
 					}
 				}
 				if(count <= 0){
 					parent.setFunction(this);
 					parent.setNode1(parent.getInstance(parent.getFunctionList(), ret.substring(getParse().length(), instr)));
 					ret = ret.substring(instr+getParseEnd().length());
+				}
+				else{
+					System.out.println("\""+getParseEnd()+"\" that matches \""+getParse()+"\" not found:"+count+" in \""+ret+"\" = "+str);
 				}
 			}
 		}

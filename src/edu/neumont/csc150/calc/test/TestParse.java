@@ -1,21 +1,36 @@
 package edu.neumont.csc150.calc.test;
-import java.util.ArrayList;
 
 import model.MathParser;
 import model.ParseFunc;
-import model.ParseTree;
 
 
 public class TestParse {
 	public static void main(String[] args) {
-		String str = "3+4%6-2";
-		MathParser doubtree = new MathParser();
-		for(ParseFunc p : doubtree.getFunctionList()){
+		MathParser tree = new MathParser();
+		for(ParseFunc p : tree.getFunctionList()){
 			System.out.print(p.getName()+" ");
 		}
 		System.out.println();
 		
-		doubtree.parse(str);
-		System.out.println(str+" = "+doubtree+" = "+doubtree.eval());
+		String str = "3+4%6-2";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalString()+" = "+tree.eval());
+		
+		str = "3+(2)+1";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalString()+" = "+tree.eval());
+		
+		str = "sin(32+58)+7";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalString()+" = "+tree.eval());
+		
+		str = "4+(3)+(1)+2";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalString()+" = "+tree.eval());
+		
+		str = "(((2+2)))";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalString()+" = "+tree.eval());
+		
 	}
 }
