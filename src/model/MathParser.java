@@ -207,8 +207,97 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					//TODO: use MyMath.sin() function
-//					ret = MyMath.sin(parent.getNodeVal2(0.0));
 					ret = Math.sin(parent.getNodeVal2(0.0));
+				}
+				return ret;
+			}
+		});
+		add(new ParseFunc<Double>("cos",90,"COS"){
+			@Override
+			public String parse(ParseTree<Double> parent, String str){
+				String ret = super.parse(parent, str);
+				parent.setNode1(parent.getInstance());
+				parent.getNode1().setData(1.0);
+				return ret;
+			}
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					//TODO: use MyMath.cos() function
+					ret = Math.cos(parent.getNodeVal2(0.0));
+				}
+				return ret;
+			}
+		});
+		add(new ParseFunc<Double>("tan",90,"TAN"){
+			@Override
+			public String parse(ParseTree<Double> parent, String str){
+				String ret = super.parse(parent, str);
+				parent.setNode1(parent.getInstance());
+				parent.getNode1().setData(1.0);
+				return ret;
+			}
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					//TODO: use MyMath.tan() function
+					ret = Math.tan(parent.getNodeVal2(0.0));
+				}
+				return ret;
+			}
+		});
+		add(new ParseFunc<Double>("asin",91,"ASIN"){
+			@Override
+			public String parse(ParseTree<Double> parent, String str){
+				String ret = super.parse(parent, str);
+				parent.setNode1(parent.getInstance());
+				parent.getNode1().setData(1.0);
+				return ret;
+			}
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					//TODO: use MyMath.asin() function
+					ret = Math.asin(parent.getNodeVal2(0.0));
+				}
+				return ret;
+			}
+		});
+		add(new ParseFunc<Double>("acos",91,"ACOS"){
+			@Override
+			public String parse(ParseTree<Double> parent, String str){
+				String ret = super.parse(parent, str);
+				parent.setNode1(parent.getInstance());
+				parent.getNode1().setData(1.0);
+				return ret;
+			}
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					//TODO: use MyMath.acos() function
+					ret = Math.acos(parent.getNodeVal2(0.0));
+				}
+				return ret;
+			}
+		});
+		add(new ParseFunc<Double>("atan",91,"ATAN"){
+			@Override
+			public String parse(ParseTree<Double> parent, String str){
+				String ret = super.parse(parent, str);
+				parent.setNode1(parent.getInstance());
+				parent.getNode1().setData(1.0);
+				return ret;
+			}
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					//TODO: use MyMath.atan() function
+					ret = Math.atan(parent.getNodeVal2(0.0));
 				}
 				return ret;
 			}
