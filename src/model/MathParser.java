@@ -86,12 +86,19 @@ public class MathParser extends ParseTreeDouble{
 		});
 		add(new ParseFunc<Double>("!",200,"NOT"){
 			@Override
+			public String parse(ParseTree<Double> parent, String str){
+				String ret = super.parse(parent, str);
+				parent.setNode1(parent.getInstance());
+				parent.getNode1().setData(1.0);
+				return ret;
+			}
+			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
 					//TODO: use MyMath.not() function
-//					ret = MyMath.not(parent.getNodeVal1(0.0));
-					ret = Double.longBitsToDouble(~Double.doubleToRawLongBits(parent.getNodeVal1(0.0)));
+//					ret = MyMath.not(parent.getNodeVal2(0.0));
+					ret = Double.longBitsToDouble(~Double.doubleToRawLongBits(parent.getNodeVal2(0.0)));
 				}
 				return ret;
 			}
@@ -160,12 +167,18 @@ public class MathParser extends ParseTreeDouble{
 		});
 		add(new ParseFunc<Double>("M",1010,"MEM"){
 			@Override
+			public String parse(ParseTree<Double> parent, String str){
+				String ret = super.parse(parent, str);
+				if(!str.equals(ret)){
+					parent.parse(mstr);
+				}
+				return ret;
+			}
+			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					MathParser mp = new MathParser();
-					mp.parse(mstr);
-					ret = mp.eval();
+					ret = parent.getInstance(parent.getFunctionList(), mstr).eval();
 				}
 				return ret;
 			}
