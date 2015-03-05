@@ -81,7 +81,7 @@ public class MyPanel extends JPanel implements ActionListener{
 		numtype.add(rbuttonBinary);
 		numtype.add(rbuttonDecimal);
 		numtype.add(rbuttonOctal);
-		numtype.add(rbuttonOctal);
+		numtype.add(rbuttonHexadecimal);
 
 		c.gridwidth = 1;
 
