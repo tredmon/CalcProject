@@ -146,6 +146,9 @@ public abstract class ParseTree<T> {
 		else if(p.getNode2() == null && !tmp.toString().equals("null")){
 			p.setNode2(tmp);
 		}
+		else if((p.getNode1()==null || p.getNode2()==null) && !tmp.toString().equals("null")){
+			System.out.println("error pushing:\""+tmp+"\" into:\""+p+"\"");
+		}
 		this.clone(p);
 	}
 	public ParseTree<T> getInstance(){return getInstance(null);};
@@ -174,9 +177,6 @@ public abstract class ParseTree<T> {
 			if(getData() != null){
 				ret = getData().toString();
 			}
-			else{
-				ret = "null";
-			}
 		}
 		else{
 			ret = getFunction().evalString(this);
@@ -184,6 +184,10 @@ public abstract class ParseTree<T> {
 		return ret;
 	}
 	public String toString(){
-		return "("+evalString()+")";
+		String ret = evalString();
+		if(ret.length()==0){
+			return "null";
+		}
+		return ret;
 	}
 }

@@ -7,9 +7,7 @@ public class ParseTreeDouble extends ParseTree<Double>{
 		super();
 	}
 	@Override
-	public ParseTreeDouble getInstance(Double data,
-			ParseFunc<Double> f, ParseTree<Double> node1,
-			ParseTree<Double> node2, ArrayList<ParseFunc<Double>> arr) {
+	public ParseTreeDouble getInstance(Double data, ParseFunc<Double> f, ParseTree<Double> node1, ParseTree<Double> node2, ArrayList<ParseFunc<Double>> arr) {
 		ParseTreeDouble ret = new ParseTreeDouble();
 		ret.init(data, f, node1, node2, arr);
 		return ret;
