@@ -310,4 +310,28 @@ private TheMath(){}
 	public static double root(String base, String root){
 		return Math.pow(Double.parseDouble(base), (1/Double.parseDouble(root)));
 	}
+	
+	public static Xor(){
+		
+	}
+	
+	public static Or(){
+		
+	}
+	
+	public static And(){
+		
+	}
+	
+	public static Not(){
+		
+	}
+	
+	public static lShift(){
+		
+	}
+	
+	public static rShift(){
+		
+	}
 }
