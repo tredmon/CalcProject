@@ -316,7 +316,7 @@ public class MathParser extends ParseTreeDouble{
 			}
 		});
 		
-		add(new ParseGroupFunc<Double>("(",")",Integer.MAX_VALUE,"PARENTH"));
+		add(new ParseGroupFunc<Double>("(",")",Integer.MAX_VALUE-1,"PARENTH"));
 		add(new ParseFunc<Double>("0",Integer.MIN_VALUE,"DATA"){
 			@Override
 			public String parse(ParseTree<Double> parent, String parse){
@@ -335,6 +335,9 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+		});
+		add(new ParseFunc<Double>("X",Integer.MAX_VALUE,"VARX"){
+			
 		});
 		sortr();
 	}
