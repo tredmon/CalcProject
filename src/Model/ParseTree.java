@@ -179,43 +179,11 @@ public abstract class ParseTree<T> {
 			}
 		}
 		else{
-			String ns1 = "null";
-			String ns2 = "null";
-			if(getNode1() != null){
-				ns1 = getNode1().evalString();
-			}
-			if(getNode2() != null){
-				ns2 = getNode2().evalString();
-			}
-			if(ParseGroupFunc.class.isAssignableFrom(getFunction().getClass())){
-				String funcEnd = ((ParseGroupFunc)getFunction()).getParseEnd();
-				ret = getFunction().getParse() + ns1 +", "+ ns2 +" ="+ eval() + funcEnd;
-			}
-			else{
-				ret = "("+ns1+" "+getFunction().getParse()+" "+ns2+" ="+eval()+")";
-			}
+			ret = getFunction().evalString(this);
 		}
 		return ret;
 	}
 	public String toString(){
-		String ret = "";
-		if(getFunction() == null){
-			if(getData() != null){
-				ret = getData().toString();
-			}
-			else{
-				ret = "null";
-			}
-		}
-		else{
-			if(ParseGroupFunc.class.isAssignableFrom(getFunction().getClass())){
-				String funcEnd = ((ParseGroupFunc)getFunction()).getParseEnd();
-				ret = getFunction().getParse()+getNode1() +", "+ getNode2() + funcEnd;
-			}
-			else{
-				ret = "("+getNode1() + getFunction().getParse() + getNode2()+")";
-			}
-		}
-		return ret;
+		return "("+evalString()+")";
 	}
 }

@@ -16,8 +16,12 @@ public class ParseTreeDouble extends ParseTree<Double>{
 	}
 	@Override
 	public Double parseData(String parse) {
+		return parseData(parse, 10);
+	}
+	public Double parseData(String parse, int base) {
 		Double ret = null;
 		if(parse != null && parse.length() > 0){
+			//TODO: parse using MyMath.parse(), utilizing base
 			try{
 				ret = Double.parseDouble(parse);
 			}

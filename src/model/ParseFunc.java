@@ -66,6 +66,19 @@ public class ParseFunc<T> implements Comparable<ParseFunc<T>>{
 		}
 		return ret;
 	}
+	public String evalString(ParseTree<T> parent){
+		String ret = "";
+		if(parent != null){
+			if(parent.getNode1() != null){
+				ret += parent.getNode1().evalString();
+			}
+			ret += getParse();
+			if(parent.getNode2() != null){
+				ret += parent.getNode2().evalString();
+			}
+		}
+		return ret;
+	}
 	/**
 	 * Parses the given string and returns the unused portion.
 	 * @param parent The parent tree will be modified by the parse.

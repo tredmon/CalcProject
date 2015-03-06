@@ -92,4 +92,21 @@ public class ParseGroupFunc<T> extends ParseFunc<T>{
 		}
 		return ret;
 	}
+	public String evalString(ParseTree<T> parent){
+		String ret = "";
+		if(parent != null){
+			ret = getParse();
+			boolean found1 = false;
+			if(parent.getNode1() != null){
+				ret += parent.getNode1().evalString();
+				found1 = true;
+			}
+			if(parent.getNode2() != null){
+				if(found1){ret += ", ";}
+				ret += parent.getNode2().evalString();
+			}
+			ret += getParseEnd();
+		}
+		return ret;
+	}
 }
