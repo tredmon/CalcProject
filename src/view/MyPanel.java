@@ -365,14 +365,14 @@ public class MyPanel extends JPanel implements ActionListener{
 		c.gridx = numOffX + 3;
 		c.gridy = numOffY + 0;
 		this.add(buttonDivide, c);
-buttonDivide.addActionListener(this);
-		
+		buttonDivide.addActionListener(this);
+
 		buttonMultiply = new JButton("*");
 		c.gridx = numOffX + 3;
 		c.gridy = numOffY + 1;
 		this.add(buttonMultiply, c);
-buttonMultiply.addActionListener(this);
-		
+		buttonMultiply.addActionListener(this);
+
 		buttonSubtract = new JButton("-");
 		c.gridx = numOffX + 3;
 		c.gridy = numOffY + 2;
@@ -415,26 +415,25 @@ buttonMultiply.addActionListener(this);
 
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		JButton tempbutton = (JButton)e.getSource();
-		switch(tempbutton.getText()) {
-		case "Clr":
+	public void actionPerformed(ActionEvent ae) {
+		Object source = ae.getSource();
+		if(this.buttonClear == source) {
 			textfield.setText("");
-			break;
-		case "Backspace":
+		}
+		else if(this.buttonBackspace == source) {
 			String tempstring = "";
 			for (int i=0; i < textfield.getText().length() - 1; i++) {
 				tempstring += textfield.getText().charAt(i);
 			}
 			textfield.setText(tempstring);
-			break;
-		case "=":
-//			textfield.setText(parsething(textfield.getText()));
-			break;
-		default:
-			textfield.setText(textfield.getText() + "" + tempbutton.getText());
-			break;
 		}
+		else if (this.buttonEquals == source) {
+			
+		}
+		else {
+			textfield.setText(textfield.getText() + "" + ((JButton) source).getText());
+		}
+
 		
 	}
 }
