@@ -444,10 +444,13 @@ public class MathParser extends ParseTreeDouble{
 	public MathParser parse(String parse){
 		return (MathParser) super.parse(parse);
 	}
-	public MathParser parse(String parse, String mem, int base){
-		setMem(mem);
+	public MathParser parse(String parse, int base){
 		setBase(base);
 		return parse(parse);
+	}
+	public MathParser parse(String parse, String mem, int base){
+		setMem(mem);
+		return parse(parse, base);
 	}
 	public MathParser getInstance(Double data,	ParseFunc<Double> f, ParseTree<Double> node1, ParseTree<Double> node2, ArrayList<ParseFunc<Double>> arr) {
 		MathParser ret = new MathParser();
@@ -468,12 +471,24 @@ public class MathParser extends ParseTreeDouble{
 		else{
 			mstr = mem;
 		}
+		if(getNode1()!=null){
+			((MathParser)getNode1()).setMem(mstr);
+		}
+		if(getNode2()!=null){
+			((MathParser)getNode2()).setMem(mstr);
+		}
 	}
 	public String getMem(){
 		return mstr;
 	}
 	public void setBase(int base){
 		bas = base;
+		if(getNode1()!=null){
+			((MathParser)getNode1()).setBase(bas);
+		}
+		if(getNode2()!=null){
+			((MathParser)getNode2()).setBase(bas);
+		}
 	}
 	public int getBase(){
 		return bas;
