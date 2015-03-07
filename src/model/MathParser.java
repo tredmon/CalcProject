@@ -604,12 +604,17 @@ public class MathParser extends ParseTreeDouble{
 			public String evalOutString(ParseTree<Double> parent){
 				String ret = getParse();
 				if(parent != null && parent.getNode1() != null){
-					ret += parent.getNode1().evalOutString();
+					String tmp = parent.getNode1().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(tmp)){
+						ret = tmp;
+					}
+					else{
+						ret += parent.getNode1().evalOutString() + getParseEnd();
+					}
 				}
 				else{
-					ret += "null";
+					ret += "null" + getParseEnd();
 				}
-				ret += getParseEnd();
 				return ret;
 			}
 			@Override
