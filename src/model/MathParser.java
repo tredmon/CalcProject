@@ -31,6 +31,21 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
+				}
+				return ret;
+			}
 		});
 		add(new ParseFunc<Double>("-",400,"MINUS"){
 			@Override
@@ -38,6 +53,21 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					ret = parent.getNodeVal1(0.0) - parent.getNodeVal2(0.0);
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
 				}
 				return ret;
 			}
@@ -51,6 +81,21 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
+				}
+				return ret;
+			}
 		});
 		add(new ParseFunc<Double>("/",300,"DIV"){
 			@Override
@@ -58,6 +103,21 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					ret = parent.getNodeVal1(0.0) / parent.getNodeVal2(0.0);
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
 				}
 				return ret;
 			}
@@ -71,6 +131,21 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
+				}
+				return ret;
+			}
 		});
 		add(new ParseFunc<Double>("^",250,"POW"){
 			@Override
@@ -78,6 +153,21 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					ret = Math.pow(parent.getNodeVal1(0.0), parent.getNodeVal2(0.0));
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
 				}
 				return ret;
 			}
@@ -93,6 +183,21 @@ public class MathParser extends ParseTreeDouble{
 					else{
 						//TODO: implement a root() function
 //						ret = root(parent.getNodeVal2(0.0), parent.getNodeVal1(2.0));
+					}
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
 					}
 				}
 				return ret;
@@ -118,6 +223,21 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
+				}
+				return ret;
+			}
 		});
 		add(new ParseFunc<Double>("<<",500,"SHIFTL"){
 			@Override
@@ -128,6 +248,21 @@ public class MathParser extends ParseTreeDouble{
 //					ret = MyMath.shiftleft(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 					long amnt = (long)(double)parent.getNodeVal2(1.0);
 					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) << amnt);
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
 				}
 				return ret;
 			}
@@ -144,6 +279,21 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
+				}
+				return ret;
+			}
 		});
 		add(new ParseFunc<Double>("&",800,"AND"){
 			@Override
@@ -153,6 +303,21 @@ public class MathParser extends ParseTreeDouble{
 					//TODO: use MyMath.and() function
 //					ret = MyMath.and(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) & Double.doubleToRawLongBits(parent.getNodeVal2(0.0)));
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
 				}
 				return ret;
 			}
@@ -168,6 +333,21 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
+				}
+				return ret;
+			}
 		});
 		add(new ParseFunc<Double>("|",1000,"OR"){
 			@Override
@@ -177,6 +357,21 @@ public class MathParser extends ParseTreeDouble{
 					//TODO: use MyMath.or() function
 //					ret = MyMath.or(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) | Double.doubleToRawLongBits(parent.getNodeVal2(0.0)));
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+					ret = parent.getNode1().evalOutString();
+					String tmpstr = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+						ret = ""+eval(parent);
+					}
+					else{
+						ret = evalString(parent);
+					}
 				}
 				return ret;
 			}
@@ -241,6 +436,17 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode2()!=null){
+					ret = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret)){
+						ret = ""+eval(parent);
+					}
+				}
+				return ret;
+			}
 		});
 		add(new ParseFunc<Double>("cos",90,"COS"){
 			@Override
@@ -257,6 +463,17 @@ public class MathParser extends ParseTreeDouble{
 				if(parent != null){
 					//TODO: use MyMath.cos() function
 					ret = Math.cos(parent.getNodeVal2(0.0));
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode2()!=null){
+					ret = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret)){
+						ret = ""+eval(parent);
+					}
 				}
 				return ret;
 			}
@@ -279,6 +496,17 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode2()!=null){
+					ret = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret)){
+						ret = ""+eval(parent);
+					}
+				}
+				return ret;
+			}
 		});
 		add(new ParseFunc<Double>("asin",91,"ASIN"){
 			@Override
@@ -295,6 +523,17 @@ public class MathParser extends ParseTreeDouble{
 				if(parent != null){
 					//TODO: use MyMath.asin() function
 					ret = Math.asin(parent.getNodeVal2(0.0));
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode2()!=null){
+					ret = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret)){
+						ret = ""+eval(parent);
+					}
 				}
 				return ret;
 			}
@@ -317,6 +556,17 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode2()!=null){
+					ret = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret)){
+						ret = ""+eval(parent);
+					}
+				}
+				return ret;
+			}
 		});
 		add(new ParseFunc<Double>("atan",91,"ATAN"){
 			@Override
@@ -333,6 +583,17 @@ public class MathParser extends ParseTreeDouble{
 				if(parent != null){
 					//TODO: use MyMath.atan() function
 					ret = Math.atan(parent.getNodeVal2(0.0));
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode2()!=null){
+					ret = parent.getNode2().evalOutString();
+					if(((MathParser)parent).isOnlyNumber(ret)){
+						ret = ""+eval(parent);
+					}
 				}
 				return ret;
 			}
@@ -369,6 +630,7 @@ public class MathParser extends ParseTreeDouble{
 			public String parse(ParseTree<Double> parent, String parse){
 				String ret = parse;
 				if(parent != null){
+					parent.setFunction(this);
 					parent.setData(((ParseTreeDouble)parent).parseData(parse, getBase()));
 					parent.setNode1(emptytree);
 					parent.setNode2(emptytree);
@@ -391,17 +653,21 @@ public class MathParser extends ParseTreeDouble{
 					ret = ""+parent.getData();
 					switch(getBase()){
 						case 2:
-							ret = TheMath.deciToBinary(ret);
+							//TODO: use TheMath deciToBinary()
+//							ret = TheMath.deciToBinary(ret);
 							break;
 						case 8:
-							ret = TheMath.deciToOctal(ret);
+							//TODO: use TheMath deciToOctal()
+//							ret = TheMath.deciToOctal(ret);
 							break;
 						case 10:
 							break;
 						case 16:
-							ret = TheMath.deciToHex(ret);
+							//TODO: use TheMath.deciToHex()
+//							ret = TheMath.deciToHex(ret);
 							break;
 						default:
+							System.out.println("ERR: cannot evalString as a base:"+((MathParser)parent).getBase());
 					}
 				}
 				return ret;
@@ -504,5 +770,47 @@ public class MathParser extends ParseTreeDouble{
 	}
 	public double getX(){
 		return xval;
+	}
+	public boolean isOnlyNumber(String num){
+		boolean ret = true;
+		ArrayList<Character> valid = new ArrayList<Character>();
+		switch(getBase()){
+			case 16:
+				valid.add('F');
+				valid.add('E');
+				valid.add('D');
+				valid.add('C');
+				valid.add('B');
+				valid.add('A');
+			case 10:
+				valid.add('9');
+				valid.add('8');
+			case 8:
+				valid.add('7');
+				valid.add('6');
+				valid.add('5');
+				valid.add('4');
+				valid.add('3');
+				valid.add('2');
+			case 2:
+				valid.add('1');
+				valid.add('0');
+				valid.add('.');
+				break;
+			default:
+				System.out.println("ERR: bad base in isOnlyNumber:"+getBase());
+		}
+		for(int i=0; i<num.length() && ret; i++){
+			boolean found = false;
+			for(int j=0; j<valid.size() && !found; j++){
+				if(num.charAt(i)==valid.get(j)){
+					found = true;
+				}
+			}
+			if(!found){
+				ret = false;
+			}
+		}
+		return ret;
 	}
 }
