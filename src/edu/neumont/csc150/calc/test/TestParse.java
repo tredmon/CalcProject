@@ -48,5 +48,9 @@ public class TestParse {
 		tree.parse(str);
 		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalString()+" = "+tree.eval(3));
 		
+		str = "12+13";
+		tree.parse(str, "", 8);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalString()+" = "+tree.eval(3));
+		
 	}
 }

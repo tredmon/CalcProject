@@ -372,6 +372,28 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+			@Override
+			public String evalString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null){
+					ret = ""+parent.getData();
+					switch(getBase()){
+						case 2:
+							ret = TheMath.deciToBinary(ret);
+							break;
+						case 8:
+							ret = TheMath.deciToOctal(ret);
+							break;
+						case 10:
+							break;
+						case 16:
+							ret = TheMath.deciToHex(ret);
+							break;
+						default:
+					}
+				}
+				return ret;
+			}
 		});
 		add(new ParseFunc<Double>("X",Integer.MIN_VALUE+1,"VARX"){
 			@Override
@@ -418,6 +440,9 @@ public class MathParser extends ParseTreeDouble{
 	public MathParser getInstance(Double data,	ParseFunc<Double> f, ParseTree<Double> node1, ParseTree<Double> node2, ArrayList<ParseFunc<Double>> arr) {
 		MathParser ret = new MathParser();
 		ret.init(data, f, node1, node2, arr);
+		ret.setBase(getBase());
+		ret.setMem(getMem());
+		ret.setX(getX());
 		return ret;
 	}
 	public Double eval(double xval){
@@ -432,6 +457,9 @@ public class MathParser extends ParseTreeDouble{
 			mstr = mem;
 		}
 	}
+	public String getMem(){
+		return mstr;
+	}
 	public void setBase(int base){
 		bas = base;
 	}
@@ -440,6 +468,12 @@ public class MathParser extends ParseTreeDouble{
 	}
 	public void setX(double x){
 		xval = x;
+		if(getNode1()!=null){
+			((MathParser)getNode1()).setX(x);
+		}
+		if(getNode2()!=null){
+			((MathParser)getNode2()).setX(x);
+		}
 	}
 	public double getX(){
 		return xval;

@@ -20,8 +20,24 @@ public class ParseTreeDouble extends ParseTree<Double>{
 		Double ret = null;
 		if(parse != null && parse.length() > 0){
 			//TODO: parse using MyMath.parse(), utilizing base
+			String numstr = parse;
+			switch(base){
+				case 2:
+					numstr = TheMath.binToDecimal(parse);
+					break;
+				case 8:
+					numstr = TheMath.octToDecimal(parse);
+					break;
+				case 10:
+					break;
+				case 16:
+					numstr = TheMath.hexToDecimal(parse);
+					break;
+				default:
+					System.out.println("ERR: cannot parseData as a base:"+base);
+			}
 			try{
-				ret = Double.parseDouble(parse);
+				ret = Double.parseDouble(numstr);
 			}
 			catch(NumberFormatException e){
 				ret = new Double(0);
