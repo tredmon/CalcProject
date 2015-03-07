@@ -171,6 +171,16 @@ public abstract class ParseTree<T> {
 		return ret;
 	}
 	
+	public String evalOutString(){
+		String ret = "";
+		if(getFunction() == null){
+			ret = evalString();
+		}
+		else{
+			ret = getFunction().evalOutString(this);
+		}
+		return ret;
+	}
 	public String evalString(){
 		String ret = "";
 		if(getFunction() == null){

@@ -66,6 +66,19 @@ public class ParseFunc<T> implements Comparable<ParseFunc<T>>{
 		}
 		return ret;
 	}
+	/**
+	 * Outputs the evaluation as a string
+	 * @param parent
+	 * @return the string evaluation
+	 */
+	public String evalOutString(ParseTree<T> parent){
+		return evalString(parent);
+	}
+	/**
+	 * Outputs the equation as a string which is reparseable
+	 * @param parent
+	 * @return the string equation
+	 */
 	public String evalString(ParseTree<T> parent){
 		String ret = "";
 		if(parent != null){
