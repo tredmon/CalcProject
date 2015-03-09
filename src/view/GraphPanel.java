@@ -28,16 +28,17 @@ public class GraphPanel extends JFrame{
 		  this.add(Panel);
 		  this.add(GraphPanel);
 		this.pack();
+		DrawGraph();
 	}
 	public void DrawGraph()
 	{
 		JTable StrMinTable = Panel.getMinTable();
 		
 		
-		Double MinX = (Double) StrMinTable.getModel().getValueAt(0, 1);
-		Double MaxX = (Double) StrMinTable.getModel().getValueAt(1, 1);
-		Double MinY = (Double) StrMinTable.getModel().getValueAt(2, 1);
-		Double MaxY = (Double) StrMinTable.getModel().getValueAt(3, 1);
+		Double MinX = Double.parseDouble(""+StrMinTable.getModel().getValueAt(0, 1));
+		Double MaxX = Double.parseDouble(""+StrMinTable.getModel().getValueAt(1, 1));
+		Double MinY = Double.parseDouble(""+StrMinTable.getModel().getValueAt(2, 1));
+		Double MaxY = Double.parseDouble(""+StrMinTable.getModel().getValueAt(3, 1));
 				
 		TableModel Model = Panel.getXYTable().getModel();
 		double[][] xy = new double[Model.getRowCount()][Model.getColumnCount()];
@@ -47,7 +48,6 @@ public class GraphPanel extends JFrame{
 			}
 		}
 		GraphPanel.DRAWGraph(MinX, MaxX, MinY, MaxY, xy);
-		
 	}
 	
 	

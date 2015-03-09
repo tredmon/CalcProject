@@ -29,10 +29,6 @@ public class childGraphPanel extends JPanel{
 	public void paint(Graphics g)
 	{		
 		super.paint(g);
-		//g.setColor(Color.WHITE);
-		//g.fillRect(0, 0, getWidth(), getHeight());
-//		g.fillRect(0, 0, 200, 200);
-//		g.fillRect(getX(), getY(), 200, 200);
 		g.setColor(Color.BLACK);
 		drawGraph(g);
 			
@@ -40,9 +36,6 @@ public class childGraphPanel extends JPanel{
 	public void Graph(double [][] array)
 	{
 		coordinates = array;
-		
-		
-		
 		
 	}
 	public void drawGraph(Graphics g)
@@ -53,11 +46,13 @@ public class childGraphPanel extends JPanel{
 		double originy = yMin * ratioH;
 		g.drawLine(getWidth(), (int)originy, 0, (int)originy);
 		g.drawLine((int)originx, 0, (int)originx, getHeight());
+		System.out.println("origin at ("+(int)originx+", "+(int)originy+")");
 		if(coordinates != null){
-			for(int x = 0; x < coordinates.length; x++)
+			for(int x = 0; x < coordinates.length-1; x++)
 			{
-				g.drawLine((int)(coordinates[x][0]*ratioW-originx), (int)(coordinates[x][1]*ratioH-originy), (int)(coordinates[x][0]*ratioW-originx), (int)(coordinates[x][1]*ratioH-originy));
-				//g.drawLine(coordinates[x][0],coordinates[x][1], coordinates[x][0],coordinates[x][1]);
+//				g.drawLine((int)(coordinates[x][0]*ratioW-originx), (int)(coordinates[x][1]*ratioH-originy), (int)(coordinates[x][0]*ratioW-originx), (int)(coordinates[x][1]*ratioH-originy));
+				g.drawLine((int)(coordinates[x][0]*ratioW-originx), (int)(coordinates[x][1]*ratioH-originy), (int)(coordinates[x+1][0]*ratioW-originx), (int)(coordinates[x+1][1]*ratioH-originy));
+				System.out.println("line from:("+(int)(coordinates[x][0]*ratioW-originx)+", "+(int)(coordinates[x][1]*ratioH-originy)+") to:("+(int)(coordinates[x+1][0]*ratioW-originx)+", "+(int)(coordinates[x+1][1]*ratioH-originy)+")");
 			}
 		}
 	}
