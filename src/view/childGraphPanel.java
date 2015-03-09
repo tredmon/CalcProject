@@ -16,7 +16,6 @@ public class childGraphPanel extends JPanel{
 	private double xMax;
 	private double yMin;
 	private double yMax;
-	private double DeltaX;
 			
 	public childGraphPanel()
 	{
@@ -57,8 +56,13 @@ public class childGraphPanel extends JPanel{
 			//g.drawLine(coordinates[x][0],coordinates[x][1], coordinates[x][0],coordinates[x][1]);
 		}
 	}
-	public void DRAWGraph(Double MinX, Double MaxX, Double MinY, Double MaxY)
+	public void DRAWGraph(Double MinX, Double MaxX, Double MinY, Double MaxY, double[][] xy)
 	{
-		
+		xMin = MinX;
+		xMax = MaxX;
+		yMin = MinY;
+		yMax = MaxY;
+		coordinates = xy;
+		repaint();
 	}
 }

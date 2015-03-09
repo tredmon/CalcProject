@@ -39,9 +39,14 @@ public class GraphPanel extends JFrame{
 		Double MinY = (Double) StrMinTable.getModel().getValueAt(2, 1);
 		Double MaxY = (Double) StrMinTable.getModel().getValueAt(3, 1);
 				
-		GraphPanel.DRAWGraph(MinX, MaxX, MinY, MaxY);
-		JTable Modell = Panel.getXYTable();
-		TableModel Model2 = Panel.XYTable.getModel();
+		TableModel Model = Panel.getXYTable().getModel();
+		double[][] xy = new double[Model.getRowCount()][Model.getColumnCount()];
+		for(int i=0; i<xy.length; i++){
+			for(int j=0; j<xy[i].length; j++){
+				xy[i][j] = (double) Model.getValueAt(i, j);
+			}
+		}
+		GraphPanel.DRAWGraph(MinX, MaxX, MinY, MaxY, xy);
 		
 	}
 	
