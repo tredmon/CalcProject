@@ -34,12 +34,12 @@ private TheMath(){}
 	
 
 	public static String deciToBinary(String input){
-		int newinput = 0;
+		double newinput = 0;
 		boolean again = true;
 		String x = "", z = "";
 		while(again){
 			try{
-				newinput = Integer.parseInt(input);
+				newinput = Double.parseDouble(input);
 				again = false;
 			}
 			catch(NumberFormatException ex){}
@@ -189,7 +189,7 @@ private TheMath(){}
 	
 	public static String deciToHex(String input){
 		String x = "";
-		int newinput = Integer.parseInt(input);
+		double newinput = Double.parseDouble(input);
 		
 		while(newinput >= 1){
 			newinput = newinput/16;
@@ -214,7 +214,7 @@ private TheMath(){}
 	
 	public static String deciToOctal(String input){
 		String x = "";
-		int newinput = Integer.parseInt(input);
+		double newinput = Double.parseDouble(input);
 		
 		while(newinput >= 1){
 			
