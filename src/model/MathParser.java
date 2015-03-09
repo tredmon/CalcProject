@@ -450,6 +450,7 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					//TODO: use TheMath.sin() function
+					//ret = TheMath.sin(parent.getNodeVal2(0.0), parent.getAngle());
 					ret = Math.sin(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -480,6 +481,7 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					//TODO: use TheMath.cos() function
+					//ret = TheMath.cos(parent.getNodeVal2(0.0), parent.getAngle());
 					ret = Math.cos(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -510,6 +512,7 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					//TODO: use TheMath.tan() function
+					//ret = TheMath.tan(parent.getNodeVal2(0.0), parent.getAngle());
 					ret = Math.tan(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -540,6 +543,7 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					//TODO: use TheMath.asin() function
+					//ret = TheMath.asin(parent.getNodeVal2(0.0), parent.getAngle());
 					ret = Math.asin(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -570,6 +574,7 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					//TODO: use TheMath.acos() function
+					//ret = TheMath.acos(parent.getNodeVal2(0.0), parent.getAngle());
 					ret = Math.acos(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -600,6 +605,7 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					//TODO: use TheMath.atan() function
+					//ret = TheMath.atan(parent.getNodeVal2(0.0), parent.getAngle());
 					ret = Math.atan(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -677,17 +683,19 @@ public class MathParser extends ParseTreeDouble{
 					switch(getBase()){
 						case 2:
 							//TODO: use TheMath.deciToBinary()
-//							ret = TheMath.deciToBinary(ret);
+							ret = TheMath.deciToBinary(ret);
 							break;
 						case 8:
 							//TODO: use TheMath.deciToOctal()
-//							ret = TheMath.deciToOctal(ret);
+							System.out.print("about to use deciToOctal(\""+ret+"\") ... ");
+							ret = TheMath.deciToOctal(ret);
+							System.out.println("done:\""+ret+"\"");
 							break;
 						case 10:
 							break;
 						case 16:
 							//TODO: use TheMath.deciToHex()
-//							ret = TheMath.deciToHex(ret);
+							ret = TheMath.deciToHex(ret);
 							break;
 						default:
 							System.out.println("ERR: cannot evalString as a base:"+((MathParser)parent).getBase());
