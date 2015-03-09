@@ -14,6 +14,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import model.MathParser;
+
 public class MyPanel extends JPanel implements ActionListener{
 	JButton button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, 
 	buttonClear, buttonBackspace, buttonLeftParen, buttonRightParen, buttonExponent, buttonX, buttonDivide,
@@ -32,6 +34,9 @@ public class MyPanel extends JPanel implements ActionListener{
 	JRadioButton rbuttonDegrees, rbuttonRadians, rbuttonBinary, rbuttonOctal, rbuttonDecimal, rbuttonHexadecimal;
 	private final int numOffX = 6;
 	private final int numOffY = 3;
+
+	MathParser parser;
+	String memory = "";
 
 	public MyPanel() {
 		this.setLayout(new GridBagLayout());
@@ -420,7 +425,7 @@ public class MyPanel extends JPanel implements ActionListener{
 		if(this.buttonClear == source) {
 			textfield.setText("");
 		}
-		else if(this.buttonBackspace == source) {
+		else if (this.buttonBackspace == source) {
 			String tempstring = "";
 			for (int i=0; i < textfield.getText().length() - 1; i++) {
 				tempstring += textfield.getText().charAt(i);
@@ -428,12 +433,37 @@ public class MyPanel extends JPanel implements ActionListener{
 			textfield.setText(tempstring);
 		}
 		else if (this.buttonEquals == source) {
-			
+			int numtype = 0;
+			if (this.rbuttonBinary.isSelected() == true) {
+				numtype = 2;
+			}
+			else if (this.rbuttonOctal.isSelected() == true) {
+				numtype = 8;
+			}
+			else if (this.rbuttonDecimal.isSelected() == true) {
+				numtype = 10;
+			}
+			else if (this.rbuttonHexadecimal.isSelected() == true) {
+				numtype = 16;
+			}
+			else {
+				numtype = 10;
+			}
+
+			parser = new MathParser(memory, numtype);
+			parser.parse(textfield.getText());
+			textfield.setText(parser.evalOutString());
+		}
+		else if (this.M == source) {
+			textfield.setText(memory);
+		}
+		else if (this.Mplus == source) {
+			memory = textfield.getText();
 		}
 		else {
 			textfield.setText(textfield.getText() + "" + ((JButton) source).getText());
 		}
 
-		
+
 	}
 }
