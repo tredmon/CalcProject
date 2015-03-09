@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 public class TablePanel extends JPanel{
 
 	JTable BoundsTable;
+	JTable XYTable; 
 	/**
 	 * @param args
 	 */
@@ -52,18 +53,18 @@ public class TablePanel extends JPanel{
 				
 			}
 		}
-		JTable table = new JTable(x,columnNames);
+		XYTable = new JTable(x,columnNames);
 		
-		JScrollPane scrollPane = new JScrollPane(table);
-		table.setFillsViewportHeight(true);
+		JScrollPane scrollPane = new JScrollPane(XYTable);
+		XYTable.setFillsViewportHeight(true);
 		
 		
 		
 	
 		
 		add(scrollPane);
-		table.getColumnModel().getColumn(0).setCellEditor(new noEditor());
-		table.getColumnModel().getColumn(1).setCellEditor(new noEditor());
+		XYTable.getColumnModel().getColumn(0).setCellEditor(new noEditor());
+		XYTable.getColumnModel().getColumn(1).setCellEditor(new noEditor());
 	}
 		public void  MinVal(Double MinX, Double MaxX, Double MinY, Double MaxY, Double DeltaX)
 		
@@ -139,6 +140,10 @@ public class TablePanel extends JPanel{
 			return BoundsTable;
 			
 			
+		}
+		public JTable getXYTable()
+		{
+			return XYTable;
 		}
 
 }

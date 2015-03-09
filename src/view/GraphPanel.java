@@ -6,10 +6,12 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.table.TableModel;
 
 public class GraphPanel extends JFrame{
 	  TablePanel Panel;
 	  childGraphPanel GraphPanel;
+	 
 	public GraphPanel()
 	{
 		super();
@@ -38,6 +40,8 @@ public class GraphPanel extends JFrame{
 		Double MaxY = (Double) StrMinTable.getModel().getValueAt(3, 1);
 				
 		GraphPanel.DRAWGraph(MinX, MaxX, MinY, MaxY);
+		JTable Modell = Panel.getXYTable();
+		TableModel Model2 = Panel.XYTable.getModel();
 		
 	}
 	
