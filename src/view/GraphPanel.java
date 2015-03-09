@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JTable;
 
 public class GraphPanel extends JFrame{
-	
+	  TablePanel Panel;
+	  childGraphPanel GraphPanel;
 	public GraphPanel()
 	{
 		super();
@@ -15,15 +17,29 @@ public class GraphPanel extends JFrame{
 	
 		this.setLocationRelativeTo(null);
 		
-		  TablePanel Panel= new TablePanel();
+		Panel = new TablePanel();
 		  this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
 
-		  childGraphPanel GraphPanel = new childGraphPanel();
+		  GraphPanel = new childGraphPanel();
 			 
 
 		  this.add(Panel);
 		  this.add(GraphPanel);
-			this.pack();
+		this.pack();
 	}
+	public void DrawGraph()
+	{
+		JTable StrMinTable = Panel.getMinTable();
+		
+		
+		Double MinX = (Double) StrMinTable.getModel().getValueAt(0, 1);
+		Double MaxX = (Double) StrMinTable.getModel().getValueAt(1, 1);
+		Double MinY = (Double) StrMinTable.getModel().getValueAt(2, 1);
+		Double MaxY = (Double) StrMinTable.getModel().getValueAt(3, 1);
+				
+		GraphPanel.DRAWGraph(MinX, MaxX, MinY, MaxY);
+		
+	}
+	
 	
 }
