@@ -6,6 +6,7 @@ public class MathParser extends ParseTreeDouble{
 	private String mstr;
 	private int bas;
 	private double xval;
+	private char angle;
 	
 	private static MathParser emptytree = new MathParser(){
 		public Double eval(){
@@ -16,12 +17,13 @@ public class MathParser extends ParseTreeDouble{
 		}
 	};
 	public MathParser(){
-		this(null, 10);
+		this(null, 10, 'd');
 	}
-	public MathParser(String mem, int base){
+	public MathParser(String mem, int base, char angtype){
 		super();
 		setMem(mem);
 		setBase(base);
+		setAngle(angtype);
 		add(new ParseFunc<Double>("+",400,"PLUS"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
@@ -791,6 +793,12 @@ public class MathParser extends ParseTreeDouble{
 	}
 	public double getX(){
 		return xval;
+	}
+	public void setAngle(char angtype){
+		angle = angtype;
+	}
+	public char getAngle(){
+		return angle;
 	}
 	public boolean isOnlyNumber(String num){
 		boolean ret = true;
