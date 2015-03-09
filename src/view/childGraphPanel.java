@@ -40,8 +40,8 @@ public class childGraphPanel extends JPanel{
 	}
 	public void drawGraph(Graphics g)
 	{
-		double ratioW = (xMax - xMin) / getWidth();
-		double ratioH = (yMax - yMin) / getHeight();
+		double ratioW = getWidth() / (xMax - xMin);
+		double ratioH = getHeight() / (yMax - yMin);
 		double originx = -1.0 * xMin * ratioW;
 		double originy = yMin * ratioH;
 		g.drawLine(getWidth(), (int)originy, 0, (int)originy);
@@ -50,9 +50,9 @@ public class childGraphPanel extends JPanel{
 		if(coordinates != null){
 			for(int x = 0; x < coordinates.length-1; x++)
 			{
-//				g.drawLine((int)(coordinates[x][0]*ratioW-originx), (int)(coordinates[x][1]*ratioH-originy), (int)(coordinates[x][0]*ratioW-originx), (int)(coordinates[x][1]*ratioH-originy));
-				g.drawLine((int)(coordinates[x][0]*ratioW-originx), (int)(coordinates[x][1]*ratioH-originy), (int)(coordinates[x+1][0]*ratioW-originx), (int)(coordinates[x+1][1]*ratioH-originy));
-				System.out.println("line from:("+(int)(coordinates[x][0]*ratioW-originx)+", "+(int)(coordinates[x][1]*ratioH-originy)+") to:("+(int)(coordinates[x+1][0]*ratioW-originx)+", "+(int)(coordinates[x+1][1]*ratioH-originy)+")");
+//				g.drawLine((int)(originx+coordinates[x][0]*ratioW), (int)(originy-coordinates[x][1]*ratioH), (int)(originx+coordinates[x][0]*ratioW), (int)(originy-coordinates[x][1]*ratioH));
+				g.drawLine((int)(originx+coordinates[x][0]*ratioW), (int)(originy-coordinates[x][1]*ratioH), (int)(originx+coordinates[x+1][0]*ratioW), (int)(originy-coordinates[x+1][1]*ratioH));
+				System.out.println("line:"+x+" from:("+(int)(originx+coordinates[x][0]*ratioW)+", "+(int)(originy-coordinates[x][1]*ratioH)+") to:("+(int)(originx+coordinates[x+1][0]*ratioW)+", "+(int)(originy-coordinates[x+1][1]*ratioH)+") originally from:("+coordinates[x][0]+", "+coordinates[x][1]+") to:("+coordinates[x+1][0]+", "+coordinates[x+1][1]+")");
 			}
 		}
 	}
@@ -62,7 +62,7 @@ public class childGraphPanel extends JPanel{
 		xMax = MaxX;
 		yMin = MinY;
 		yMax = MaxY;
-		coordinates = xy;
+		Graph(xy);
 		repaint();
 	}
 }

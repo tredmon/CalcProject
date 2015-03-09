@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
+import model.MathParser;
+
 public class GraphPanel extends JFrame{
 	  TablePanel Panel;
 	  childGraphPanel GraphPanel;
@@ -28,6 +30,24 @@ public class GraphPanel extends JFrame{
 		  this.add(Panel);
 		  this.add(GraphPanel);
 		this.pack();
+		EvalEquation(null);
+	}
+	public void EvalEquation(MathParser eq){
+		double dx = Double.parseDouble(""+Panel.getMinTable().getModel().getValueAt(4, 1));
+		double minx = Double.parseDouble(""+Panel.getMinTable().getModel().getValueAt(0, 1));
+		double maxx = Double.parseDouble(""+Panel.getMinTable().getModel().getValueAt(1, 1));
+		Double[][] xy = new Double[(int)((maxx-minx)/dx)+1][2];
+		double x = minx;
+		for(int i=0; i<xy.length; i++, x+=dx){
+			xy[i][0] = x;
+			if(eq != null){
+				xy[i][1] = eq.eval(x);
+			}
+			else{
+				xy[i][1] = 0.0;
+			}
+		}
+		Panel.setTable(xy);
 		DrawGraph();
 	}
 	public void DrawGraph()
