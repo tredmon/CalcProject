@@ -311,27 +311,27 @@ private TheMath(){}
 		return Math.pow(Double.parseDouble(base), (1/Double.parseDouble(root)));
 	}
 	
-	public static Xor(){
-		
+	public static double Xor(String input, String input2){
+		return Integer.parseInt(input) ^ Integer.parseInt(input2);
 	}
 	
-	public static Or(){
-		
+	public static double Or(String input, String input2){
+		return Integer.parseInt(input) | Integer.parseInt(input2);
 	}
 	
-	public static And(){
-		
+	public static double And(String input, String input2){
+		return Integer.parseInt(input) & Integer.parseInt(input2);
 	}
 	
-	public static Not(){
-		
+	public static double Not(String input){
+		return ~Integer.parseInt(input);
 	}
 	
-	public static lShift(){
-		
+	public static double lShift(String input, String input2){
+		return Integer.parseInt(input) << Integer.parseInt(input2);
 	}
 	
-	public static rShift(){
-		
+	public static double rShift(String input, String input2){
+		return Integer.parseInt(input) >> Integer.parseInt(input2);
 	}
 }
