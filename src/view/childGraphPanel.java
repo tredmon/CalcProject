@@ -46,13 +46,11 @@ public class childGraphPanel extends JPanel{
 		double originy = yMin * ratioH;
 		g.drawLine(getWidth(), (int)originy, 0, (int)originy);
 		g.drawLine((int)originx, 0, (int)originx, getHeight());
-		System.out.println("origin at ("+(int)originx+", "+(int)originy+")");
 		if(coordinates != null){
 			for(int x = 0; x < coordinates.length-1; x++)
 			{
 //				g.drawLine((int)(originx+coordinates[x][0]*ratioW), (int)(originy-coordinates[x][1]*ratioH), (int)(originx+coordinates[x][0]*ratioW), (int)(originy-coordinates[x][1]*ratioH));
 				g.drawLine((int)(originx+coordinates[x][0]*ratioW), (int)(originy-coordinates[x][1]*ratioH), (int)(originx+coordinates[x+1][0]*ratioW), (int)(originy-coordinates[x+1][1]*ratioH));
-				System.out.println("line:"+x+" from:("+(int)(originx+coordinates[x][0]*ratioW)+", "+(int)(originy-coordinates[x][1]*ratioH)+") to:("+(int)(originx+coordinates[x+1][0]*ratioW)+", "+(int)(originy-coordinates[x+1][1]*ratioH)+") originally from:("+coordinates[x][0]+", "+coordinates[x][1]+") to:("+coordinates[x+1][0]+", "+coordinates[x+1][1]+")");
 			}
 		}
 	}

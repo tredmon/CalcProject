@@ -40,11 +40,11 @@ public class GraphPanel extends JFrame{
 		double x = minx;
 		for(int i=0; i<xy.length; i++, x+=dx){
 			xy[i][0] = x;
-			if(eq != null){
-				xy[i][1] = eq.eval(x);
+			if(eq == null){
+				xy[i][1] = 0.0;
 			}
 			else{
-				xy[i][1] = 0.0;
+				xy[i][1] = eq.eval(x);
 			}
 		}
 		Panel.setTable(xy);
