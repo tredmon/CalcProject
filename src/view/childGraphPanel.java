@@ -34,9 +34,7 @@ public class childGraphPanel extends JPanel{
 //		g.fillRect(0, 0, 200, 200);
 //		g.fillRect(getX(), getY(), 200, 200);
 		g.setColor(Color.BLACK);
-		g.drawLine(getWidth(), getHeight()/2, 0, getHeight()/2);
-		g.drawLine(getWidth()/2, 0, getWidth()/2, getHeight());
-		
+		drawGraph(g);
 			
 	}
 	public void Graph(double [][] array)
@@ -49,11 +47,18 @@ public class childGraphPanel extends JPanel{
 	}
 	public void drawGraph(Graphics g)
 	{
-		
-		for(int x = 0; x < coordinates.length; x++)
-		{
-			
-			//g.drawLine(coordinates[x][0],coordinates[x][1], coordinates[x][0],coordinates[x][1]);
+		double ratioW = (xMax - xMin) / getWidth();
+		double ratioH = (yMax - yMin) / getHeight();
+		double originx = -1.0 * xMin * ratioW;
+		double originy = yMin * ratioH;
+		g.drawLine(getWidth(), (int)originy, 0, (int)originy);
+		g.drawLine((int)originx, 0, (int)originx, getHeight());
+		if(coordinates != null){
+			for(int x = 0; x < coordinates.length; x++)
+			{
+				g.drawLine((int)(coordinates[x][0]*ratioW-originx), (int)(coordinates[x][1]*ratioH-originy), (int)(coordinates[x][0]*ratioW-originx), (int)(coordinates[x][1]*ratioH-originy));
+				//g.drawLine(coordinates[x][0],coordinates[x][1], coordinates[x][0],coordinates[x][1]);
+			}
 		}
 	}
 	public void DRAWGraph(Double MinX, Double MaxX, Double MinY, Double MaxY, double[][] xy)

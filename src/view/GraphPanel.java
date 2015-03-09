@@ -19,7 +19,7 @@ public class GraphPanel extends JFrame{
 	
 		this.setLocationRelativeTo(null);
 		
-		Panel = new TablePanel();
+		Panel = new TablePanel(this);
 		  this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
 
 		  GraphPanel = new childGraphPanel();
