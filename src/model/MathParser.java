@@ -127,6 +127,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
+					//TODO: use TheMath.mod()
 					ret = parent.getNodeVal1(0.0) % parent.getNodeVal2(0.0);
 				}
 				return ret;
@@ -152,6 +153,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
+					//TODO: use TheMath.pow()
 					ret = Math.pow(parent.getNodeVal1(0.0), parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -178,10 +180,12 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					if(parent.getNode1()==null){
+						//TODO: use TheMath.root() function
+//						ret = TheMath.root(parent.getNodeVal2(0.0), 2);
 						ret = Math.sqrt(parent.getNodeVal2(0.0));
 					}
 					else{
-						//TODO: implement a root() function
+						//TODO: use TheMath.root() function
 //						ret = root(parent.getNodeVal2(0.0), parent.getNodeVal1(2.0));
 					}
 				}
@@ -208,8 +212,7 @@ public class MathParser extends ParseTreeDouble{
 			public String parse(ParseTree<Double> parent, String str){
 				String ret = super.parse(parent, str);
 				if(!ret.equals(str)){
-					parent.setNode1(parent.getInstance());
-					parent.getNode1().setData(1.0);
+					parent.setNode1(emptytree);
 				}
 				return ret;
 			}
@@ -217,8 +220,8 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.not() function
-//					ret = MyMath.not(parent.getNodeVal2(0.0));
+					//TODO: use TheMath.not() function
+//					ret = TheMath.not(parent.getNodeVal2(0.0));
 					ret = Double.longBitsToDouble(~Double.doubleToRawLongBits(parent.getNodeVal2(0.0)));
 				}
 				return ret;
@@ -244,8 +247,8 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.shiftleft() function
-//					ret = MyMath.shiftleft(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
+					//TODO: use TheMath.shiftleft() function
+//					ret = TheMath.shiftleft(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 					long amnt = (long)(double)parent.getNodeVal2(1.0);
 					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) << amnt);
 				}
@@ -272,8 +275,8 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.shiftright() function
-//					ret = MyMath.shiftright(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
+					//TODO: use TheMath.shiftright() function
+//					ret = TheMath.shiftright(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 					long amnt = (long)(double)parent.getNodeVal2(1.0);
 					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) >> amnt);
 				}
@@ -300,8 +303,8 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.and() function
-//					ret = MyMath.and(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
+					//TODO: use TheMath.and() function
+//					ret = TheMath.and(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) & Double.doubleToRawLongBits(parent.getNodeVal2(0.0)));
 				}
 				return ret;
@@ -327,8 +330,8 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.xor() function
-//					ret = MyMath.xor(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
+					//TODO: use TheMath.xor() function
+//					ret = TheMath.xor(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) ^ Double.doubleToRawLongBits(parent.getNodeVal2(0.0)));
 				}
 				return ret;
@@ -354,8 +357,8 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.or() function
-//					ret = MyMath.or(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
+					//TODO: use TheMath.or() function
+//					ret = TheMath.or(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) | Double.doubleToRawLongBits(parent.getNodeVal2(0.0)));
 				}
 				return ret;
@@ -393,17 +396,28 @@ public class MathParser extends ParseTreeDouble{
 				}
 				return ret;
 			}
+			@Override
+			public String evalString(ParseTree<Double> parent){
+				return mstr;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				ParseTree<Double> tmp = parent.getInstance(parent.getFunctionList(), mstr);
+				return tmp.evalOutString();
+			}
 		});
 		add(new ParseFunc<Double>("e",1010,"EULER"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.E field
-//					ret = MyMath.E;
-					ret = 2.71;
+					ret = TheMath.E;
 				}
 				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				return ""+eval(parent);
 			}
 		});
 		add(new ParseFunc<Double>("pi",1010,"PI"){
@@ -411,11 +425,13 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.PI field
-//					ret = MyMath.PI;
-					ret = 3.14;
+					ret = TheMath.PI;
 				}
 				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				return ""+eval(parent);
 			}
 		});
 		add(new ParseFunc<Double>("sin",90,"SIN"){
@@ -431,7 +447,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.sin() function
+					//TODO: use TheMath.sin() function
 					ret = Math.sin(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -461,7 +477,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.cos() function
+					//TODO: use TheMath.cos() function
 					ret = Math.cos(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -491,7 +507,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.tan() function
+					//TODO: use TheMath.tan() function
 					ret = Math.tan(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -521,7 +537,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.asin() function
+					//TODO: use TheMath.asin() function
 					ret = Math.asin(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -551,7 +567,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.acos() function
+					//TODO: use TheMath.acos() function
 					ret = Math.acos(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -581,7 +597,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use MyMath.atan() function
+					//TODO: use TheMath.atan() function
 					ret = Math.atan(parent.getNodeVal2(0.0));
 				}
 				return ret;
@@ -658,11 +674,11 @@ public class MathParser extends ParseTreeDouble{
 					ret = ""+parent.getData();
 					switch(getBase()){
 						case 2:
-							//TODO: use TheMath deciToBinary()
+							//TODO: use TheMath.deciToBinary()
 //							ret = TheMath.deciToBinary(ret);
 							break;
 						case 8:
-							//TODO: use TheMath deciToOctal()
+							//TODO: use TheMath.deciToOctal()
 //							ret = TheMath.deciToOctal(ret);
 							break;
 						case 10:
