@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.JTextField;		
 import javax.swing.border.Border;
 
 import model.MathParser;
@@ -37,6 +37,9 @@ public class MyPanel extends JPanel implements ActionListener{
 
 	MathParser parser;
 	String memory = "";
+	int numtype = 10;
+	char angletype = 'd';
+
 
 	public MyPanel() {
 		this.setLayout(new GridBagLayout());
@@ -433,7 +436,6 @@ public class MyPanel extends JPanel implements ActionListener{
 			textfield.setText(tempstring);
 		}
 		else if (this.buttonEquals == source) {
-			int numtype = 0;
 			if (this.rbuttonBinary.isSelected() == true) {
 				numtype = 2;
 			}
@@ -459,6 +461,122 @@ public class MyPanel extends JPanel implements ActionListener{
 		}
 		else if (this.Mplus == source) {
 			memory = textfield.getText();
+		}
+		else if (this.Or == source) {
+			textfield.setText(textfield.getText() + "|");
+		}
+		else if (this.Xor == source) {
+			textfield.setText(textfield.getText() + "~");
+		}
+		else if (this.Not == source) {
+			textfield.setText(textfield.getText() + "!");
+		}
+		else if (this.And == source) {
+			textfield.setText(textfield.getText() + "&");
+		}
+		else if (this.Lsh == source) {
+			textfield.setText(textfield.getText() + "<<");
+		}
+		else if (this.Rsh == source) {
+			textfield.setText(textfield.getText() + ">>");
+		}
+		else if (this.rbuttonBinary == source) {
+			parser = new MathParser(memory, numtype);
+			parser.parse(textfield.getText());
+			numtype = 2;
+			parser.setBase(numtype);
+			textfield.setText(parser.evalString());
+			button0.setEnabled(true);
+			button1.setEnabled(true);
+			button2.setEnabled(false);
+			button3.setEnabled(false);
+			button4.setEnabled(false);
+			button5.setEnabled(false);
+			button6.setEnabled(false);
+			button7.setEnabled(false);
+			button8.setEnabled(false);
+			button9.setEnabled(false);
+			buttonHexA.setEnabled(false);
+			buttonHexB.setEnabled(false);
+			buttonHexC.setEnabled(false);
+			buttonHexD.setEnabled(false);
+			buttonHexE.setEnabled(false);
+			buttonHexF.setEnabled(false);
+		}
+		else if (this.rbuttonDecimal == source) {
+			parser = new MathParser(memory, numtype);
+			parser.parse(textfield.getText());
+			numtype = 10;
+			parser.setBase(numtype);
+			textfield.setText(parser.evalString());
+			button0.setEnabled(true);
+			button1.setEnabled(true);
+			button2.setEnabled(true);
+			button3.setEnabled(true);
+			button4.setEnabled(true);
+			button5.setEnabled(true);
+			button6.setEnabled(true);
+			button7.setEnabled(true);
+			button8.setEnabled(true);
+			button9.setEnabled(true);
+			buttonHexA.setEnabled(false);
+			buttonHexB.setEnabled(false);
+			buttonHexC.setEnabled(false);
+			buttonHexD.setEnabled(false);
+			buttonHexE.setEnabled(false);
+			buttonHexF.setEnabled(false);
+		}
+		else if (this.rbuttonOctal == source) {
+			parser = new MathParser(memory, numtype);
+			parser.parse(textfield.getText());
+			numtype = 8;
+			parser.setBase(numtype);
+			textfield.setText(parser.evalString());
+			button0.setEnabled(true);
+			button1.setEnabled(true);
+			button2.setEnabled(true);
+			button3.setEnabled(true);
+			button4.setEnabled(true);
+			button5.setEnabled(true);
+			button6.setEnabled(true);
+			button7.setEnabled(true);
+			button8.setEnabled(false);
+			button9.setEnabled(false);
+			buttonHexA.setEnabled(false);
+			buttonHexB.setEnabled(false);
+			buttonHexC.setEnabled(false);
+			buttonHexD.setEnabled(false);
+			buttonHexE.setEnabled(false);
+			buttonHexF.setEnabled(false);
+		}
+		else if (this.rbuttonHexadecimal == source) {
+			parser = new MathParser(memory, numtype);
+			parser.parse(textfield.getText());
+			numtype = 16;
+			parser.setBase(numtype);
+			textfield.setText(parser.evalString());
+			button0.setEnabled(true);
+			button1.setEnabled(true);
+			button2.setEnabled(true);
+			button3.setEnabled(true);
+			button4.setEnabled(true);
+			button5.setEnabled(true);
+			button6.setEnabled(true);
+			button7.setEnabled(true);
+			button8.setEnabled(true);
+			button9.setEnabled(true);
+			buttonHexA.setEnabled(true);
+			buttonHexB.setEnabled(true);
+			buttonHexC.setEnabled(true);
+			buttonHexD.setEnabled(true);
+			buttonHexE.setEnabled(true);
+			buttonHexF.setEnabled(true);
+		}
+		else if (this.rbuttonDegrees == source) {
+			angletype = 'd';
+		}
+		else if (this.rbuttonRadians == source) {
+			angletype = 'r';
 		}
 		else {
 			textfield.setText(textfield.getText() + "" + ((JButton) source).getText());
