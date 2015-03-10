@@ -101,7 +101,8 @@ public class ParseFunc<T> implements Comparable<ParseFunc<T>>{
 	public String parse(ParseTree<T> parent, String str){
 		String ret = str;
 		if(parent != null && ret != null){
-			int instr = ret.indexOf(getParse());
+			int instr = ret.lastIndexOf(getParse());
+//			int instr = ret.indexOf(getParse());
 			if(instr >= 0){
 				parent.setFunction(this);
 				String ns1 = ret.substring(0, instr);
