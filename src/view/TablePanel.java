@@ -3,8 +3,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.DefaultCellEditor;
-import javax.swing.InputVerifier;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,9 +19,7 @@ public class TablePanel extends JPanel{
 	JTable XYTable; 
 	JScrollPane xyscroller;
 	GraphPanel par;
-	/**
-	 * @param args
-	 */
+
 	public TablePanel(GraphPanel parent)
 	{
 		super();
@@ -58,32 +54,12 @@ public class TablePanel extends JPanel{
 	}
 	public class TabelModel implements TableModelListener
 	{
-
 		@Override
 		public void tableChanged(TableModelEvent arg0) 
 		{
 			par.DrawGraph();
-			// TODO Auto-generated method stub
 			
 		}
-		
-		
-		
-		
-	}
-	public class MyInputVerifier extends InputVerifier
-	{
-		public boolean verify(JComponent input) {
-		    String text = ((JTextField) input).getText();
-		    try {
-		       double value = Double.parseDouble(text);
-		        return true;
-		    } catch (NumberFormatException dsa) {
-		        return false;
-		    }
-		}
-		
-		
 	}
 	public void  MinVal(Double MinX, Double MaxX, Double MinY, Double MaxY, Double DeltaX)
 	{
@@ -120,9 +96,7 @@ public class TablePanel extends JPanel{
 		BoundsTable.getColumnModel().getColumn(0).setCellEditor(new noEditor());
 		
 		BoundsTable.getModel().addTableModelListener(new TabelModel());
-
-	
-	
+		BoundsTable.getColumnModel().getColumn(1).setCellEditor(new numEditor());
 	}
 	public static class noEditor extends DefaultCellEditor
 	{
@@ -138,6 +112,22 @@ public class TablePanel extends JPanel{
 		public Component getTableCellEditorComponent(JTable table, Object object, boolean Boolean, int INT1, int INT2)
 		{
 			return null;
+		}
+	}
+	public class numEditor extends DefaultCellEditor{
+		public numEditor(){
+			super(new JTextField());
+		}
+		@Override public boolean stopCellEditing(){
+			JTextField input = (JTextField) this.getComponent();
+		    String text = input.getText();
+		    try {
+		       double value = Double.parseDouble(text);
+		        return true && super.stopCellEditing();
+		    } catch (NumberFormatException dsa) {
+//		    	((JTextField)input).setText("0");
+		        return false;
+		    }
 		}
 	}
 	public JTable getMinTable()
