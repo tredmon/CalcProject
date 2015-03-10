@@ -10,7 +10,7 @@ public class CalcProjectDriver {
 	private static GraphPanel gp;
 	public static void main (String[] args) throws Exception {
 		gp = new GraphPanel();
-		JFrame frame = new JFrame("Converting between number systems"){
+		JFrame frame = new JFrame("Calculator"){
 			@Override public void setVisible(boolean set){
 				CalcProjectDriver.gp.setVisible(set);
 				super.setVisible(set);

@@ -422,6 +422,8 @@ public class MyPanel extends JPanel implements ActionListener{
 		buttonBackspace.addActionListener(this);
 	}
 
+	
+
 	public void actionPerformed(ActionEvent ae) {
 		Object source = ae.getSource();
 		if(this.buttonClear == source) {
