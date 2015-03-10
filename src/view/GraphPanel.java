@@ -18,17 +18,15 @@ public class GraphPanel extends JFrame{
 	{
 		super();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
-		this.setLocationRelativeTo(null);
-		
+
 		Panel = new TablePanel(this);
-		  this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
+		this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
 
-		  GraphPanel = new childGraphPanel();
-			 
+		GraphPanel = new childGraphPanel();
 
-		  this.add(Panel);
-		  this.add(GraphPanel);
+
+		this.add(Panel);
+		this.add(GraphPanel);
 		this.pack();
 		EvalEquation(null);
 	}

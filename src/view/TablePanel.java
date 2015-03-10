@@ -12,6 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 
 public class TablePanel extends JPanel{
 
@@ -27,7 +28,7 @@ public class TablePanel extends JPanel{
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setPreferredSize(new Dimension(550,260));
 		this.setSize(new Dimension(550,260));
-		MinVal(0.0, 10.0, 2.0, 10.0, 5.0);
+		MinVal(-10.0, 10.0, -10.0, 10.0, 1.0);
 
 		JLabel label = new JLabel("Table View");
 		label.setVerticalAlignment(JLabel.CENTER);		
@@ -50,7 +51,9 @@ public class TablePanel extends JPanel{
 		add(xyscroller);
 		XYTable.getColumnModel().getColumn(0).setCellEditor(new noEditor());
 		XYTable.getColumnModel().getColumn(1).setCellEditor(new noEditor());
-
+		invalidate();
+		revalidate();
+		repaint();
 	}
 	public class TabelModel implements TableModelListener
 	{
