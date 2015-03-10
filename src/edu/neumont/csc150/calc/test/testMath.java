@@ -13,7 +13,7 @@ public class testMath {
 		//IUserInterface ui = UserInterfaceFactory.getInstance();
 		System.out.println(":D");
 //		System.out.println(TheMath.hexToBinary(ui.promptStringInput()));
-		System.out.println(TheMath.deciToOctal(ui.promptStringInput()));
+		System.out.println(TheMath.deciToBinary("1002"));
 
 	}
 }

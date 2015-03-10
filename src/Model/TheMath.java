@@ -34,16 +34,15 @@ private TheMath(){}
 	
 
 	public static String deciToBinary(String input){
-		boolean again = true;
 		String x = "", z = "";
 		double newinput = Double.parseDouble(input);
 			while(newinput >= 1){
 				if(newinput % 2 == 0){
-					newinput = newinput/2;
+					newinput = Math.floor(newinput/2);
 					x += "0";
 				}
 				else if(newinput % 2 == 1){
-					newinput = newinput/2;
+					newinput = Math.floor(newinput/2);
 					x += "1";
 				}
 			}
@@ -183,7 +182,7 @@ private TheMath(){}
 		double newinput = Double.parseDouble(input);
 		
 		while(newinput >= 1){
-			newinput = newinput/16;
+			newinput = Math.floor(newinput/16);
 			x += newinput % 16;
 		}
 		String z = "";
@@ -208,7 +207,7 @@ private TheMath(){}
 		double newinput = Double.parseDouble(input);
 		
 		while(newinput >= 1){
-			newinput = newinput/8;
+			newinput = Math.floor(newinput/8);
 			x+= newinput % 8;
 		}
 		String z = "";
