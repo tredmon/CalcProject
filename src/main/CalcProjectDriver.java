@@ -3,15 +3,22 @@ package main;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import view.GraphPanel;
 import view.MyPanel;
-//import model.Converters;
 
 public class CalcProjectDriver {
+	private static GraphPanel gp;
 	public static void main (String[] args) throws Exception {
-		JFrame frame = new JFrame("Converting between number systems");
+		gp = new GraphPanel();
+		JFrame frame = new JFrame("Converting between number systems"){
+			@Override public void setVisible(boolean set){
+				CalcProjectDriver.gp.setVisible(set);
+				super.setVisible(set);
+			}
+		};
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel mainpanel = new MyPanel();
+		JPanel mainpanel = new MyPanel(gp);
 		frame.getContentPane().add(mainpanel);
 		
 		frame.pack();

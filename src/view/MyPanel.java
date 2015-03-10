@@ -17,32 +17,33 @@ import javax.swing.border.Border;
 import model.MathParser;
 
 public class MyPanel extends JPanel implements ActionListener{
-	JButton button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, 
+	private JButton button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, 
 	buttonClear, buttonBackspace, buttonLeftParen, buttonRightParen, buttonExponent, buttonX, buttonDivide,
 	buttonMultiply, buttonSubtract, buttonAdd, buttonEquals, buttonDecimal;
 
-	JButton buttonHexA, buttonHexB, buttonHexC, buttonHexD, buttonHexE, buttonHexF;
+	private JButton buttonHexA, buttonHexB, buttonHexC, buttonHexD, buttonHexE, buttonHexF;
 
-	JButton sin, cos, tan, arcsin, arccos, arctan;
+	private JButton sin, cos, tan, arcsin, arccos, arctan;
 
-	JButton Mplus, M, rt, Mod, Ln, Log, e, pi;
+	private JButton Mplus, M, rt, Mod, Ln, Log, e, pi;
 
-	JButton Or, Xor, Not, And, Lsh, Rsh;
+	private JButton Or, Xor, Not, And, Lsh, Rsh;
 
-	JTextField textfield;	
+	private JTextField textfield;	
 
-	JRadioButton rbuttonDegrees, rbuttonRadians, rbuttonBinary, rbuttonOctal, rbuttonDecimal, rbuttonHexadecimal;
+	private JRadioButton rbuttonDegrees, rbuttonRadians, rbuttonBinary, rbuttonOctal, rbuttonDecimal, rbuttonHexadecimal;
 	private final int numOffX = 6;
 	private final int numOffY = 3;
 
-	MathParser parser;
-	GraphPanel gp;
-	String memory = "";
-	int numtype = 10;
-	char angletype = 'd';
+	private MathParser parser;
+	private GraphPanel gp;
+	private String memory = "";
+	private int numtype = 10;
+	private char angletype = 'd';
 
+	public MyPanel(GraphPanel gp) {
+		this.gp = gp;
 
-	public MyPanel() {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c =  new GridBagConstraints();
 		ButtonGroup numtype = new ButtonGroup();
@@ -419,9 +420,6 @@ public class MyPanel extends JPanel implements ActionListener{
 		this.add(buttonBackspace, c);
 		c.gridwidth = 0;
 		buttonBackspace.addActionListener(this);
-
-
-
 	}
 
 	public void actionPerformed(ActionEvent ae) {
@@ -454,9 +452,9 @@ public class MyPanel extends JPanel implements ActionListener{
 			}
 
 			parser = new MathParser(memory, numtype, angletype);
-			gp.EvalEquation(parser);
 			parser.parse(textfield.getText());
 			textfield.setText(parser.evalOutString());
+			gp.EvalEquation(parser);
 		}
 		else if (this.M == source) {
 			textfield.setText(memory);
