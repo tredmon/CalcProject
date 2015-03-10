@@ -27,6 +27,7 @@ public class TablePanel extends JPanel{
 	public TablePanel(GraphPanel parent)
 	{
 		super();
+		par = parent;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setPreferredSize(new Dimension(550,260));
 		this.setSize(new Dimension(550,260));
