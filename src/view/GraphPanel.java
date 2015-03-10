@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,17 +17,17 @@ public class GraphPanel extends JFrame{
 	 
 	public GraphPanel()
 	{
-		super();
+		super("Graph");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		Panel = new TablePanel(this);
-		this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
+		this.setLayout(new BorderLayout());
 
 		GraphPanel = new childGraphPanel();
 
 
-		this.add(Panel);
-		this.add(GraphPanel);
+		this.add(Panel, BorderLayout.WEST);
+		this.add(GraphPanel, BorderLayout.CENTER);
 		this.pack();
 		EvalEquation(null);
 	}
