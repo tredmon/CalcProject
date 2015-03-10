@@ -14,6 +14,8 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
+import model.MathParser;
+
 public class TablePanel extends JPanel{
 
 	JTable BoundsTable;
@@ -126,11 +128,12 @@ public class TablePanel extends JPanel{
 		    String text = input.getText();
 		    try {
 		       double value = Double.parseDouble(text);
-		        return true && super.stopCellEditing();
 		    } catch (NumberFormatException dsa) {
-//		    	((JTextField)input).setText("0");
-		        return false;
+		    	MathParser p = new MathParser();
+		    	p.parse(text);
+		    	input.setText(p.eval()+"");
 		    }
+	        return true && super.stopCellEditing();
 		}
 	}
 	public JTable getMinTable()
