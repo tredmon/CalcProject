@@ -395,17 +395,34 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					ret = parent.getInstance(parent.getFunctionList(), mstr).eval();
+					if(parent.getNode1() != null){
+						ret *= parent.getNodeVal1(1.0);
+					}
+					if(parent.getNode2() != null){
+						ret *= parent.getNodeVal2(1.0);
+					}
 				}
 				return ret;
 			}
 			@Override
 			public String evalString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent!=null && parent.getNode1()!=null){
+					ret += parent.getNode1().evalString()+"*";
+				}
+				ret += mstr;
+				if(parent!=null && parent.getNode2()!=null){
+					ret += "*"+parent.getNode2().evalString();
+				}
 				return mstr;
 			}
 			@Override
 			public String evalOutString(ParseTree<Double> parent){
-				ParseTree<Double> tmp = parent.getInstance(parent.getFunctionList(), mstr);
-				return tmp.evalOutString();
+				String ret = "";
+				if(parent != null){
+					ret = parent.getInstance(parent.getFunctionList(), evalString(parent)).evalOutString();
+				}
+				return ret;
 			}
 		});
 		add(new ParseFunc<Double>("e",1010,"EULER"){
@@ -414,6 +431,12 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					ret = TheMath.E;
+					if(parent.getNode1() != null){
+						ret *= parent.getNodeVal1(1.0);
+					}
+					if(parent.getNode2() != null){
+						ret *= parent.getNodeVal2(1.0);
+					}
 				}
 				return ret;
 			}
@@ -428,12 +451,22 @@ public class MathParser extends ParseTreeDouble{
 				Double ret = 0.0;
 				if(parent != null){
 					ret = TheMath.PI;
+					if(parent.getNode1() != null){
+						ret *= parent.getNodeVal1(1.0);
+					}
+					if(parent.getNode2() != null){
+						ret *= parent.getNodeVal2(1.0);
+					}
 				}
 				return ret;
 			}
 			@Override
 			public String evalOutString(ParseTree<Double> parent){
-				return ""+eval(parent);
+				String ret = "";
+				if(parent != null){
+					ret = ""+eval(parent);
+				}
+				return ret;
 			}
 		});
 		add(new ParseFunc<Double>("sin",90,"SIN"){
@@ -706,19 +739,16 @@ public class MathParser extends ParseTreeDouble{
 		});
 		add(new ParseFunc<Double>("X",Integer.MIN_VALUE+1,"VARX"){
 			@Override
-			public String parse(ParseTree<Double> parent, String parse){
-				String ret = super.parse(parent, parse);
-				if(parent != null){
-					parent.setNode1(MathParser.emptytree);
-					parent.setNode2(MathParser.emptytree);
-				}
-				return ret;
-			}
-			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = null;
 				if(parent != null){
 					ret = ((MathParser)parent).getX();
+					if(parent.getNode1() != null){
+						ret *= parent.getNodeVal1(1.0);
+					}
+					if(parent.getNode2() != null){
+						ret *= parent.getNodeVal2(1.0);
+					}
 				}
 				return ret;
 			}
