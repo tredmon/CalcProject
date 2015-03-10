@@ -3,6 +3,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.DefaultCellEditor;
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -66,6 +68,20 @@ public class TablePanel extends JPanel{
 		}
 		
 		
+		
+		
+	}
+	public class MyInputVerifier extends InputVerifier
+	{
+		public boolean verify(JComponent input) {
+		    String text = ((JTextField) input).getText();
+		    try {
+		       double value = Double.parseDouble(text);
+		        return true;
+		    } catch (NumberFormatException dsa) {
+		        return false;
+		    }
+		}
 		
 		
 	}
