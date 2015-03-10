@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 public class TablePanel extends JPanel{
 
@@ -51,6 +53,21 @@ public class TablePanel extends JPanel{
 		XYTable.getColumnModel().getColumn(1).setCellEditor(new noEditor());
 
 	}
+	public class TabelModel implements TableModelListener
+	{
+
+		@Override
+		public void tableChanged(TableModelEvent arg0) 
+		{
+			par.DrawGraph();
+			// TODO Auto-generated method stub
+			
+		}
+		
+		
+		
+		
+	}
 	public void  MinVal(Double MinX, Double MaxX, Double MinY, Double MaxY, Double DeltaX)
 	{
 		JLabel label = new JLabel("Bounds");
@@ -74,15 +91,21 @@ public class TablePanel extends JPanel{
 		row[3][1] = MaxY.toString();
 		row[4][1] = DeltaX.toString();
 
-//		if()
+		if(BoundsTable != null)
+		{
+			remove(BoundsTable);
+		
+		}
 		BoundsTable = new JTable(row, columnNames);
 		add(BoundsTable);
 
 
 		BoundsTable.getColumnModel().getColumn(0).setCellEditor(new noEditor());
-		//TableModelListener applied to column 1 
-		//BoundsTable.get
-		//
+		
+		BoundsTable.getModel().addTableModelListener(new TabelModel());
+
+	
+	
 	}
 	public static class noEditor extends DefaultCellEditor
 	{
