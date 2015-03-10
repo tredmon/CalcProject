@@ -36,6 +36,7 @@ public class MyPanel extends JPanel implements ActionListener{
 	private final int numOffY = 3;
 
 	MathParser parser;
+	GraphPanel gp;
 	String memory = "";
 	int numtype = 10;
 	char angletype = 'd';
@@ -452,7 +453,8 @@ public class MyPanel extends JPanel implements ActionListener{
 				numtype = 10;
 			}
 
-			parser = new MathParser(memory, numtype);
+			parser = new MathParser(memory, numtype, angletype);
+			gp.EvalEquation(parser);
 			parser.parse(textfield.getText());
 			textfield.setText(parser.evalOutString());
 		}
@@ -481,7 +483,7 @@ public class MyPanel extends JPanel implements ActionListener{
 			textfield.setText(textfield.getText() + ">>");
 		}
 		else if (this.rbuttonBinary == source) {
-			parser = new MathParser(memory, numtype);
+			parser = new MathParser(memory, numtype, angletype);
 			parser.parse(textfield.getText());
 			numtype = 2;
 			parser.setBase(numtype);
@@ -504,7 +506,7 @@ public class MyPanel extends JPanel implements ActionListener{
 			buttonHexF.setEnabled(false);
 		}
 		else if (this.rbuttonDecimal == source) {
-			parser = new MathParser(memory, numtype);
+			parser = new MathParser(memory, numtype, angletype);
 			parser.parse(textfield.getText());
 			numtype = 10;
 			parser.setBase(numtype);
@@ -527,7 +529,7 @@ public class MyPanel extends JPanel implements ActionListener{
 			buttonHexF.setEnabled(false);
 		}
 		else if (this.rbuttonOctal == source) {
-			parser = new MathParser(memory, numtype);
+			parser = new MathParser(memory, numtype, angletype);
 			parser.parse(textfield.getText());
 			numtype = 8;
 			parser.setBase(numtype);
@@ -550,7 +552,7 @@ public class MyPanel extends JPanel implements ActionListener{
 			buttonHexF.setEnabled(false);
 		}
 		else if (this.rbuttonHexadecimal == source) {
-			parser = new MathParser(memory, numtype);
+			parser = new MathParser(memory, numtype, angletype);
 			parser.parse(textfield.getText());
 			numtype = 16;
 			parser.setBase(numtype);
