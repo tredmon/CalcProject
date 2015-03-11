@@ -14,6 +14,7 @@ import model.MathParser;
 public class GraphPanel extends JFrame{
 	  TablePanel Panel;
 	  childGraphPanel GraphPanel;
+	  MathParser eq;
 	 
 	public GraphPanel()
 	{
@@ -32,6 +33,10 @@ public class GraphPanel extends JFrame{
 		EvalEquation(null);
 	}
 	public void EvalEquation(MathParser eq){
+		this.eq = eq;
+		EvalEquation();
+	}
+	public void EvalEquation(){
 		double dx = Double.parseDouble(""+Panel.getMinTable().getModel().getValueAt(4, 1));
 		double minx = Double.parseDouble(""+Panel.getMinTable().getModel().getValueAt(0, 1));
 		double maxx = Double.parseDouble(""+Panel.getMinTable().getModel().getValueAt(1, 1));

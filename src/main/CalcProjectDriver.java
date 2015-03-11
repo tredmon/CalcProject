@@ -51,13 +51,13 @@ public class CalcProjectDriver {
 				if(((JRadioButton)c[i]).getText().equals("Binary") && b==2){
 					((JRadioButton)c[i]).doClick();
 				}
-				if(((JRadioButton)c[i]).getText().equals("Octal") && b==8){
+				else if(((JRadioButton)c[i]).getText().equals("Octal") && b==8){
 					((JRadioButton)c[i]).doClick();
 				}
-				if(((JRadioButton)c[i]).getText().equals("Decimal") && b==10){
+				else if(((JRadioButton)c[i]).getText().equals("Decimal") && b==10){
 					((JRadioButton)c[i]).doClick();
 				}
-				if(((JRadioButton)c[i]).getText().equals("Hexadecimal") && b==16){
+				else if(((JRadioButton)c[i]).getText().equals("Hexadecimal") && b==16){
 					((JRadioButton)c[i]).doClick();
 				}
 			}

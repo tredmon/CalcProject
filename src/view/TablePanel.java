@@ -63,8 +63,7 @@ public class TablePanel extends JPanel{
 		@Override
 		public void tableChanged(TableModelEvent arg0) 
 		{
-			par.DrawGraph();
-			
+			par.EvalEquation();
 		}
 	}
 	public void  MinVal(Double MinX, Double MaxX, Double MinY, Double MaxY, Double DeltaX)
