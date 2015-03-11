@@ -16,6 +16,7 @@ public class TestCaseA {
 		driv.base(8);
 		driv.eval();
 		System.out.println("\""+driv.input()+"\" should be \"11.4\"");
+		System.exit(0);
 //		driv.visify();
 	}
 
