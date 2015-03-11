@@ -44,9 +44,12 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 	private char angletype = 'd';
 
 	public MyPanel(GraphPanel gp) {
+		super();
 		this.addKeyListener(this);
+		this.setFocusable(true);
 		
 		this.gp = gp;
+		gp.addKeyListener(this);
 
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c =  new GridBagConstraints();
@@ -301,7 +304,6 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		c.gridy = numOffY + 2;
 		this.add(button2, c);
 		button2.addActionListener(this);
-
 
 		button3 = new JButton("3");
 		c.gridx = numOffX + 2;
@@ -609,7 +611,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-
+		System.out.println("moo:"+e.getKeyChar());
 		if (e.getKeyChar() == '=' || e.getKeyChar() == KeyEvent.VK_ENTER) {
 			if (this.rbuttonBinary.isSelected() == true) {
 				numtype = 2;
