@@ -88,7 +88,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		c.gridy = numOffY -1;
 		this.add(rbuttonDecimal, c);
 		rbuttonDecimal.addActionListener(this);
-
+		
 		rbuttonHexadecimal = new JRadioButton("Hexadecimal");
 		c.gridx = numOffX  -6;
 		c.gridy = numOffY;
@@ -113,6 +113,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		c.gridy = numOffY -2;
 		this.add(rbuttonDegrees, c);
 		rbuttonDegrees.addActionListener(this);
+		
 
 		angletype.add(rbuttonDegrees);
 		angletype.add(rbuttonRadians);;
@@ -426,6 +427,8 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		this.add(buttonBackspace, c);
 		c.gridwidth = 0;
 		buttonBackspace.addActionListener(this);
+		rbuttonDegrees.doClick();
+		rbuttonDecimal.doClick();
 	}
 
 
@@ -727,7 +730,6 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 					else if (e.getKeyChar() ==   KeyEvent.VK_8) {
 						textfield.setText(textfield.getText() + "8");
 					}
-					System.out.println("testing");
 				}
 				case 8: {
 					if (e.getKeyChar() ==  KeyEvent.VK_7) {
