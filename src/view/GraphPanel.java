@@ -68,6 +68,9 @@ public class GraphPanel extends JFrame{
 		}
 		GraphPanel.DRAWGraph(MinX, MaxX, MinY, MaxY, xy);
 	}
+	public void setGraphBounds(double minx, double maxx, double miny, double maxy, double deltax){
+		Panel.MinVal(minx,maxx, miny,maxy, deltax);
+	}
 	
 	
 }

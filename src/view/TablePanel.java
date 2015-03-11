@@ -22,7 +22,8 @@ public class TablePanel extends JPanel{
 	JTable XYTable; 
 	JScrollPane xyscroller;
 	GraphPanel par;
-
+	JLabel label;
+	
 	public TablePanel(GraphPanel parent)
 	{
 		super();
@@ -68,7 +69,10 @@ public class TablePanel extends JPanel{
 	}
 	public void  MinVal(Double MinX, Double MaxX, Double MinY, Double MaxY, Double DeltaX)
 	{
-		JLabel label = new JLabel("Bounds");
+		if(label != null){
+			remove(label);
+		}
+		label = new JLabel("Bounds");
 		label.setHorizontalAlignment(JLabel.CENTER);
 		add(label);
 
@@ -102,6 +106,10 @@ public class TablePanel extends JPanel{
 		
 		BoundsTable.getModel().addTableModelListener(new TabelModel());
 		BoundsTable.getColumnModel().getColumn(1).setCellEditor(new numEditor());
+		
+		invalidate();
+		revalidate();
+		repaint();
 	}
 	public static class noEditor extends DefaultCellEditor
 	{
