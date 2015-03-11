@@ -30,10 +30,25 @@ public class ParseGroupFunc<T> extends ParseFunc<T>{
 		}
 	}
 	@Override
+	public int find(String str){
+		int ret = -1;
+		if(str != null){
+			ret = str.indexOf(getParse());
+		}
+		return ret;
+	}
+	public int findEnd(String str){
+		int ret = -1;
+		if(str != null){
+			ret = str.indexOf(getParseEnd());
+		}
+		return ret;
+	}
+	@Override
 	public String parse(ParseTree<T> parent, String str){
 		String ret = str;
 		if(parent != null && ret != null){
-			int start = ret.indexOf(getParse());
+			int start = ret.indexOf(getParse());//find(ret);
 			if(start >= 0){
 				int count = 1;
 				int instr = start;
@@ -59,7 +74,7 @@ public class ParseGroupFunc<T> extends ParseFunc<T>{
 							tmplen = getParse().length();
 							count++;
 						}
-						if(tmpend >= 0){
+						else if(tmpend >= 0){
 							instr = tmpend;
 							tmplen = getParseEnd().length();
 							count--;

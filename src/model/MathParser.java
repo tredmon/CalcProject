@@ -37,8 +37,13 @@ public class MathParser extends ParseTreeDouble{
 			public String evalOutString(ParseTree<Double> parent){
 				String ret = "";
 				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
-					ret = parent.getNode1().evalOutString();
-					String tmpstr = parent.getNode2().evalOutString();
+					if(parent.getNode1()!=null){
+						ret = parent.getNode1().evalOutString();
+					}
+					String tmpstr = "";
+					if(parent.getNode2()!=null){
+						parent.getNode2().evalOutString();
+					}
 					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
 						ret = ""+eval(parent);
 					}
@@ -430,7 +435,7 @@ public class MathParser extends ParseTreeDouble{
 				return ret;
 			}
 		});
-		add(new ParseFunc<Double>("e",1010,"EULER"){
+		add(new ParseFunc<Double>("e",89,"EULER"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
@@ -450,7 +455,7 @@ public class MathParser extends ParseTreeDouble{
 				return ""+eval(parent);
 			}
 		});
-		add(new ParseFunc<Double>("pi",1010,"PI"){
+		add(new ParseFunc<Double>("pi",89,"PI"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
@@ -693,6 +698,13 @@ public class MathParser extends ParseTreeDouble{
 			}
 		});
 		add(new ParseFunc<Double>("",Integer.MIN_VALUE,"DATA"){
+			@Override
+			public int find(String str){
+				if(str != null){
+					return 0;
+				}
+				return -1;
+			}
 			@Override
 			public String parse(ParseTree<Double> parent, String parse){
 				String ret = parse;

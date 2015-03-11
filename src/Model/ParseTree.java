@@ -122,14 +122,31 @@ public abstract class ParseTree<T> {
 		if(parse != null && parse.length() > 0){
 			this.clone(getInstance(null,null,null,null,getFunctionList()));
 			String parsestr = parse, parsestrlast = "";
-			ParseTree<T> tmptree;
+			ParseTree<T> thetree = null;
 			while(parsestr.length() > 0 && !parsestr.equals(parsestrlast)){
-				tmptree = getInstance(null,null,null,null,getFunctionList());
+				ParseTree<T> tmptree = getInstance(null,null,null,null,getFunctionList());
 				parsestrlast = parsestr;
-				for(int i=0; i<parsefuncs.size() && parsestrlast.equals(parsestr); i++){
-					parsestr = parsefuncs.get(i).parse(tmptree, parsestr);
+				ParseFunc<T> foundfunc = null;
+				int foundat = parsestr.length();
+				String tmpstr = "";
+				for(int i=0; i<parsefuncs.size() && (foundfunc==null || foundfunc.compareTo(parsefuncs.get(i))==0); i++){
+					tmpstr = parsefuncs.get(i).parse(tmptree, parsestrlast);
+					if(!tmpstr.equals(parsestrlast)){
+						//TODO: ensure that the leftmost of a single order of functions is used first
+						ParseFunc<T> tmpfunc = parsefuncs.get(i);
+						int tmpat = tmpfunc.find(parsestrlast);
+						if(tmpat < foundat && (foundfunc==null || foundfunc.compareTo(tmpfunc)==0)){
+							thetree = tmptree;
+							foundat = tmpat;
+							foundfunc = tmpfunc;
+							parsestr = tmpstr;
+						}
+					}
 				}
-				push(tmptree);
+				push(thetree);
+				if(thetree == null){
+					System.out.println("bad tree in parsing:\""+parsestrlast+"\"");
+				}
 			}
 			if(parsestr.length() > 0){
 //				setData(parseData(parsestr));
@@ -140,16 +157,18 @@ public abstract class ParseTree<T> {
 	}
 	public void push(ParseTree<T> p){
 		ParseTree<T> tmp = this.clone();
-		if(p.getNode1() == null && !tmp.toString().equals("null")){
-			p.setNode1(tmp);
+		if(p != null){
+			if(p.getNode1() == null && !tmp.toString().equals("null")){
+				p.setNode1(tmp);
+			}
+			else if(p.getNode2() == null && !tmp.toString().equals("null")){
+				p.setNode2(tmp);
+			}
+			else if((p.getNode1()==null || p.getNode2()==null) && !tmp.toString().equals("null")){
+				System.out.println("error pushing:\""+tmp+"\" into:\""+p+"\"");
+			}
+			this.clone(p);
 		}
-		else if(p.getNode2() == null && !tmp.toString().equals("null")){
-			p.setNode2(tmp);
-		}
-		else if((p.getNode1()==null || p.getNode2()==null) && !tmp.toString().equals("null")){
-			System.out.println("error pushing:\""+tmp+"\" into:\""+p+"\"");
-		}
-		this.clone(p);
 	}
 	public ParseTree<T> getInstance(){return getInstance(null);};
 	public ParseTree<T> getInstance(T data){return getInstance(data,null);};
