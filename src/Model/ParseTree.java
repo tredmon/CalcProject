@@ -124,12 +124,13 @@ public abstract class ParseTree<T> {
 			String parsestr = parse, parsestrlast = "";
 			ParseTree<T> thetree = null;
 			while(parsestr.length() > 0 && !parsestr.equals(parsestrlast)){
-				ParseTree<T> tmptree = getInstance(null,null,null,null,getFunctionList());
+				ParseTree<T> tmptree = null;
 				parsestrlast = parsestr;
 				ParseFunc<T> foundfunc = null;
 				int foundat = parsestr.length();
 				String tmpstr = "";
 				for(int i=0; i<parsefuncs.size() && (foundfunc==null || foundfunc.compareTo(parsefuncs.get(i))==0); i++){
+					tmptree = getInstance(null,null,null,null,getFunctionList());
 					tmpstr = parsefuncs.get(i).parse(tmptree, parsestrlast);
 					if(!tmpstr.equals(parsestrlast)){
 						//TODO: ensure that the leftmost of a single order of functions is used first
