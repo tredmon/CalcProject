@@ -11,9 +11,8 @@ public class testMath {
 	 */
 	public static void main(String[] args) throws IOException {
 		//IUserInterface ui = UserInterfaceFactory.getInstance();
+		//System.out.println(TheMath.hexToBinary(ui.promptStringInput()));
 		System.out.println(":D");
-//		System.out.println(TheMath.hexToBinary(ui.promptStringInput()));
-		System.out.println(TheMath.deciToBinary("1002"));
-
+		System.out.println(TheMath.deciToHex("10"));
 	}
 }

@@ -32,7 +32,9 @@ private TheMath(){}
 	private static String he = "1110";
 	private static String hf = "1111";
 	
-
+	private static char[] hexnums = 
+	{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+	
 	public static String deciToBinary(String input){
 		String x = "", z = "";
 		double newinput = Double.parseDouble(input);
@@ -44,6 +46,11 @@ private TheMath(){}
 				else if(newinput % 2 == 1){
 					newinput = Math.floor(newinput/2);
 					x += "1";
+				}
+				else
+				{
+					newinput = Math.floor(newinput/2);
+					x +="."+newinput%2;
 				}
 			}
 			for(int i = x.length() - 1; i >= 0; i--){
@@ -154,8 +161,6 @@ private TheMath(){}
 					}
 				}
 			}
-			else
-				again = true;
 		}
 		}
 		
@@ -178,18 +183,19 @@ private TheMath(){}
 	}
 	
 	public static String deciToHex(String input){
-		String x = "";
-		double newinput = Double.parseDouble(input);
-		
-		while(newinput >= 1){
-			newinput = Math.floor(newinput/16);
-			x += newinput % 16;
-		}
-		String z = "";
-		for(int i = x.length() - 1; i >= 0; i--){
-				 z += x.charAt(i);
-		}
-		return z;
+		return Double.toHexString(Double.parseDouble(input));
+//		String x = "";
+//		double newinput = Double.parseDouble(input);
+//		
+//		while(newinput >= 1){
+//			newinput = Math.floor(newinput/16);
+//			x += newinput % 16;
+//		}
+//		String z = "";
+//		for(int i = x.length() - 1; i >= 0; i--){
+//				 z += x.charAt(i);
+//		}
+//		return z;
 	}
 	
 	public static String octToHex(String input){
@@ -198,7 +204,7 @@ private TheMath(){}
 	
 	public static String binToHex(String input){
 		int num = Integer.parseInt(input, 2);
-		String result = Integer.toHexString(num);
+		String result = Double.toHexString(num);
 		return result;
 	}
 	
@@ -207,8 +213,8 @@ private TheMath(){}
 		double newinput = Double.parseDouble(input);
 		
 		while(newinput >= 1){
-			newinput = Math.floor(newinput/8);
 			x+= newinput % 8;
+			newinput = Math.floor(newinput/8);
 		}
 		String z = "";
 		for(int i = x.length() - 1; i >= 0; i--){
@@ -228,45 +234,42 @@ private TheMath(){}
 	}
 	
 
-	public static double sin(String input){
+	public static double sin(String input, char unit){
 		double result = Math.sin(Double.parseDouble(input));
-//		if(Double.isNaN(Double.parseDouble(input)))
-//			return Double.parseDouble(input);
-//		else
 		return result;
 	}
 	
-	public static double cosine(String input){
+	public static double cosine(String input, char unit){
 		double result = Math.cos(Double.parseDouble(input));
 		return result;
 	}
 	
-	public static double tangent(String input){
+	public static double tangent(String input, char unit){
 		double result = Math.tan(Double.parseDouble(input));
 		return result;
 	}
 	
-	public static double secant(String input){
-		return 1/cosine(input);
+	public static double secant(String input, char unit){
+		return 1/cosine(input, unit);
 	}
 	
-	public static double cosecant(String input){
-		return 1/sin(input);
+	public static double cosecant(String input, char unit){
+		return 1/sin(input, unit);
 	}
 	
-	public static double cotangent(String input){
-		return 1/tangent(input);
+	public static double cotangent(String input, char unit){
+		return 1/tangent(input, unit);
 	}
 	
-	public static double arcsine(String input){
+	public static double arcsine(String input, char unit){
 		return Math.asin(Double.parseDouble(input));
 	}
 	
-	public static double arccosine(String input){
+	public static double arccosine(String input, char unit){
 		return Math.acos(Double.parseDouble(input));
 	}
 	
-	public static double arctangent(String input){
+	public static double arctangent(String input, char unit){
 		return Math.atan(Double.parseDouble(input));
 	}
 	
