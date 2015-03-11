@@ -1,4 +1,6 @@
-package main;
+package testcase;
+
+import main.CalcProjectDriver;
 
 public class TestCaseB {
 	public static void main(String[] args)
