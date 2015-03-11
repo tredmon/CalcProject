@@ -66,14 +66,17 @@ public class MathParser extends ParseTreeDouble{
 			@Override
 			public String evalOutString(ParseTree<Double> parent){
 				String ret = "";
-				if(parent != null && parent.getNode2()!=null){
+				if(parent != null){
 					if(parent.getNode1() != null){
 						ret = parent.getNode1().evalOutString();
 					}
 					else{
 						ret = ""+0.0;
 					}
-					String tmpstr = parent.getNode2().evalOutString();
+					String tmpstr = "";
+					if(parent.getNode2() != null){
+						tmpstr = parent.getNode2().evalOutString();
+					}
 					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
 						ret = ""+eval(parent);
 					}
@@ -435,7 +438,7 @@ public class MathParser extends ParseTreeDouble{
 				return ret;
 			}
 		});
-		add(new ParseFunc<Double>("e",89,"EULER"){
+		add(new ParseFunc<Double>("e",Integer.MIN_VALUE+1,"EULER"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
@@ -455,7 +458,7 @@ public class MathParser extends ParseTreeDouble{
 				return ""+eval(parent);
 			}
 		});
-		add(new ParseFunc<Double>("pi",89,"PI"){
+		add(new ParseFunc<Double>("pi",Integer.MIN_VALUE+1,"PI"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
@@ -688,7 +691,7 @@ public class MathParser extends ParseTreeDouble{
 			public String evalString(ParseTree<Double> parent){
 				String ret = getParse();
 				if(parent != null && parent.getNode1() != null){
-					ret += parent.getNode1().evalString();
+					ret += ":c:"+parent.getNode1().evalString();
 				}
 				else{
 					ret += "null";
@@ -710,7 +713,7 @@ public class MathParser extends ParseTreeDouble{
 				String ret = parse;
 				if(parent != null){
 					parent.setFunction(this);
-					parent.setData(((ParseTreeDouble)parent).parseData(parse, getBase()));
+					parent.setData(((ParseTreeDouble)parent).parseData(parse, MathParser.this.getBase()));
 					parent.setNode1(emptytree);
 					parent.setNode2(emptytree);
 					ret = "";
@@ -729,7 +732,7 @@ public class MathParser extends ParseTreeDouble{
 			public String evalString(ParseTree<Double> parent){
 				String ret = "";
 				if(parent != null){
-					ret = ""+parent.getData();
+					ret = ""+eval(parent);
 					switch(getBase()){
 						case 2:
 							ret = TheMath.deciToBinary(ret);
@@ -853,6 +856,7 @@ public class MathParser extends ParseTreeDouble{
 	public boolean isOnlyNumber(String num){
 		boolean ret = true;
 		ArrayList<Character> valid = new ArrayList<Character>();
+		valid.add('.');
 		switch(getBase()){
 			case 16:
 				valid.add('F');
@@ -874,16 +878,34 @@ public class MathParser extends ParseTreeDouble{
 			case 2:
 				valid.add('1');
 				valid.add('0');
-				valid.add('.');
-				valid.add('-');
 				break;
 			default:
 				System.out.println("ERR: bad base in isOnlyNumber:"+getBase());
 		}
+		boolean foundfirst = false;
+		boolean parenth = false;
 		for(int i=0; i<num.length() && ret; i++){
 			boolean found = false;
 			for(int j=0; j<valid.size() && !found; j++){
 				if(num.charAt(i)==valid.get(j)){
+					found = true;
+					if(num.charAt(i)==valid.get(0)){
+						if(foundfirst){
+							found = false;
+						}
+						else{
+							foundfirst = true;
+						}
+					}
+				}
+				else if(i==0 && num.charAt(i)=='('){
+					found = true;
+					parenth = true;
+				}
+				else if(i==num.length()-1 && num.charAt(i)==')'){
+					found = true;
+				}
+				else if(num.charAt(i)=='-' && ((!parenth&&i==0) || (parenth&&i==1))){
 					found = true;
 				}
 			}

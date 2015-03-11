@@ -82,6 +82,7 @@ public class ParseFunc<T> implements Comparable<ParseFunc<T>>{
 	public String evalString(ParseTree<T> parent){
 		String ret = "";
 		if(parent != null){
+			ret = "(";
 			if(parent.getNode1() != null){
 				ret += parent.getNode1().evalString();
 			}
@@ -89,6 +90,7 @@ public class ParseFunc<T> implements Comparable<ParseFunc<T>>{
 			if(parent.getNode2() != null){
 				ret += parent.getNode2().evalString();
 			}
+			ret += ")";
 		}
 		return ret;
 	}
