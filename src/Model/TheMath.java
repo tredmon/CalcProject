@@ -234,51 +234,75 @@ private TheMath(){}
 	}
 	
 
-	public static double sin(String input, char unit){
-		double result = Math.sin(Double.parseDouble(input));
-		return result;
+	public static double sin(double input, char unit){
+		if(unit == 'r')
+			return Math.sin(input);
+		else
+			return Math.sin(degToRadians(input));
 	}
 	
-	public static double cosine(String input, char unit){
-		double result = Math.cos(Double.parseDouble(input));
-		return result;
+	public static double cosine(double input, char unit){
+		if(unit == 'r')
+			return Math.cos(input);
+		else
+			return Math.cos(degToRadians(input));
 	}
 	
-	public static double tangent(String input, char unit){
-		double result = Math.tan(Double.parseDouble(input));
-		return result;
+	public static double tangent(double input, char unit){
+		if(unit == 'r')
+			return Math.tan(input);
+		else
+			return Math.tan(degToRadians(input));
 	}
 	
-	public static double secant(String input, char unit){
-		return 1/cosine(input, unit);
+	public static double secant(double input, char unit){
+		if(unit == 'r')
+			return 1/Math.cos(input);
+		else
+			return 1/Math.cos(degToRadians(input));
 	}
 	
-	public static double cosecant(String input, char unit){
-		return 1/sin(input, unit);
+	public static double cosecant(double input, char unit){
+		if(unit == 'r')
+			return 1/Math.sin(input);
+		else
+			return 1/Math.sin(degToRadians(input));
 	}
 	
-	public static double cotangent(String input, char unit){
-		return 1/tangent(input, unit);
+	public static double cotangent(double input, char unit){
+		if(unit == 'r')
+			return 1/Math.tan(input);
+		else
+			return 1/Math.tan(degToRadians(input));
 	}
 	
-	public static double arcsine(String input, char unit){
-		return Math.asin(Double.parseDouble(input));
+	public static double arcsine(double input, char unit){
+		if(unit == 'r')
+			return Math.asin(input);
+		else
+			return degToRadians(Math.asin(input));
 	}
 	
-	public static double arccosine(String input, char unit){
-		return Math.acos(Double.parseDouble(input));
+	public static double arccosine(double input, char unit){
+		if(unit == 'r')
+			return Math.acos(input);
+		else
+			return degToRadians(Math.acos(input));
 	}
 	
-	public static double arctangent(String input, char unit){
-		return Math.atan(Double.parseDouble(input));
+	public static double arctangent(double input, char unit){
+		if(unit == 'r')
+			return Math.atan(input);
+		else
+			return degToRadians(Math.atan(input));
 	}
 	
-	public static double radToDegrees(String input){
-		return Math.toDegrees(Double.parseDouble(input));
+	public static double radToDegrees(double input){
+		return Math.toDegrees(input);
 	}
 	
-	public static double degToRadians(String input){
-		return Math.toRadians(Double.parseDouble(input));
+	public static double degToRadians(double input){
+		return Math.toRadians(input);
 	}
 	
 	public static double log(String input){
