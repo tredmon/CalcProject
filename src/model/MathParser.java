@@ -750,18 +750,21 @@ public class MathParser extends ParseTreeDouble{
 		add(new ParseGroupFunc<Double>("(",")",Integer.MAX_VALUE,"PARENTH"){
 			@Override
 			public String evalOutString(ParseTree<Double> parent){
-				String ret = getParse();
+				String ret = "";
 				if(parent != null && parent.getNode1() != null){
 					String tmp = parent.getNode1().evalOutString();
 					if(((MathParser)parent).isOnlyNumber(tmp)){
 						ret = tmp;
 					}
 					else{
-						ret += parent.getNode1().evalOutString() + getParseEnd();
+						ret += parent.getNode1().evalOutString();
+					}
+					if(!ret.startsWith(getParse()) && !ret.endsWith(getParseEnd())){
+						ret = getParse() + ret + getParseEnd();
 					}
 				}
 				else{
-					ret += "null" + getParseEnd();
+					ret += "null";
 				}
 				return ret;
 			}
