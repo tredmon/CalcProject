@@ -42,12 +42,13 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 	private String memory = "";
 	private int numtype = 10;
 	private char angletype = 'd';
+	private boolean shifttyped = false;
 
 	public MyPanel(GraphPanel gp) {
 		super();
 		this.addKeyListener(this);
 		this.setFocusable(true);
-		
+
 		this.gp = gp;
 		gp.addKeyListener(this);
 
@@ -88,7 +89,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		c.gridy = numOffY -1;
 		this.add(rbuttonDecimal, c);
 		rbuttonDecimal.addActionListener(this);
-		
+
 		rbuttonHexadecimal = new JRadioButton("Hexadecimal");
 		c.gridx = numOffX  -6;
 		c.gridy = numOffY;
@@ -113,7 +114,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		c.gridy = numOffY -2;
 		this.add(rbuttonDegrees, c);
 		rbuttonDegrees.addActionListener(this);
-		
+
 
 		angletype.add(rbuttonDegrees);
 		angletype.add(rbuttonRadians);;
@@ -427,6 +428,12 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		this.add(buttonBackspace, c);
 		c.gridwidth = 0;
 		buttonBackspace.addActionListener(this);
+
+		for (int i = 0; i < this.getComponents().length; i++) {
+			this.getComponents()[i].addKeyListener(this);
+		}
+
+
 		rbuttonDegrees.doClick();
 		rbuttonDecimal.doClick();
 	}
@@ -606,7 +613,9 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if (KeyEvent.getKeyText(e.getKeyCode()).equals("Shift")) {
+			this.shifttyped = true;
+		}
 
 	}
 
@@ -614,8 +623,11 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println("moo:"+e.getKeyChar());
-		if (e.getKeyChar() == '=' || e.getKeyChar() == KeyEvent.VK_ENTER) {
+		System.out.println("moo:"+KeyEvent.getKeyText(e.getKeyCode()));
+		if (KeyEvent.getKeyText(e.getKeyCode()).equals("Shift")) {
+			this.shifttyped = false;
+		}
+		else if (e.getKeyChar() == '=' || e.getKeyChar() == KeyEvent.VK_ENTER) {
 			if (this.rbuttonBinary.isSelected() == true) {
 				numtype = 2;
 			}
@@ -637,138 +649,161 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 			textfield.setText(parser.evalOutString());
 			gp.EvalEquation(parser);		
 		}
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("9") && this.shifttyped) {
+			textfield.setText(textfield.getText() + "(");
+		}
+
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("0") && this.shifttyped) {
+			textfield.setText(textfield.getText() + ")");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("6") && this.shifttyped) {
+			textfield.setText(textfield.getText() + "^");
+		}
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Back Quote") && this.shifttyped) {
+			textfield.setText(textfield.getText() + "~");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("1") && this.shifttyped) {	
+			textfield.setText(textfield.getText() + "!");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("7") && this.shifttyped) {
+			textfield.setText(textfield.getText() + "&");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("5") && this.shifttyped) {
+			textfield.setText(textfield.getText() + "%");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("X")) {
+			textfield.setText(textfield.getText() + "X");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Equals") && this.shifttyped) {
+			textfield.setText(textfield.getText() + "+");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("NumPad +")) {
+			textfield.setText(textfield.getText() + "+");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("NumPad *")) {
+			textfield.setText(textfield.getText() + "*");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("8") && this.shifttyped) {
+			textfield.setText(textfield.getText() + "*");
+		}
+
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Minus")) {
+			textfield.setText(textfield.getText() + "-");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("NumPad -")) {
+			textfield.setText(textfield.getText() + "-");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("NumPad /")) {
+			textfield.setText(textfield.getText() + "/");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Slash")) {
+			textfield.setText(textfield.getText() + "/");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("NumPad .")) {
+			textfield.setText(textfield.getText() + ".");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Period")) {
+			textfield.setText(textfield.getText() + ".");
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Backspace")) {
+			this.buttonBackspace.doClick();
+		}
+
+		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Escape")) {
+			this.buttonClear.doClick();
+		}
+
 		else {
-			switch (e.getKeyChar()) {
-			case KeyEvent.VK_LEFT_PARENTHESIS:
-				textfield.setText(textfield.getText() + "(");
-				break;
-
-			case KeyEvent.VK_RIGHT_PARENTHESIS:
-				textfield.setText(textfield.getText() + ")");
-				break;
-
-			case KeyEvent.VK_CIRCUMFLEX:
-				textfield.setText(textfield.getText() + "^");
-				break;
-
-				//			case '~':
-				//				textfield.setText(textfield.getText() + "~");
-				//				break;
-
-			case KeyEvent.VK_EXCLAMATION_MARK:
-				textfield.setText(textfield.getText() + "!");
-				break;
-
-				//			case '&':
-				//				textfield.setText(textfield.getText() + "&");
-				//				break;
-
-				//			case '%':
-				//				textfield.setText(textfield.getText() + "%");
-				//				break;
-
-			case KeyEvent.VK_X:
-				textfield.setText(textfield.getText() + "X");
-				break;
-
-			case KeyEvent.VK_PLUS:
-				textfield.setText(textfield.getText() + "+");
-				break;
-
-			case KeyEvent.VK_MULTIPLY:
-				textfield.setText(textfield.getText() + "*");
-				break;
-
-			case KeyEvent.VK_SUBTRACT:
-				textfield.setText(textfield.getText() + "-");
-				break;
-
-			case KeyEvent.VK_SLASH:
-				textfield.setText(textfield.getText() + "/");
-				break;
-
-			case KeyEvent.VK_DIVIDE:
-				textfield.setText(textfield.getText() + "/");
-				break;
-
-			case KeyEvent.VK_PERIOD:
-				textfield.setText(textfield.getText() + ".");
-				break;
-
-			default:
-				switch (numtype) {
-				case 16: {
-					if (e.getKeyChar() == KeyEvent.VK_A) {
-						textfield.setText(textfield.getText() + "A");
-					}
-					else if (e.getKeyChar() ==  KeyEvent.VK_B) {
-						textfield.setText(textfield.getText() + "B");
-					}
-
-					else if (e.getKeyChar() ==  KeyEvent.VK_C) {
-						textfield.setText(textfield.getText() + "C");
-					}
-
-					else if (e.getKeyChar() ==   KeyEvent.VK_D) {
-						textfield.setText(textfield.getText() + "D");
-					}
-
-					else if (e.getKeyChar() ==   KeyEvent.VK_E) {
-						textfield.setText(textfield.getText() + "E");
-					}
-
-					else if (e.getKeyChar() ==   KeyEvent.VK_F) {
-						textfield.setText(textfield.getText() + "F");
-					}
+			switch (numtype) {
+			case 16: {
+				if (KeyEvent.getKeyText(e.getKeyCode()).equals("A")) {
+					this.buttonHexA.doClick();
 				}
-				case 10: {
-					if (e.getKeyChar() ==   KeyEvent.VK_9) {
-						textfield.setText(textfield.getText() + "9");
-						
-					}
-
-					else if (e.getKeyChar() ==   KeyEvent.VK_8) {
-						textfield.setText(textfield.getText() + "8");
-					}
+				else if (KeyEvent.getKeyText(e.getKeyCode()).equals("B")) {
+					this.buttonHexB.doClick();
 				}
-				case 8: {
-					if (e.getKeyChar() ==  KeyEvent.VK_7) {
-						textfield.setText(textfield.getText() + "7");
-					}
 
-					else if (e.getKeyChar() ==  KeyEvent.VK_6) {
-						textfield.setText(textfield.getText() + "6");
-					}
-					else if (e.getKeyChar() ==  KeyEvent.VK_5) {
-						textfield.setText(textfield.getText() + "5");
-					}
-
-					else if (e.getKeyChar() ==  KeyEvent.VK_4) {
-						textfield.setText(textfield.getText() + "4");
-					}
-
-					else if (e.getKeyChar() ==  KeyEvent.VK_3) {
-						textfield.setText(textfield.getText() + "3");
-					}
-
-					else if (e.getKeyChar() ==  KeyEvent.VK_2) {
-						textfield.setText(textfield.getText() + "2");
-					}
+				else if (KeyEvent.getKeyText(e.getKeyCode()).equals("C")) {
+					this.buttonHexC.doClick();
 				}
-				case 2: {
-					if (e.getKeyChar() ==  KeyEvent.VK_1) {
-						textfield.setText(textfield.getText() + "1");
-					}
 
-					else if (e.getKeyChar() ==  KeyEvent.VK_0) {
-						textfield.setText(textfield.getText() + "0");
-					}
+				else if (KeyEvent.getKeyText(e.getKeyCode()).equals("D")) {
+					this.buttonHexD.doClick();
 				}
-				
-				break;
+
+				else if (KeyEvent.getKeyText(e.getKeyCode()).equals("E")) {
+					this.buttonHexE.doClick();
 				}
+
+				else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Backspace")) {
+					this.buttonHexF.doClick();
+				}
+			}
+			case 10: {
+				if (e.getKeyChar() ==   KeyEvent.VK_9) {
+					this.button9.doClick();
+
+				}
+
+				else if (e.getKeyChar() ==   KeyEvent.VK_8) {
+					this.button8.doClick();
+				}
+			}
+			case 8: {
+				if (e.getKeyChar() ==  KeyEvent.VK_7) {
+					this.button7.doClick();
+				}
+
+				else if (e.getKeyChar() ==  KeyEvent.VK_6) {
+					this.button6.doClick();
+				}
+				else if (e.getKeyChar() ==  KeyEvent.VK_5) {
+					this.button5.doClick();
+				}
+
+				else if (e.getKeyChar() ==  KeyEvent.VK_4) {
+					this.button4.doClick();
+				}
+
+				else if (e.getKeyChar() ==  KeyEvent.VK_3) {
+					this.button3.doClick();
+				}
+
+				else if (e.getKeyChar() ==  KeyEvent.VK_2) {
+					this.button2.doClick();
+				}
+			}
+			case 2: {
+				if (e.getKeyChar() ==  KeyEvent.VK_1) {
+					this.button1.doClick();
+				}
+
+				else if (e.getKeyChar() ==  KeyEvent.VK_0) {
+					this.button0.doClick();
+				}
+			}
+
+
 
 			}
 		}
 	}
+
 }
