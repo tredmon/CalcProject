@@ -495,9 +495,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.sin() function
-//					ret = TheMath.sin(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
-					ret = Math.sin(parent.getNodeVal2(0.0));
+					ret = TheMath.sin(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
 				}
 				return ret;
 			}
@@ -526,9 +524,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.cos() function
-					//ret = TheMath.cos(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
-					ret = Math.cos(parent.getNodeVal2(0.0));
+					ret = TheMath.cosine(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
 				}
 				return ret;
 			}
@@ -557,9 +553,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.tan() function
-					//ret = TheMath.tan(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
-					ret = Math.tan(parent.getNodeVal2(0.0));
+					ret = TheMath.tangent(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
 				}
 				return ret;
 			}
@@ -588,9 +582,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.asin() function
-					//ret = TheMath.asin(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
-					ret = Math.asin(parent.getNodeVal2(0.0));
+					ret = TheMath.arcsine(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
 				}
 				return ret;
 			}
@@ -619,9 +611,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.acos() function
-					//ret = TheMath.acos(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
-					ret = Math.acos(parent.getNodeVal2(0.0));
+					ret = TheMath.arccosine(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
 				}
 				return ret;
 			}
@@ -650,9 +640,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.atan() function
-					//ret = TheMath.atan(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
-					ret = Math.atan(parent.getNodeVal2(0.0));
+					ret = TheMath.arctangent(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle());
 				}
 				return ret;
 			}
