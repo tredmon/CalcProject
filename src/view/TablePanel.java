@@ -3,8 +3,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.DefaultCellEditor;
-import javax.swing.InputVerifier;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,6 +12,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
+
+import model.MathParser;
 
 public class TablePanel extends JPanel{
 
@@ -21,17 +22,15 @@ public class TablePanel extends JPanel{
 	JTable XYTable; 
 	JScrollPane xyscroller;
 	GraphPanel par;
-	/**
-	 * @param args
-	 */
+
 	public TablePanel(GraphPanel parent)
 	{
 		super();
 		par = parent;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setPreferredSize(new Dimension(550,260));
-		this.setSize(new Dimension(550,260));
-		MinVal(0.0, 10.0, 2.0, 10.0, 5.0);
+		this.setPreferredSize(new Dimension(250,260));
+		this.setSize(new Dimension(250,260));
+		MinVal(-10.0, 10.0, -10.0, 10.0, 1.0);
 
 		JLabel label = new JLabel("Table View");
 		label.setVerticalAlignment(JLabel.CENTER);		
@@ -54,36 +53,18 @@ public class TablePanel extends JPanel{
 		add(xyscroller);
 		XYTable.getColumnModel().getColumn(0).setCellEditor(new noEditor());
 		XYTable.getColumnModel().getColumn(1).setCellEditor(new noEditor());
-
+		invalidate();
+		revalidate();
+		repaint();
 	}
 	public class TabelModel implements TableModelListener
 	{
-
 		@Override
 		public void tableChanged(TableModelEvent arg0) 
 		{
 			par.DrawGraph();
-			// TODO Auto-generated method stub
 			
 		}
-		
-		
-		
-		
-	}
-	public class MyInputVerifier extends InputVerifier
-	{
-		public boolean verify(JComponent input) {
-		    String text = ((JTextField) input).getText();
-		    try {
-		       double value = Double.parseDouble(text);
-		        return true;
-		    } catch (NumberFormatException dsa) {
-		        return false;
-		    }
-		}
-		
-		
 	}
 	public void  MinVal(Double MinX, Double MaxX, Double MinY, Double MaxY, Double DeltaX)
 	{
@@ -120,9 +101,7 @@ public class TablePanel extends JPanel{
 		BoundsTable.getColumnModel().getColumn(0).setCellEditor(new noEditor());
 		
 		BoundsTable.getModel().addTableModelListener(new TabelModel());
-
-	
-	
+		BoundsTable.getColumnModel().getColumn(1).setCellEditor(new numEditor());
 	}
 	public static class noEditor extends DefaultCellEditor
 	{
@@ -138,6 +117,23 @@ public class TablePanel extends JPanel{
 		public Component getTableCellEditorComponent(JTable table, Object object, boolean Boolean, int INT1, int INT2)
 		{
 			return null;
+		}
+	}
+	public class numEditor extends DefaultCellEditor{
+		public numEditor(){
+			super(new JTextField());
+		}
+		@Override public boolean stopCellEditing(){
+			JTextField input = (JTextField) this.getComponent();
+		    String text = input.getText();
+		    try {
+		       double value = Double.parseDouble(text);
+		    } catch (NumberFormatException dsa) {
+		    	MathParser p = new MathParser();
+		    	p.parse(text);
+		    	input.setText(p.eval()+"");
+		    }
+	        return true && super.stopCellEditing();
 		}
 	}
 	public JTable getMinTable()

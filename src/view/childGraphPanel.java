@@ -43,7 +43,7 @@ public class childGraphPanel extends JPanel{
 		double ratioW = getWidth() / (xMax - xMin);
 		double ratioH = getHeight() / (yMax - yMin);
 		double originx = -1.0 * xMin * ratioW;
-		double originy = yMin * ratioH;
+		double originy = yMax * ratioH;
 		g.drawLine(getWidth(), (int)originy, 0, (int)originy);
 		g.drawLine((int)originx, 0, (int)originx, getHeight());
 		if(coordinates != null){

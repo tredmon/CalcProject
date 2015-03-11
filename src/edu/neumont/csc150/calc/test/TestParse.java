@@ -60,5 +60,29 @@ public class TestParse {
 		tree.parse(str, 8);
 		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
 		
+		str = "-1";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
+		
+		str = "-1-2";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
+		
+		str = "-1+2";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
+		
+		str = "-1+-2";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
+		
+		str = "-1+(-2)";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
+		
+		str = "-1+(2-3)";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
+		
 	}
 }
