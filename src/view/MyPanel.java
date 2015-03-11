@@ -5,6 +5,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -16,7 +18,7 @@ import javax.swing.border.Border;
 
 import model.MathParser;
 
-public class MyPanel extends JPanel implements ActionListener{
+public class MyPanel extends JPanel implements ActionListener, KeyListener {
 	private JButton button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, 
 	buttonClear, buttonBackspace, buttonLeftParen, buttonRightParen, buttonExponent, buttonX, buttonDivide,
 	buttonMultiply, buttonSubtract, buttonAdd, buttonEquals, buttonDecimal;
@@ -42,6 +44,8 @@ public class MyPanel extends JPanel implements ActionListener{
 	private char angletype = 'd';
 
 	public MyPanel(GraphPanel gp) {
+		this.addKeyListener(this);
+		
 		this.gp = gp;
 
 		this.setLayout(new GridBagLayout());
@@ -422,7 +426,7 @@ public class MyPanel extends JPanel implements ActionListener{
 		buttonBackspace.addActionListener(this);
 	}
 
-	
+
 
 	public void actionPerformed(ActionEvent ae) {
 		Object source = ae.getSource();
@@ -585,5 +589,182 @@ public class MyPanel extends JPanel implements ActionListener{
 		}
 
 
+	}
+
+
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
+		if (e.getKeyChar() == '=' || e.getKeyChar() == KeyEvent.VK_ENTER) {
+			if (this.rbuttonBinary.isSelected() == true) {
+				numtype = 2;
+			}
+			else if (this.rbuttonOctal.isSelected() == true) {
+				numtype = 8;
+			}
+			else if (this.rbuttonDecimal.isSelected() == true) {
+				numtype = 10;
+			}
+			else if (this.rbuttonHexadecimal.isSelected() == true) {
+				numtype = 16;
+			}
+			else {
+				numtype = 10;
+			}
+
+			parser = new MathParser(memory, numtype, angletype);
+			parser.parse(textfield.getText());
+			textfield.setText(parser.evalOutString());
+			gp.EvalEquation(parser);		
+		}
+		else {
+			switch (e.getKeyChar()) {
+			case KeyEvent.VK_LEFT_PARENTHESIS:
+				textfield.setText(textfield.getText() + "(");
+				break;
+
+			case KeyEvent.VK_RIGHT_PARENTHESIS:
+				textfield.setText(textfield.getText() + ")");
+				break;
+
+			case KeyEvent.VK_CIRCUMFLEX:
+				textfield.setText(textfield.getText() + "^");
+				break;
+
+				//			case '~':
+				//				textfield.setText(textfield.getText() + "~");
+				//				break;
+
+			case KeyEvent.VK_EXCLAMATION_MARK:
+				textfield.setText(textfield.getText() + "!");
+				break;
+
+				//			case '&':
+				//				textfield.setText(textfield.getText() + "&");
+				//				break;
+
+				//			case '%':
+				//				textfield.setText(textfield.getText() + "%");
+				//				break;
+
+			case KeyEvent.VK_X:
+				textfield.setText(textfield.getText() + "X");
+				break;
+
+			case KeyEvent.VK_PLUS:
+				textfield.setText(textfield.getText() + "+");
+				break;
+
+			case KeyEvent.VK_MULTIPLY:
+				textfield.setText(textfield.getText() + "*");
+				break;
+
+			case KeyEvent.VK_SUBTRACT:
+				textfield.setText(textfield.getText() + "-");
+				break;
+
+			case KeyEvent.VK_SLASH:
+				textfield.setText(textfield.getText() + "/");
+				break;
+
+			case KeyEvent.VK_DIVIDE:
+				textfield.setText(textfield.getText() + "/");
+				break;
+
+			case KeyEvent.VK_PERIOD:
+				textfield.setText(textfield.getText() + ".");
+				break;
+
+			default:
+				switch (numtype) {
+				case 16: {
+					if (e.getKeyChar() == KeyEvent.VK_A) {
+						textfield.setText(textfield.getText() + "A");
+					}
+					else if (e.getKeyChar() ==  KeyEvent.VK_B) {
+						textfield.setText(textfield.getText() + "B");
+					}
+
+					else if (e.getKeyChar() ==  KeyEvent.VK_C) {
+						textfield.setText(textfield.getText() + "C");
+					}
+
+					else if (e.getKeyChar() ==   KeyEvent.VK_D) {
+						textfield.setText(textfield.getText() + "D");
+					}
+
+					else if (e.getKeyChar() ==   KeyEvent.VK_E) {
+						textfield.setText(textfield.getText() + "E");
+					}
+
+					else if (e.getKeyChar() ==   KeyEvent.VK_F) {
+						textfield.setText(textfield.getText() + "F");
+					}
+				}
+				case 10: {
+					if (e.getKeyChar() ==   KeyEvent.VK_9) {
+						textfield.setText(textfield.getText() + "9");
+						
+					}
+
+					else if (e.getKeyChar() ==   KeyEvent.VK_8) {
+						textfield.setText(textfield.getText() + "8");
+					}
+					System.out.println("testing");
+				}
+				case 8: {
+					if (e.getKeyChar() ==  KeyEvent.VK_7) {
+						textfield.setText(textfield.getText() + "7");
+					}
+
+					else if (e.getKeyChar() ==  KeyEvent.VK_6) {
+						textfield.setText(textfield.getText() + "6");
+					}
+					else if (e.getKeyChar() ==  KeyEvent.VK_5) {
+						textfield.setText(textfield.getText() + "5");
+					}
+
+					else if (e.getKeyChar() ==  KeyEvent.VK_4) {
+						textfield.setText(textfield.getText() + "4");
+					}
+
+					else if (e.getKeyChar() ==  KeyEvent.VK_3) {
+						textfield.setText(textfield.getText() + "3");
+					}
+
+					else if (e.getKeyChar() ==  KeyEvent.VK_2) {
+						textfield.setText(textfield.getText() + "2");
+					}
+				}
+				case 2: {
+					if (e.getKeyChar() ==  KeyEvent.VK_1) {
+						textfield.setText(textfield.getText() + "1");
+					}
+
+					else if (e.getKeyChar() ==  KeyEvent.VK_0) {
+						textfield.setText(textfield.getText() + "0");
+					}
+				}
+				
+				break;
+				}
+
+			}
+		}
 	}
 }
