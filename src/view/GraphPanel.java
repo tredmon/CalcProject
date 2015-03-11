@@ -12,9 +12,8 @@ import javax.swing.table.TableModel;
 import model.MathParser;
 
 public class GraphPanel extends JFrame{
-	  private TablePanel Panel;
-	  private childGraphPanel GraphPanel;
-	  private MathParser eq;
+	  TablePanel Panel;
+	  childGraphPanel GraphPanel;
 	 
 	public GraphPanel()
 	{
@@ -33,10 +32,6 @@ public class GraphPanel extends JFrame{
 		EvalEquation(null);
 	}
 	public void EvalEquation(MathParser eq){
-		this.eq = eq;
-		EvalEquation();
-	}
-	public void EvalEquation(){
 		double dx = Double.parseDouble(""+Panel.getMinTable().getModel().getValueAt(4, 1));
 		double minx = Double.parseDouble(""+Panel.getMinTable().getModel().getValueAt(0, 1));
 		double maxx = Double.parseDouble(""+Panel.getMinTable().getModel().getValueAt(1, 1));

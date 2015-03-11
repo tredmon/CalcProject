@@ -88,11 +88,11 @@ public class TestParse {
 		tree.parse(str);
 		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
 		
-		str = "sin(0.6)*asin0.7";//asin(0.7)";
+		str = "sin(0.7)*asin(0.7)";
 		tree.parse(str);
 		tree.setAngle('r');
 		System.out.print("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
-		System.out.println(" : "+(model.TheMath.sin(0.6, tree.getAngle()) * model.TheMath.arcsine(0.7,tree.getAngle())));
+		System.out.println(" : "+(model.TheMath.sin(0.7, tree.getAngle()) * model.TheMath.arcsine(0.7,tree.getAngle())));
 		
 	}
 }

@@ -63,8 +63,7 @@ public class TablePanel extends JPanel{
 		@Override
 		public void tableChanged(TableModelEvent arg0) 
 		{
-//			par.DrawGraph();
-			par.EvalEquation();
+			par.DrawGraph();
 			
 		}
 	}
