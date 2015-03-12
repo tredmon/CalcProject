@@ -9,7 +9,7 @@ public class TestCaseK {
 		driv.base(10);
 		driv.input("3+4-2");
 		driv.eval();
-		System.out.println("\""+driv.input()+"\" should be \"11.4\"");
+		System.out.println("\""+driv.input()+"\" should be \"5\"");
 		System.exit(0);
 		
 		

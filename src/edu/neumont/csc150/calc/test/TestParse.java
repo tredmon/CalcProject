@@ -98,5 +98,9 @@ public class TestParse {
 		tree.parse(str);
 		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
 		
+		str = "ln50";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
+		
 	}
 }

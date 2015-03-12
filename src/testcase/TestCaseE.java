@@ -9,7 +9,7 @@ public class TestCaseE {
 		CalcProjectDriver driv = new CalcProjectDriver();
 		driv.base(10);
 		driv.mode('d');
-		driv.input("x^2+4x+8");
+		driv.input("X^2+4X+8");
 		driv.graphBounds(-1, 1, 0, 15, 1);
 		driv.eval();
 		driv.visify();

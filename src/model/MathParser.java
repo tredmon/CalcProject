@@ -759,6 +759,94 @@ public class MathParser extends ParseTreeDouble{
 				return ret;
 			}
 		});
+		add(new ParseFunc<Double>("ln",90,"NATLOG"){
+			@Override
+			public String parse(ParseTree<Double> parent, String str){
+				String ret = super.parse(parent, str);
+				if(!ret.equals(str) && parent!=null && parent.getNode1()==null){
+					parent.setNode1(emptytree);
+				}
+				return ret;
+			}
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					ret = TheMath.ln(""+parent.getNodeVal2(0.0));
+					if(parent.getNode1()!=emptytree){
+						ret *= parent.getNode1().eval();
+					}
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode2()!=null){
+					ret = parent.getNode2().evalOutString();
+					String tmp = "";
+					if(parent.getNode1()!=emptytree){
+						tmp = parent.getNode1().evalOutString();
+					}
+					if(((MathParser)parent).isOnlyNumber(ret)){
+						if(((MathParser)parent).isOnlyNumber(tmp)){
+							ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
+						}
+						else{
+							ret = ((MathParser)parent).dataToString(TheMath.sin(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
+						}
+					}
+					else if(parent.getNode1()!=emptytree && ((MathParser)parent).isOnlyNumber(tmp)){
+						ret = parent.getNode1().evalOutString() +"*"+ ret;
+					}
+				}
+				return ret;
+			}
+		});
+		add(new ParseFunc<Double>("log",90,"LOG"){
+			@Override
+			public String parse(ParseTree<Double> parent, String str){
+				String ret = super.parse(parent, str);
+				if(!ret.equals(str) && parent!=null && parent.getNode1()==null){
+					parent.setNode1(emptytree);
+				}
+				return ret;
+			}
+			@Override
+			public Double eval(ParseTree<Double> parent){
+				Double ret = 0.0;
+				if(parent != null){
+					ret = TheMath.log(""+parent.getNodeVal2(0.0));
+					if(parent.getNode1()!=emptytree){
+						ret *= parent.getNode1().eval();
+					}
+				}
+				return ret;
+			}
+			@Override
+			public String evalOutString(ParseTree<Double> parent){
+				String ret = "";
+				if(parent != null && parent.getNode2()!=null){
+					ret = parent.getNode2().evalOutString();
+					String tmp = "";
+					if(parent.getNode1()!=emptytree){
+						tmp = parent.getNode1().evalOutString();
+					}
+					if(((MathParser)parent).isOnlyNumber(ret)){
+						if(((MathParser)parent).isOnlyNumber(tmp)){
+							ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
+						}
+						else{
+							ret = ((MathParser)parent).dataToString(TheMath.sin(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
+						}
+					}
+					else if(parent.getNode1()!=emptytree && ((MathParser)parent).isOnlyNumber(tmp)){
+						ret = parent.getNode1().evalOutString() +"*"+ ret;
+					}
+				}
+				return ret;
+			}
+		});
 		
 		add(new ParseGroupFunc<Double>("(",")",Integer.MAX_VALUE,"PARENTH"){
 			@Override
