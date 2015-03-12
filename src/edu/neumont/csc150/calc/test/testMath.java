@@ -13,6 +13,6 @@ public class testMath {
 		//IUserInterface ui = UserInterfaceFactory.getInstance();
 		//System.out.println(TheMath.hexToBinary(ui.promptStringInput()));
 		System.out.println(":D");
-		System.out.println(TheMath.deciToHex("10"));
+		System.out.println(TheMath.hexToBinary("210"));
 	}
 }

@@ -32,8 +32,8 @@ private TheMath(){}
 	private static String he = "1110";
 	private static String hf = "1111";
 	
-	private static char[] hexnums = 
-	{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+//	private static char[] hexnums = 
+//	{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 	
 	public static String deciToBinary(String input){
 		String x = "", z = "";
@@ -183,23 +183,11 @@ private TheMath(){}
 	}
 	
 	public static String deciToHex(String input){
-		return Double.toHexString(Double.parseDouble(input));
-//		String x = "";
-//		double newinput = Double.parseDouble(input);
-//		
-//		while(newinput >= 1){
-//			newinput = Math.floor(newinput/16);
-//			x += newinput % 16;
-//		}
-//		String z = "";
-//		for(int i = x.length() - 1; i >= 0; i--){
-//				 z += x.charAt(i);
-//		}
-//		return z;
+		return Integer.toHexString((int)Double.parseDouble(input));
 	}
 	
 	public static String octToHex(String input){
-		return binToHex(octToBinary(input));
+		return Integer.toOctalString((int)Double.parseDouble(input));
 	}
 	
 	public static String binToHex(String input){
@@ -209,22 +197,12 @@ private TheMath(){}
 	}
 	
 	public static String deciToOctal(String input){
-		String x = "";
-		double newinput = Double.parseDouble(input);
-		
-		while(newinput >= 1){
-			x+= newinput % 8;
-			newinput = Math.floor(newinput/8);
-		}
-		String z = "";
-		for(int i = x.length() - 1; i >= 0; i--){
-				 z += x.charAt(i);
-		}
-		return z;
+		return Integer.toOctalString((int)Double.parseDouble(input));
 	}
 	
 	public static String hexToOctal(String input){
-		return binToOctal(hexToBinary(input));
+		double x = Double.parseDouble(hexToBinary(input));
+		return binToOctal(Double.toHexString(x));
 	}
 	
 	public static String binToOctal(String input){
