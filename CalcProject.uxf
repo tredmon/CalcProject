@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>0</y>
+      <w>210</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>CalcProjectDriver
+--
+-gp : GraphPanel
+-jfram : JFrame
+-jpan : MyPanel
+--
+_+main(String[]):void_
+--
++CalcProjectDriver()
++visify(): void
++graphBounds() : void 
++base(): int
++mode(int): void
++mode(): char
++input(String): void
++input():String
++eval(): void
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>270</y>
+      <w>390</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>MyPanel
+--
++MyPanel()
+--
+-parser : MathParser
+- gp : GraphPanel
+-memory : String
+- numType : int
+- angletype : char
+- shifttyped : boolean
+-ButtonsLJButton //Includes all buttons
+-InputEquationL JLabel
+-DegreeModeRadioButton : JRadioButtton
+-RadiansModeRadioButton : JRadioButton
+-BaseRadioButtons : JRadioButton // Includes all based buttons
+-ActionListener: ActionListener //One for each button
+--
++MyPanel(GraphPanel)
++actionPerformed(ActionEvent) : void 
++keyPressed(KeyEvent) : void 
++keyReleased(KeyEvent) : void 
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>610</y>
+      <w>370</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>GraphPanel
+--
+- Panel : TablePanel 
+- GraphPanel : childGraphPanel
+- eq : MathParser
+--
++GraphPanel()
++EvalEquation() : void 
++setGraphBounds(double,double, double, double, double)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1320</x>
+      <y>410</y>
+      <w>280</w>
+      <h>710</h>
+    </coordinates>
+    <panel_attributes>TheMath
+--
+- TheMath()
+--
+_+decToBin(String):String_
+_+octToBin(String):String_
+_+hexToBin(String):String_
+_+binToBin(String):String_
+_+octToDec(String):String_
+_+hexToDec(String):String_
+_+decToHex(String):String_
+_+octToHex(String):String_
+_+binToHex(String):String_
+_+decToOct(String):String_
+_+hexToOct(String):String_
+_+binToOct(String):String_
+_+binToDou(String):String_
+_+octToDou(String):String_
+_+decToDou(String):String_
+_+hexToDou(String):String_
+_+Evaluate(String, Base: String): double_
+_+rShift(String, String): double_
+_+lShift(String, String):double_
+_+Not(String):double_ 
+_+And(String):double_
+_+Or(String, String):double_
+_+Xor(String, String): double_
+_+root(String, String): double_
+_+mod(String, String): double_
+_+ln(String, String): double_
+_+log(String): double_
+_+mod(String,String) : double_
+_+ln(String) : double_
+_+log(String): double_
+_+degToRadian(double):double_
+_+radToDegrees(double) : double_
+_+sin(Double, char): double_
+_+cosine(double, char) : double_
+_+tangent(double, char) : double_
+_+secant(double, char): double_
+_+cosecant(double, char): double_
+_+cotangent(double,char): double_
+_+arcsine(double,char): double_
+_+arccosine(double,char): double_
+_+arctangent(double, char): double_
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>20</y>
+      <w>250</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>MathParser 
+--
+-mstr: String
+-bas: int
+-xval: double
+-angle: char
+-emptytree: MathParser 
+--
++MathParser()
++MathParser(String, int, char)
++parse(String): MathParser
++parse(String, int): MathParser
++parse(String, String, int): MathParser
++eval(double): Double
++setMem(String): void
++getMem():String 
++setBase(int): void
++getBase(): int
++setX(double): void
++getX():Double
++setAngle(char): void
++isOnlyNumber(String): boolean
++
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>380</y>
+      <w>250</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>ParseFunc
+--
+-nam: String
+-pars: String
+-ord: Integer
+--
++ParseFunc()
++ParseFunc(String)
++ParseFunc(String, Integer)
++ParseFunc(String,Integer, String)
++getName(): String
++setName(String): void 
++getOrder(): Integer
++getParse(): String
++setParse(String): void
++eval(ParseTree&lt;T&gt;): T
++evalOutString(ParseTree&lt;T&gt;): String
++evalString(ParseTree&lt;T&gt;): String
++find(String): int
++parse(ParseTree&lt;T&gt;): String
++push(ParseTree&lt;T&gt;) : void
++pushr(ParseTree&lt;T&gt;) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1330</x>
+      <y>180</y>
+      <w>300</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>ParseGroupFunc
+--
+-parsE : String
+--
++ParseGroupFunc(String, String)
++ParseGroupFunc(String,String,Integer)
++ParseGroupFunc(String,String,Integer, String)
++getParseEnd(): String
++setParseEnd(String): void 
++find(String): int
++findEnd(String): int
++parse(ParseTree&lt;T&gt;, String): String
++eval(ParseTree&lt;T&gt;) : T
++evalString(ParseTree&lt;T&gt;): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>710</x>
+      <y>30</y>
+      <w>640</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>ParseTreeDouble
+--
++ParseTreeDouble()
+--
++getInstance(Double, ParseFunc&lt;Double&gt;, ParseTree&lt;Double&gt;, ArrayList&lt;ParseFunc&lt;Double&gt;&gt;)
++parseData(String) : Double
++parseData(String, int) : Double 
++dataToString(Double, int) : String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>780</y>
+      <w>380</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>childGraphPanel
+--
+- coordinates: double[] [] 
+- xMin : double 
+- xMax : double
+- yMin : double 
+- yMax : double
+--
++childGraphPanel()
++paint(Graphics) : void 
++Graph(double[][]) : void 
++drawGraph(Graphics) : void 
++DRAWGraph(Double, Double, Double, Double, double[][])
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>750</y>
+      <w>210</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>TablePanel
+--
+- BoundsTable : JTablel
+- XYTable : JTable
+- xyscroller : JScrollPane
+- par : GraphPanel
+- label : JLabel
+--
++TablePanel(GraphPanel)
++setTable(Double[][]) : void 
++MinVal(Double, Double, Double, Double, Double, Double)
++noExitor()
++numEditor()
++getMinTable() : JTable
++getXYTable() : JTable 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>10</y>
+      <w>70</w>
+      <h>670</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>50.0;650.0;10.0;650.0;10.0;10.0;30.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>30</y>
+      <w>130</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0;10.0;220.0;100.0;220.0;100.0;260.0;90.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>10</y>
+      <w>60</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>30.0;370.0;10.0;370.0;10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>620</x>
+      <y>0</y>
+      <w>130</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;30.0;110.0;10.0;10.0;10.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>750</x>
+      <y>150</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>210</y>
+      <w>580</w>
+      <h>740</h>
+    </coordinates>
+    <panel_attributes>ParseTree
+--
+-parsefuncs : ArrayList&lt;ParseFunc&lt;T&gt;&gt;
+-data : T
+-func ParseFunc&lt;T&gt;
+-Node1: ParseTree&lt;T&gt;
+-Node2: ParseTree&lt;T&gt;
+--
++ParseTree(ArrayList&lt;ParseFunc&lt;T&gt;&gt;
++ParseTree()
++ParseTree(T)
++ParseTree(T, ParseFunc&lt;T&gt;, ParseTree&lt;T&gt;)
++ParseTree(T, ParseFunc&lt;T&gt;, ParseTree&lt;T&gt;, ParseTree&lt;T&gt;, ArrayList&lt;ParseFunc&lt;T&gt;&gt;)
++ParseTree(T, ParseFunc&lt;T&gt;, ParseTree&lt;T&gt;, ParseTree&lt;T&gt;, ArrayList&lt;ParseFunc&lt;T&gt;&gt;)
++init(T, ParseFunc, ParseFunc&lt;T&gt;, ParseTree&lt;T&gt;, ParseTree&lt;T&gt;, ArrayList&lt;ParseTree&lt;T&gt;&gt;)
++getData(): T
++setData(T): void
++getNode1() : ParseTree&lt;T&gt;
++setNode1(ParseTree&lt;T&gt;) : void
++getNode2() : ParseTree&lt;T&gt;
++getFunction() : ParseFunc&lt;T&gt;
++setFunction(ParseFunc&lt;T&gt; : void
++getFunctionList() : ArrayList&lt;ParseFunc&lt;T&gt;&gt;)
++setFunctionList(ArrayList&lt;ParseFunc&lt;t&gt;&gt; : void
++clone(ParseTree&lt;T&gt;) : ParseTree&lt;T&gt;
++clone() : ParseTree&lt;T&gt;
++add(ParseFunc&lt;T&gt;) : void 
++remove(ParseFunc&lt;T&gt;) : void 
++sort(): void
++sortr(): void 
++getNodeVal1(T) : T
++getNodeVal2(T) : T 
++parse(String) : ParseTree&lt;T&gt;
++push(ParseTree&lt;T&gt;) : void 
++pshr(ParseTree&lt;T&gt;) : void 
++getInstance() : ParseTree&lt;T&gt; 
++getInstance(T) : ParseTree&lt;T&gt;
++getInstance(T, ParseFun&lt;T&gt;) : ParseTree&lt;T&gt;
++getInstance(T, ParseFunc&lt;T&gt;, ParseTree&lt;T&gt;, ParseTree&lt;T&gt;)
++getInstance(T, ParseFunc&lt;T&gt;, ParseFunc&lt;T&gt;, ParseFunc&lt;T&gt;, ArrayList&lt;ParseFunc&lt;T&gt;&gt;)
++getInstanceIArrayList&lt;ParseFunc&lt;T&gt;&gt;, String) : ParseTree&lt;T&gt;)
++parseData(String) : T 
++eval(): T 
++evalOutString() : String
++evalString() : String 
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>700</y>
+      <w>70</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>30.0;110.0;10.0;110.0;10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>410</x>
+      <y>690</y>
+      <w>280</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>230.0;80.0;260.0;80.0;260.0;50.0;30.0;50.0;30.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>310</y>
+      <w>310</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>30.0;170.0;10.0;170.0;10.0;60.0;270.0;60.0;270.0;10.0;290.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1250</x>
+      <y>100</y>
+      <w>210</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;70.0;130.0;70.0;130.0;10.0;190.0;10.0;190.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1290</x>
+      <y>460</y>
+      <w>50</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;30.0;20.0</additional_attributes>
+  </element>
+</diagram>
