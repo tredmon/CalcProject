@@ -36,180 +36,192 @@ private TheMath(){}
 //	{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 	
 	public static String deciToBinary(String input){
-		String x = "", z = "";
-		double newinput = Double.parseDouble(input);
-			while(newinput >= 1){
-				if(newinput % 2 == 0){
-					newinput = Math.floor(newinput/2);
-					x += "0";
-				}
-				else if(newinput % 2 == 1){
-					newinput = Math.floor(newinput/2);
-					x += "1";
-				}
-				else
-				{
-					newinput = Math.floor(newinput/2);
-					x +="."+newinput%2;
-				}
-			}
-			for(int i = x.length() - 1; i >= 0; i--){
-				 z += x.charAt(i);
-		}
-		return z;
+		return doubleToBase(baseToDouble(input, 10), 2);
+//		String x = "", z = "";
+//		double newinput = Double.parseDouble(input);
+//			while(newinput >= 1){
+//				if(newinput % 2 == 0){
+//					newinput = Math.floor(newinput/2);
+//					x += "0";
+//				}
+//				else if(newinput % 2 == 1){
+//					newinput = Math.floor(newinput/2);
+//					x += "1";
+//				}
+//				else
+//				{
+//					newinput = Math.floor(newinput/2);
+//					x +="."+newinput%2;
+//				}
+//			}
+//			for(int i = x.length() - 1; i >= 0; i--){
+//				 z += x.charAt(i);
+//		}
+//		return z;
 	}
 	
 	public static String octToBinary(String input){
-		boolean again = true;
-		String value = "";
-		while(again){
-			if(input.contains("0")||input.contains("1")||input.contains("2")||input.contains("3")||input.contains("4")||input.contains("5")||input.contains("6")||input.contains("7")){	
-			for(int x = 0; x < input.length(); x++){
-					switch(input.charAt(x)){
-						case '0':
-							value += (o0);
-							break;
-						case '1':
-							value += (o1);
-							break;
-						case '2':
-							value += (o2);
-							break;
-						case '3':
-							value += (o3);
-							break;
-						case '4':
-							value += (o4);
-							break;
-						case '5':
-							value += (o5);
-							break;
-						case '6':
-							value += (o6);
-							break;
-						case '7':
-							value += (o7);
-							break;
-						}
-					}	
-					again = false;
-				}
-			else
-				again = true;
-		}
-	
-		return value;
+		return doubleToBase(baseToDouble(input, 8), 2);
+//		boolean again = true;
+//		String value = "";
+//		while(again){
+//			if(input.contains("0")||input.contains("1")||input.contains("2")||input.contains("3")||input.contains("4")||input.contains("5")||input.contains("6")||input.contains("7")){	
+//			for(int x = 0; x < input.length(); x++){
+//					switch(input.charAt(x)){
+//						case '0':
+//							value += (o0);
+//							break;
+//						case '1':
+//							value += (o1);
+//							break;
+//						case '2':
+//							value += (o2);
+//							break;
+//						case '3':
+//							value += (o3);
+//							break;
+//						case '4':
+//							value += (o4);
+//							break;
+//						case '5':
+//							value += (o5);
+//							break;
+//						case '6':
+//							value += (o6);
+//							break;
+//						case '7':
+//							value += (o7);
+//							break;
+//						}
+//					}	
+//					again = false;
+//				}
+//			else
+//				again = true;
+//		}
+//	
+//		return value;
 	}
 	
 	
 	public static String hexToBinary(String input){
-		boolean again = true;
-		String value = "";
-		while(again){
-		for(int i = 0; i < input.length(); i++){
-			if(Character.getNumericValue(input.charAt(i)) >= 0 && Character.getNumericValue(input.charAt(i)) <= 9 || input.charAt(i) >= 'a' && input.charAt(i) <= 'f'){
-				for(int x = 0; x < input.length(); x++){
-					switch(input.charAt(x)){
-					case '0':
-						value += (h0);
-						break;
-					case '1':
-						value += (h1);
-						break;
-					case '2':
-						value += (h2);
-						break;
-					case '3':
-						value += (h3);
-						break;
-					case '4':
-						value += (h4);
-						break;
-					case '5':
-						value += (h5);
-						break;
-					case '6':
-						value += (h6);
-						break;
-					case '7':
-						value += (h7);
-						break;
-					case '8':
-						value += (h8);
-						break;
-					case '9':
-						value += (h9);
-						break;
-					case 'a':
-						value += (ha);
-						break;
-					case 'b':
-						value += (hb);
-						break;
-					case 'c':
-						value += (hc);
-						break;
-					case 'd':
-						value += (hd);
-						break;
-					case 'e':
-						value += (he);
-						break;
-					case 'f':
-						value += (hf);
-						break;
-					}
-				}
-			}
-		}
-		}
-		
-		return value;
+		return doubleToBase(baseToDouble(input, 16), 2);
+//		boolean again = true;
+//		String value = "";
+//		while(again){
+//		for(int i = 0; i < input.length(); i++){
+//			if(Character.getNumericValue(input.charAt(i)) >= 0 && Character.getNumericValue(input.charAt(i)) <= 9 || input.charAt(i) >= 'a' && input.charAt(i) <= 'f'){
+//				for(int x = 0; x < input.length(); x++){
+//					switch(input.charAt(x)){
+//					case '0':
+//						value += (h0);
+//						break;
+//					case '1':
+//						value += (h1);
+//						break;
+//					case '2':
+//						value += (h2);
+//						break;
+//					case '3':
+//						value += (h3);
+//						break;
+//					case '4':
+//						value += (h4);
+//						break;
+//					case '5':
+//						value += (h5);
+//						break;
+//					case '6':
+//						value += (h6);
+//						break;
+//					case '7':
+//						value += (h7);
+//						break;
+//					case '8':
+//						value += (h8);
+//						break;
+//					case '9':
+//						value += (h9);
+//						break;
+//					case 'a':
+//						value += (ha);
+//						break;
+//					case 'b':
+//						value += (hb);
+//						break;
+//					case 'c':
+//						value += (hc);
+//						break;
+//					case 'd':
+//						value += (hd);
+//						break;
+//					case 'e':
+//						value += (he);
+//						break;
+//					case 'f':
+//						value += (hf);
+//						break;
+//					}
+//				}
+//			}
+//		}
+//		}
+//		
+//		return value;
 	}
 	
 	public static String binToDecimal(String input){
-		int x = Integer.parseInt(input, 2);
-		return Integer.toString(x, 10);
+		return doubleToBase(baseToDouble(input, 2), 10);
+//		int x = Integer.parseInt(input, 2);
+//		return Integer.toString(x, 10);
 	}
 	
 	
 	public static String octToDecimal(String input){
-		int x = Integer.parseInt(input, 8);
-		return Integer.toString(x, 10);
+		return doubleToBase(baseToDouble(input, 8), 10);
+//		int x = Integer.parseInt(input, 8);
+//		return Integer.toString(x, 10);
 	}
 	
 	public static String hexToDecimal(String input){
-		return Integer.toString(Integer.parseInt(input, 16), 10);
+		return doubleToBase(baseToDouble(input, 16), 10);
+//		return Integer.toString(Integer.parseInt(input, 16), 10);
 	}
 	
 	public static String deciToHex(String input){
-		return Integer.toHexString((int)Double.parseDouble(input)).toUpperCase();
+		return doubleToBase(baseToDouble(input, 10), 16);
+//		return Integer.toHexString((int)Double.parseDouble(input)).toUpperCase();
 	}
 	
 	public static String octToHex(String input){
-		String x = Integer.toOctalString((int)Double.parseDouble(input)).toUpperCase();
-		return Integer.toHexString((int)Double.parseDouble(x)).toUpperCase();
+		return doubleToBase(baseToDouble(input, 8), 16);
+//		String x = Integer.toOctalString((int)Double.parseDouble(input)).toUpperCase();
+//		return Integer.toHexString((int)Double.parseDouble(x)).toUpperCase();
 	}
 	
 	public static String binToHex(String input){
-		int num = Integer.parseInt(input, 2);
-		String result = Double.toHexString(num);
-		return result.toUpperCase();
+		return doubleToBase(baseToDouble(input, 2), 16);
+//		int num = Integer.parseInt(input, 2);
+//		String result = Double.toHexString(num);
+//		return result.toUpperCase();
 	}
 	
 	public static String deciToOctal(String input){
-		return Integer.toOctalString((int)Double.parseDouble(input));
+		return doubleToBase(baseToDouble(input, 10), 8);
+//		return Integer.toOctalString((int)Double.parseDouble(input));
 	}
 	
 	public static String hexToOctal(String input){
-		double x = Double.parseDouble(hexToBinary(input));
-		return binToOctal(Double.toHexString(x));
+		return doubleToBase(baseToDouble(input, 16), 8);
+//		double x = Double.parseDouble(hexToBinary(input));
+//		return binToOctal(Double.toHexString(x));
 	}
 	
 	public static String binToOctal(String input){
-		int num = Integer.parseInt(input, 2);
-		String result = Integer.toOctalString(num);
-		return Integer.toString(Integer.parseInt(result, 8),8);
+		return doubleToBase(baseToDouble(input, 2), 8);
+//		int num = Integer.parseInt(input, 2);
+//		String result = Integer.toOctalString(num);
+//		return Integer.toString(Integer.parseInt(result, 8),8);
 	}
 	
 
@@ -328,5 +340,157 @@ private TheMath(){}
 	public static double rShift(String input, String input2){
 		return Double.longBitsToDouble(Double.doubleToRawLongBits(Double.parseDouble(input)) >> (long)Double.parseDouble(input2));
 //		return Integer.parseInt(input) >> Integer.parseInt(input2);
+	}
+	
+	public static double baseToDouble(String num, int base){
+		double ret = 0.0;
+		int dot = num.indexOf('.');
+		int neg = num.indexOf('-');
+		int start = 0;
+		if(neg >= 0){
+			start = neg+1;
+		}
+		int end = num.length();
+		if(dot >= 0){
+			end = dot;
+		}
+		for(int i=start; i<end; i++){
+			ret *= base;
+			ret += charToBaseInt(num.charAt(i), base);
+		}
+		start = end+1;
+		end = num.length();
+		double frac = 0.0;
+		for(int i=end-1, j=1; i>=start; i--, j++){
+			frac += ((double)charToBaseInt(num.charAt(i), base));
+			frac /= base;
+		}
+		ret += frac;
+		if(neg == 0){
+			ret *= -1;
+		}
+		return ret;
+	}
+	public static String doubleToBase(double num, int base){
+		String ret = "";
+		long intnum = (long)num;
+		double frac = num - intnum;
+		if(num < 0){
+			intnum *= -1;
+			frac *= -1;
+		}
+		while(intnum > 0){
+			ret = intToBaseChar((int)intnum%base, base) + ret;
+			intnum /= base;
+		}
+		if(frac > 0){
+			ret += ".";
+			while(frac > 0){
+				frac = frac*base;
+				intnum = (long)frac;
+				frac -= intnum;
+				ret += intToBaseChar((int)intnum, base);
+			}
+		}
+		if(num < 0){
+			ret = "-"+ret;
+		}
+		return ret;
+	}
+	public static char intToBaseChar(int num, int base){
+		if(base>=16 && num==15){
+			return 'F';
+		}
+		else if(base>=15 && num==14){
+			return 'E';
+		}
+		else if(base>=14 && num==13){
+			return 'D';
+		}
+		else if(base>=13 && num==12){
+			return 'C';
+		}
+		else if(base>=12 && num==11){
+			return 'B';
+		}
+		else if(base>=11 && num==10){
+			return 'A';
+		}
+		else if(base>=10 && num==9){
+			return '9';
+		}
+		else if(base>=9 && num==8){
+			return '8';
+		}
+		else if(base>=8 && num==7){
+			return '7';
+		}
+		else if(base>=7 && num==6){
+			return '6';
+		}
+		else if(base>=6 && num==5){
+			return '5';
+		}
+		else if(base>=5 && num==4){
+			return '4';
+		}
+		else if(base>=4 && num==3){
+			return '3';
+		}
+		else if(base>=3 && num==2){
+			return '2';
+		}
+		else if(base>=2 && num==1){
+			return '1';
+		}
+		return '0';
+	}
+	static public int charToBaseInt(char num, int base){
+		if(base>=16 && (num=='F' || num=='f')){
+			return 15;
+		}
+		else if(base>=15 && (num=='E' || num=='e')){
+			return 14;
+		}
+		else if(base>=14 && (num=='D' || num=='d')){
+			return 13;
+		}
+		else if(base>=13 && (num=='C' || num=='c')){
+			return 12;
+		}
+		else if(base>=12 && (num=='B' || num=='b')){
+			return 11;
+		}
+		else if(base>=11 && (num=='A' || num=='a')){
+			return 10;
+		}
+		else if(base>=10 && num=='9'){
+			return 9;
+		}
+		else if(base>=9 && num=='8'){
+			return 8;
+		}
+		else if(base>=8 && num=='7'){
+			return 7;
+		}
+		else if(base>=7 && num=='6'){
+			return 6;
+		}
+		else if(base>=6 && num=='5'){
+			return 5;
+		}
+		else if(base>=5 && num=='4'){
+			return 4;
+		}
+		else if(base>=4 && num=='3'){
+			return 3;
+		}
+		else if(base>=3 && num=='2'){
+			return 2;
+		}
+		else if(base>=2 && num=='1'){
+			return 1;
+		}
+		return 0;
 	}
 }
