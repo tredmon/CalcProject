@@ -183,17 +183,18 @@ private TheMath(){}
 	}
 	
 	public static String deciToHex(String input){
-		return Integer.toHexString((int)Double.parseDouble(input))/*.toUpperCase()*/;
+		return Integer.toHexString((int)Double.parseDouble(input)).toUpperCase();
 	}
 	
 	public static String octToHex(String input){
-		return Integer.toOctalString((int)Double.parseDouble(input))/*.toUpperCase()*/;
+		String x = Integer.toOctalString((int)Double.parseDouble(input)).toUpperCase();
+		return Integer.toHexString((int)Double.parseDouble(x)).toUpperCase();
 	}
 	
 	public static String binToHex(String input){
 		int num = Integer.parseInt(input, 2);
 		String result = Double.toHexString(num);
-		return result/*.toUpperCase()*/;
+		return result.toUpperCase();
 	}
 	
 	public static String deciToOctal(String input){
