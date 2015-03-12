@@ -127,6 +127,16 @@ public class ParseFunc<T> implements Comparable<ParseFunc<T>>{
 		}
 		return ret;
 	}
+	public void push(ParseTree<T> parent, ParseTree<T> newtree){
+		if(parent != null){
+			parent.push(newtree);
+		}
+	}
+	public void pushr(ParseTree<T> parent, ParseTree<T> newtree){
+		if(parent != null){
+			parent.pushr(newtree);
+		}
+	}
 	/**
 	 * Compares this ParseFunc with the given ParseFunc.
 	 * @param o The ParseFunc with which we are comparing.

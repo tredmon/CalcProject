@@ -144,9 +144,16 @@ public abstract class ParseTree<T> {
 						}
 					}
 				}
-				push(thetree);
-				if(thetree == null){
-					System.out.println("bad tree in parsing:\""+parsestrlast+"\"");
+				if(thetree != null){
+					if(thetree.getFunction()!=null){
+						thetree.getFunction().push(this, thetree);
+					}
+					else{
+						push(thetree);
+					}
+				}
+				else{
+					System.out.println("ERR: bad tree in parsing:\""+parsestrlast+"\"");
 				}
 			}
 			if(parsestr.length() > 0){
@@ -164,6 +171,24 @@ public abstract class ParseTree<T> {
 			}
 			else if(p.getNode2() == null && !tmp.toString().equals("null")){
 				p.setNode2(tmp);
+			}
+			else if((p.getNode1()==null || p.getNode2()==null) && !tmp.toString().equals("null")){
+				System.out.println("error pushing:\""+tmp+"\" into:\""+p+"\"");
+			}
+			this.clone(p);
+		}
+	}
+	public void pushr(ParseTree<T> p){
+		ParseTree<T> tmp = this.clone();
+		if(p != null){
+			if(p.getNode2() == null && !tmp.toString().equals("null")){
+				p.setNode2(tmp);
+				if(p.getNode1()==null){
+					System.out.println("Pushr succeeded!");
+				}
+			}
+			else if(p.getNode1() == null && !tmp.toString().equals("null")){
+				p.setNode1(tmp);
 			}
 			else if((p.getNode1()==null || p.getNode2()==null) && !tmp.toString().equals("null")){
 				System.out.println("error pushing:\""+tmp+"\" into:\""+p+"\"");

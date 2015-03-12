@@ -217,20 +217,20 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		rt.addActionListener(this);
 
 		c.insets = new Insets(0,10,0,0);
-		Mod = new JButton("Mod");
+		Mod = new JButton("mod");
 		c.gridx = numOffX -4;
 		c.gridy = numOffY + 2;
 		this.add(Mod, c);
 		c.insets = new Insets(0,0,0,0);
 		Mod.addActionListener(this);
 
-		Ln = new JButton("Ln");
+		Ln = new JButton("ln");
 		c.gridx = numOffX -3;
 		c.gridy = numOffY + 2;
 		this.add(Ln, c);
 		Ln.addActionListener(this);
 
-		Log = new JButton("Log");
+		Log = new JButton("log");
 		c.gridx = numOffX -2;
 		c.gridy = numOffY + 2;
 		this.add(Log, c);
@@ -250,7 +250,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		this.add(pi, c);
 		pi.addActionListener(this);
 
-		Log = new JButton("Log");
+		Log = new JButton("log");
 		c.gridx = numOffX -2;
 		c.gridy = numOffY + 2;
 		this.add(Log, c);

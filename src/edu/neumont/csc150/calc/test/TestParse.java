@@ -94,5 +94,9 @@ public class TestParse {
 		System.out.print("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
 		System.out.println(" : "+(model.TheMath.sin(0.7, tree.getAngle()) * model.TheMath.arcsine(0.7,tree.getAngle())));
 		
+		str = "-1*(2-3)";
+		tree.parse(str);
+		System.out.println("\""+str+"\" = "+tree+" = "+tree.evalOutString()+" = "+tree.eval(3));
+		
 	}
 }

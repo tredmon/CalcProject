@@ -44,4 +44,23 @@ public class ParseTreeDouble extends ParseTree<Double>{
 		}
 		return ret;
 	}
+	public String dataToString(Double val, int base){
+		String ret = ""+val;
+		switch(base){
+			case 2:
+				ret = TheMath.deciToBinary(ret);
+				break;
+			case 8:
+				ret = TheMath.deciToOctal(ret);
+				break;
+			case 10://already in this base
+				break;
+			case 16:
+				ret = TheMath.deciToHex(ret);
+				break;
+			default:
+				System.out.println("ERR: cannot evalString as a base:"+base);
+		}
+		return ret;
+	}
 }

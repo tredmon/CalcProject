@@ -88,7 +88,7 @@ public class ParseGroupFunc<T> extends ParseFunc<T>{
 					parent.setFunction(this);
 					parent.setNode1(parent.getInstance(parent.getFunctionList(), ret.substring(start+getParse().length(), instr)));
 					if(start > 0){
-						parent.push(parent.getInstance(parent.getFunctionList(), ret.substring(0, start)));
+						push(parent, parent.getInstance(parent.getFunctionList(), ret.substring(0, start)));
 					}
 					ret = ret.substring(instr+getParseEnd().length());
 				}
