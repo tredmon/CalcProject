@@ -143,8 +143,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.mod()
-					ret = parent.getNodeVal1(0.0) % parent.getNodeVal2(0.0);
+					ret = TheMath.mod(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(0.0));
 				}
 				return ret;
 			}
@@ -200,15 +199,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					if(parent.getNode1()==null){
-						//TODO: use TheMath.root() function
-//						ret = TheMath.root(parent.getNodeVal2(0.0), 2);
-						ret = Math.sqrt(parent.getNodeVal2(0.0));
-					}
-					else{
-						//TODO: use TheMath.root() function
-//						ret = root(parent.getNodeVal2(0.0), parent.getNodeVal1(2.0));
-					}
+					ret = TheMath.root(""+parent.getNodeVal2(0.0), ""+parent.getNodeVal1(2.0));
 				}
 				return ret;
 			}
@@ -243,9 +234,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.not() function
-//					ret = TheMath.not(parent.getNodeVal2(0.0));
-					ret = Double.longBitsToDouble(~Double.doubleToRawLongBits(parent.getNodeVal2(0.0)));
+					ret = TheMath.Not(""+parent.getNodeVal2(0.0));
 				}
 				return ret;
 			}
@@ -270,10 +259,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.shiftleft() function
-//					ret = TheMath.shiftleft(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
-					long amnt = (long)(double)parent.getNodeVal2(1.0);
-					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) << amnt);
+					ret = TheMath.lShift(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(1.0));
 				}
 				return ret;
 			}
@@ -298,10 +284,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.shiftright() function
-//					ret = TheMath.shiftright(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
-					long amnt = (long)(double)parent.getNodeVal2(1.0);
-					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) >> amnt);
+					ret = TheMath.rShift(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(1.0));
 				}
 				return ret;
 			}
@@ -326,9 +309,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.and() function
-//					ret = TheMath.and(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
-					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) & Double.doubleToRawLongBits(parent.getNodeVal2(0.0)));
+					ret = TheMath.And(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(1.0));
 				}
 				return ret;
 			}
@@ -353,9 +334,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.xor() function
-//					ret = TheMath.xor(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
-					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) ^ Double.doubleToRawLongBits(parent.getNodeVal2(0.0)));
+					ret = TheMath.Xor(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(1.0));
 				}
 				return ret;
 			}
@@ -380,9 +359,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					//TODO: use TheMath.or() function
-//					ret = TheMath.or(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
-					ret = Double.longBitsToDouble(Double.doubleToRawLongBits(parent.getNodeVal1(0.0)) | Double.doubleToRawLongBits(parent.getNodeVal2(0.0)));
+					ret = TheMath.Or(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(1.0));
 				}
 				return ret;
 			}

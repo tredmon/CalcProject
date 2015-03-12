@@ -301,26 +301,32 @@ private TheMath(){}
 	}
 	
 	public static double Xor(String input, String input2){
-		return Integer.parseInt(input) ^ Integer.parseInt(input2);
+		return Double.longBitsToDouble(Double.doubleToRawLongBits(Double.parseDouble(input)) ^ Double.doubleToRawLongBits(Double.parseDouble(input2)));
+//		return Integer.parseInt(input) ^ Integer.parseInt(input2);
 	}
 	
 	public static double Or(String input, String input2){
-		return Integer.parseInt(input) | Integer.parseInt(input2);
+		return Double.longBitsToDouble(Double.doubleToRawLongBits(Double.parseDouble(input)) | Double.doubleToRawLongBits(Double.parseDouble(input2)));
+//		return Integer.parseInt(input) | Integer.parseInt(input2);
 	}
 	
 	public static double And(String input, String input2){
-		return Integer.parseInt(input) & Integer.parseInt(input2);
+		return Double.longBitsToDouble(Double.doubleToRawLongBits(Double.parseDouble(input)) & Double.doubleToRawLongBits(Double.parseDouble(input2)));
+//		return Integer.parseInt(input) & Integer.parseInt(input2);
 	}
 	
 	public static double Not(String input){
-		return ~Integer.parseInt(input);
+		return Double.longBitsToDouble(~Double.doubleToRawLongBits(Double.parseDouble(input)));
+//		return ~Integer.parseInt(input);
 	}
 	
 	public static double lShift(String input, String input2){
-		return Integer.parseInt(input) << Integer.parseInt(input2);
+		return Double.longBitsToDouble(Double.doubleToRawLongBits(Double.parseDouble(input)) << (long)Double.parseDouble(input2));
+//		return Integer.parseInt(input) << Integer.parseInt(input2);
 	}
 	
 	public static double rShift(String input, String input2){
-		return Integer.parseInt(input) >> Integer.parseInt(input2);
+		return Double.longBitsToDouble(Double.doubleToRawLongBits(Double.parseDouble(input)) >> (long)Double.parseDouble(input2));
+//		return Integer.parseInt(input) >> Integer.parseInt(input2);
 	}
 }
