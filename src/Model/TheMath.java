@@ -315,8 +315,8 @@ private TheMath(){}
 	public static double Xor(double input, double input2){
 		String str1 = doubleToBase(input, 2);
 		String str2 = doubleToBase(input2, 2);
-		int dot1 = str1.indexOf('.');
-		int dot2 = str2.indexOf('.');
+		int dot1 = str1.indexOf('.'); if(dot1<0){dot1=str1.length();}
+		int dot2 = str2.indexOf('.'); if(dot2<0){dot2=str2.length();}
 		int longer = Math.max(dot1, dot2);
 		int i = longer - dot1;
 		int j = longer - dot2;
@@ -362,8 +362,8 @@ private TheMath(){}
 	public static double Or(double input, double input2){
 		String str1 = doubleToBase(input, 2);
 		String str2 = doubleToBase(input2, 2);
-		int dot1 = str1.indexOf('.');
-		int dot2 = str2.indexOf('.');
+		int dot1 = str1.indexOf('.'); if(dot1<0){dot1=str1.length();}
+		int dot2 = str2.indexOf('.'); if(dot2<0){dot2=str2.length();}
 		int longer = Math.max(dot1, dot2);
 		int i = longer - dot1;
 		int j = longer - dot2;
@@ -399,8 +399,8 @@ private TheMath(){}
 	public static double And(double input, double input2){
 		String str1 = doubleToBase(input, 2);
 		String str2 = doubleToBase(input2, 2);
-		int dot1 = str1.indexOf('.');
-		int dot2 = str2.indexOf('.');
+		int dot1 = str1.indexOf('.'); if(dot1<0){dot1=str1.length();}
+		int dot2 = str2.indexOf('.'); if(dot2<0){dot2=str2.length();}
 		int longer = Math.max(dot1, dot2);
 		int i = longer - dot1;
 		int j = longer - dot2;
@@ -449,7 +449,7 @@ private TheMath(){}
 	
 	public static double Not(double input){
 		String str = doubleToBase(input, 2);
-		int dot = str.indexOf('.');
+		int dot = str.indexOf('.'); if(dot<0){dot=str.length();}
 		String retstr = "";
 		for(int i=0; i<dot; i++){
 			if(str.charAt(i)=='1'){
@@ -460,13 +460,18 @@ private TheMath(){}
 			}
 		}
 		retstr += '.';
-		for(int i=dot+1; i<str.length(); i++){
-			if(str.charAt(i)=='1'){
-				retstr += '0';
+		if(dot >= str.length()){
+			for(int i=dot+1; i<str.length(); i++){
+				if(str.charAt(i)=='1'){
+					retstr += '0';
+				}
+				else{
+					retstr += '1';
+				}
 			}
-			else{
-				retstr += '1';
-			}
+		}
+		else{
+			retstr += '0';
 		}
 		return baseToDouble(retstr, 2);
 //		return Double.longBitsToDouble(~Double.doubleToRawLongBits(input));
