@@ -506,15 +506,12 @@ public class MathParser extends ParseTreeDouble{
 							ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
 						}
 						else{
-							ret = parent.getNode1().evalOutString()+"*"+((MathParser)parent).dataToString(TheMath.sin(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
+							ret = tmp+"*"+((MathParser)parent).dataToString(TheMath.sin(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
 						}
 					}
-					else if(parent.getNode1()!=emptytree && ((MathParser)parent).isOnlyNumber(tmp)){
-						ret = parent.getNode1().evalOutString() +"*"+ ret;
+					else{
+						ret = tmp +getParse()+ ret;
 					}
-				}
-				else{
-					ret = parent.getNode1().evalOutString()+getParse()+ret;
 				}
 				return ret;
 			}
@@ -553,14 +550,11 @@ public class MathParser extends ParseTreeDouble{
 							ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
 						}
 						else{
-							ret = parent.getNode1().evalOutString()+"*"+((MathParser)parent).dataToString(TheMath.cosine(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
+							ret = tmp+"*"+((MathParser)parent).dataToString(TheMath.cosine(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
 						}
 					}
-					else if(parent.getNode1()!=emptytree && ((MathParser)parent).isOnlyNumber(tmp)){
-						ret = parent.getNode1().evalOutString() +"*"+ ret;
-					}
 					else{
-						ret = parent.getNode1().evalOutString()+getParse()+ret;
+						ret = tmp +getParse()+ ret;
 					}
 				}
 				return ret;
@@ -600,14 +594,11 @@ public class MathParser extends ParseTreeDouble{
 							ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
 						}
 						else{
-							ret = parent.getNode1().evalOutString()+"*"+((MathParser)parent).dataToString(TheMath.tangent(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
+							ret = tmp+"*"+((MathParser)parent).dataToString(TheMath.tangent(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
 						}
 					}
-					else if(parent.getNode1()!=emptytree && ((MathParser)parent).isOnlyNumber(tmp)){
-						ret = parent.getNode1().evalOutString() +"*"+ ret;
-					}
 					else{
-						ret = parent.getNode1().evalOutString()+getParse()+ret;
+						ret = tmp +getParse()+ ret;
 					}
 				}
 				return ret;
@@ -647,14 +638,11 @@ public class MathParser extends ParseTreeDouble{
 							ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
 						}
 						else{
-							ret = parent.getNode1().evalOutString()+"*"+((MathParser)parent).dataToString(TheMath.arcsine(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
+							ret = tmp+"*"+((MathParser)parent).dataToString(TheMath.arcsine(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
 						}
 					}
-					else if(parent.getNode1()!=emptytree && ((MathParser)parent).isOnlyNumber(tmp)){
-						ret = parent.getNode1().evalOutString() +"*"+ ret;
-					}
 					else{
-						ret = parent.getNode1().evalOutString()+getParse()+ret;
+						ret = tmp +getParse()+ ret;
 					}
 				}
 				return ret;
@@ -694,14 +682,11 @@ public class MathParser extends ParseTreeDouble{
 							ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
 						}
 						else{
-							ret = parent.getNode1().evalOutString()+"*"+((MathParser)parent).dataToString(TheMath.arccosine(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
+							ret = tmp+"*"+((MathParser)parent).dataToString(TheMath.arccosine(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
 						}
 					}
-					else if(parent.getNode1()!=emptytree && ((MathParser)parent).isOnlyNumber(tmp)){
-						ret = parent.getNode1().evalOutString() +"*"+ ret;
-					}
 					else{
-						ret = parent.getNode1().evalOutString()+getParse()+ret;
+						ret = tmp +getParse()+ ret;
 					}
 				}
 				return ret;
@@ -741,14 +726,11 @@ public class MathParser extends ParseTreeDouble{
 							ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
 						}
 						else{
-							ret = parent.getNode1().evalOutString()+"*"+((MathParser)parent).dataToString(TheMath.arctangent(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
+							ret = tmp+"*"+((MathParser)parent).dataToString(TheMath.arctangent(parent.getNodeVal2(0.0), ((MathParser)parent).getAngle()), ((MathParser)parent).getBase());
 						}
 					}
-					else if(parent.getNode1()!=emptytree && ((MathParser)parent).isOnlyNumber(tmp)){
-						ret = parent.getNode1().evalOutString() +"*"+ ret;
-					}
 					else{
-						ret = parent.getNode1().evalOutString()+getParse()+ret;
+						ret = tmp +getParse()+ ret;
 					}
 				}
 				return ret;
