@@ -623,7 +623,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println("moo:"+KeyEvent.getKeyText(e.getKeyCode()));
+//		System.out.println("moo:"+KeyEvent.getKeyText(e.getKeyCode()));
 		if (KeyEvent.getKeyText(e.getKeyCode()).equals("Shift")) {
 			this.shifttyped = false;
 		}
@@ -642,7 +642,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("Period") && this.shifttyped){
 			Rsh.doClick();
 		}
-		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("E")){
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("E") && this.shifttyped){
 			this.e.doClick();
 		}
 		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("P")){
