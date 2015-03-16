@@ -296,49 +296,214 @@ private TheMath(){}
 		return Math.toRadians(input);
 	}
 	
-	public static double log(String input){
-		return Math.log10(Double.parseDouble(input));
+	public static double log(double input){
+		return Math.log10(input);
 	}
 	
-	public static double ln(String input){
-		return Math.log(Double.parseDouble(input));
+	public static double ln(double input){
+		return Math.log(input);
 	}
 	
-	public static double mod(String input, String input2){
-		return Double.parseDouble(input)%Double.parseDouble(input2);
+	public static double mod(double input, double input2){
+		return input%input2;
 	}
 	
-	public static double root(String base, String root){
-		return Math.pow(Double.parseDouble(base), (1/Double.parseDouble(root)));
+	public static double root(double base, double root){
+		return Math.pow(base, (1/root));
 	}
 	
-	public static double Xor(String input, String input2){
-		return Double.longBitsToDouble(Double.doubleToRawLongBits(Double.parseDouble(input)) ^ Double.doubleToRawLongBits(Double.parseDouble(input2)));
+	public static double Xor(double input, double input2){
+		String str1 = doubleToBase(input, 2);
+		String str2 = doubleToBase(input2, 2);
+		int dot1 = str1.indexOf('.');
+		int dot2 = str2.indexOf('.');
+		int longer = Math.max(dot1, dot2);
+		int i = longer - dot1;
+		int j = longer - dot2;
+		String retstr = "";
+		for(; i<dot1 && j<dot2; i++, j++){
+			if(i>=0 && str1.charAt(i)=='1'){
+				if(j>=0 && str2.charAt(j)=='1'){
+					retstr += '0';
+				}
+				else{
+					retstr += '1';
+				}
+			}
+			else if(j>=0 && str1.charAt(i)=='1'){
+				retstr += '1';
+			}
+			else{
+				retstr += '0';
+			}
+		}
+		retstr += '.';
+		for(i=dot1+1, j=dot2+1; i<str1.length() && j<str2.length(); i++, j++){
+			if(i>=0 && str1.charAt(i)=='1'){
+				if(j>=0 && str2.charAt(j)=='1'){
+					retstr += '0';
+				}
+				else{
+					retstr += '1';
+				}
+			}
+			else if(j>=0 && str1.charAt(i)=='1'){
+				retstr += '1';
+			}
+			else{
+				retstr += '0';
+			}
+		}
+		return baseToDouble(retstr, 2);
+//		return Double.longBitsToDouble(Double.doubleToRawLongBits(input) ^ Double.doubleToRawLongBits(input2));
 //		return Integer.parseInt(input) ^ Integer.parseInt(input2);
 	}
 	
-	public static double Or(String input, String input2){
-		return Double.longBitsToDouble(Double.doubleToRawLongBits(Double.parseDouble(input)) | Double.doubleToRawLongBits(Double.parseDouble(input2)));
+	public static double Or(double input, double input2){
+		String str1 = doubleToBase(input, 2);
+		String str2 = doubleToBase(input2, 2);
+		int dot1 = str1.indexOf('.');
+		int dot2 = str2.indexOf('.');
+		int longer = Math.max(dot1, dot2);
+		int i = longer - dot1;
+		int j = longer - dot2;
+		String retstr = "";
+		for(; i<dot1 && j<dot2; i++, j++){
+			if(i>=0 && str1.charAt(i)=='1'){
+				retstr += '1';
+			}
+			else if(j>=0 && str2.charAt(j)=='1'){
+				retstr += '1';
+			}
+			else{
+				retstr += '0';
+			}
+		}
+		retstr += '.';
+		for(i=dot1+1, j=dot2+1; i<str1.length() && j<str2.length(); i++, j++){
+			if(i>=0 && str1.charAt(i)=='1'){
+				retstr += '1';
+			}
+			else if(j>=0 && str2.charAt(j)=='1'){
+				retstr += '1';
+			}
+			else{
+				retstr += '0';
+			}
+		}
+		return baseToDouble(retstr, 2);
+//		return Double.longBitsToDouble(Double.doubleToRawLongBits(input) | Double.doubleToRawLongBits(input2));
 //		return Integer.parseInt(input) | Integer.parseInt(input2);
 	}
 	
-	public static double And(String input, String input2){
-		return Double.longBitsToDouble(Double.doubleToRawLongBits(Double.parseDouble(input)) & Double.doubleToRawLongBits(Double.parseDouble(input2)));
+	public static double And(double input, double input2){
+		String str1 = doubleToBase(input, 2);
+		String str2 = doubleToBase(input2, 2);
+		int dot1 = str1.indexOf('.');
+		int dot2 = str2.indexOf('.');
+		int longer = Math.max(dot1, dot2);
+		int i = longer - dot1;
+		int j = longer - dot2;
+		String retstr = "";
+		for(; i<dot1 && j<dot2; i++, j++){
+			if(i>=0){
+				if(j>=0){
+					if(str1.charAt(i)==str2.charAt(j) && str1.charAt(i)=='1'){
+						retstr += '1';
+					}
+					else{
+						retstr += '0';
+					}
+				}
+				else{
+					retstr += '0';
+				}
+			}
+			else if(j>=0){
+				retstr += '0';
+			}
+		}
+		retstr += '.';
+		for(i=dot1+1, j=dot2+1; i<str1.length() && j<str2.length(); i++, j++){
+			if(i>=0){
+				if(j>=0){
+					if(str1.charAt(i)==str2.charAt(j) && str1.charAt(i)=='1'){
+						retstr += '1';
+					}
+					else{
+						retstr += '0';
+					}
+				}
+				else{
+					retstr += '0';
+				}
+			}
+			else if(j>=0){
+				retstr += '0';
+			}
+		}
+		return baseToDouble(retstr, 2);
+//		return Double.longBitsToDouble(Double.doubleToRawLongBits(input) & Double.doubleToRawLongBits(input2));
 //		return Integer.parseInt(input) & Integer.parseInt(input2);
 	}
 	
-	public static double Not(String input){
-		return Double.longBitsToDouble(~Double.doubleToRawLongBits(Double.parseDouble(input)));
+	public static double Not(double input){
+		String str = doubleToBase(input, 2);
+		int dot = str.indexOf('.');
+		String retstr = "";
+		for(int i=0; i<dot; i++){
+			if(str.charAt(i)=='1'){
+				retstr += '0';
+			}
+			else{
+				retstr += '1';
+			}
+		}
+		retstr += '.';
+		for(int i=dot+1; i<str.length(); i++){
+			if(str.charAt(i)=='1'){
+				retstr += '0';
+			}
+			else{
+				retstr += '1';
+			}
+		}
+		return baseToDouble(retstr, 2);
+//		return Double.longBitsToDouble(~Double.doubleToRawLongBits(input));
 //		return ~Integer.parseInt(input);
 	}
 	
-	public static double lShift(String input, String input2){
-		return Double.longBitsToDouble(Double.doubleToRawLongBits(Double.parseDouble(input)) << (long)Double.parseDouble(input2));
+	public static double lShift(double input, double input2){
+		String numstr = doubleToBase(input, 2);
+		int olddot = numstr.indexOf('.');
+		int newdot = (int) (olddot - input2);
+		String nodot = numstr.substring(0,olddot)+numstr.substring(olddot+1);
+		String retstr = "";
+		if(newdot >= nodot.length()){
+			retstr = nodot;
+			for(int i=nodot.length()-1; i<newdot; i++){
+				retstr += '0';
+			}
+			retstr += ".0";
+		}
+		else if(newdot < 0){
+			retstr += "0.";
+			for(int i=newdot; i<0; i++){
+				retstr += '0';
+			}
+			retstr += nodot;
+		}
+		else{
+			retstr = nodot.substring(0,newdot)+'.'+nodot.substring(newdot);
+		}
+		return baseToDouble(retstr, 2);
+//		return Double.longBitsToDouble(Double.doubleToRawLongBits(input) << (long)input2);
 //		return Integer.parseInt(input) << Integer.parseInt(input2);
 	}
 	
-	public static double rShift(String input, String input2){
-		return Double.longBitsToDouble(Double.doubleToRawLongBits(Double.parseDouble(input)) >> (long)Double.parseDouble(input2));
+	public static double rShift(double input, double input2){
+		return lShift(input, -1*input2);
+//		return Double.longBitsToDouble(Double.doubleToRawLongBits(input) >> (long)input2);
 //		return Integer.parseInt(input) >> Integer.parseInt(input2);
 	}
 	

@@ -143,7 +143,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.mod(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(0.0));
+					ret = TheMath.mod(parent.getNodeVal1(0.0), parent.getNodeVal2(0.0));
 				}
 				return ret;
 			}
@@ -199,7 +199,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.root(""+parent.getNodeVal2(0.0), ""+parent.getNodeVal1(2.0));
+					ret = TheMath.root(parent.getNodeVal2(0.0), parent.getNodeVal1(2.0));
 				}
 				return ret;
 			}
@@ -234,7 +234,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.Not(""+parent.getNodeVal2(0.0));
+					ret = TheMath.Not(parent.getNodeVal2(0.0));
 				}
 				return ret;
 			}
@@ -259,7 +259,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.lShift(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(1.0));
+					ret = TheMath.lShift(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 				}
 				return ret;
 			}
@@ -284,7 +284,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.rShift(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(1.0));
+					ret = TheMath.rShift(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 				}
 				return ret;
 			}
@@ -309,7 +309,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.And(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(1.0));
+					ret = TheMath.And(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 				}
 				return ret;
 			}
@@ -334,7 +334,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.Xor(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(1.0));
+					ret = TheMath.Xor(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 				}
 				return ret;
 			}
@@ -359,7 +359,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.Or(""+parent.getNodeVal1(0.0), ""+parent.getNodeVal2(1.0));
+					ret = TheMath.Or(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
 				}
 				return ret;
 			}
@@ -749,7 +749,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.ln(""+parent.getNodeVal2(0.0));
+					ret = TheMath.ln(parent.getNodeVal2(0.0));
 					if(parent.getNode1()!=emptytree){
 						ret *= parent.getNode1().eval();
 					}
@@ -793,7 +793,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.log(""+parent.getNodeVal2(0.0));
+					ret = TheMath.log(parent.getNodeVal2(0.0));
 					if(parent.getNode1()!=emptytree){
 						ret *= parent.getNode1().eval();
 					}
