@@ -46,6 +46,7 @@ public class childGraphPanel extends JPanel{
 		double originy = yMax * ratioH;
 		g.drawLine(getWidth(), (int)originy, 0, (int)originy);
 		g.drawLine((int)originx, 0, (int)originx, getHeight());
+		g.setColor(Color.BLUE);
 		if(coordinates != null){
 			for(int x = 0; x < coordinates.length-1; x++)
 			{
