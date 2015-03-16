@@ -451,7 +451,9 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		else if (this.buttonBackspace == source) {
 			cursor -= 1;
 			if(cursor < 0){cursor = 0;}
-			textfield.setText(textfield.getText().substring(0,cursor) + textfield.getText().substring(cursor+1));
+			if(textfield.getText().length()>0){
+				textfield.setText(textfield.getText().substring(0,cursor) + textfield.getText().substring(cursor+1));
+			}
 		}
 		else if (this.buttonEquals == source) {
 			if (this.rbuttonBinary.isSelected() == true) {
@@ -665,7 +667,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("Period") && this.shifttyped){
 			Rsh.doClick();
 		}
-		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("E") && this.shifttyped){
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("E") && (this.shifttyped || numtype<14)){
 			this.e.doClick();
 		}
 		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("P")){
@@ -717,6 +719,35 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 
 		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("NumPad .") || KeyEvent.getKeyText(e.getKeyCode()).equals("Period")) {
 			buttonDecimal.doClick();
+		}
+		
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("S") && this.shifttyped){
+			arcsin.doClick();
+		}
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("S") && !this.shifttyped){
+			sin.doClick();
+		}
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("C") && this.shifttyped){
+			arccos.doClick();
+		}
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("C") && !this.shifttyped && numtype<12){
+			cos.doClick();
+		}
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("T") && this.shifttyped){
+			arctan.doClick();
+		}
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("T") && !this.shifttyped){
+			tan.doClick();
+		}
+		
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("L") && this.shifttyped){
+			Log.doClick();
+		}
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("L") && !this.shifttyped){
+			Ln.doClick();
+		}
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("R")){
+			rt.doClick();
 		}
 
 		else if (KeyEvent.getKeyText(e.getKeyCode()).equals("Backspace")) {
