@@ -318,19 +318,14 @@ private TheMath(){}
 		int dot1 = str1.indexOf('.'); if(dot1<0){dot1=str1.length();}
 		int dot2 = str2.indexOf('.'); if(dot2<0){dot2=str2.length();}
 		int longer = Math.max(dot1, dot2);
-		int i = longer - dot1;
-		int j = longer - dot2;
+		int i = dot1 - longer;
+		int j = dot2 - longer;
 		String retstr = "";
 		for(; i<dot1 && j<dot2; i++, j++){
-			if(i>=0 && str1.charAt(i)=='1'){
-				if(j>=0 && str2.charAt(j)=='1'){
-					retstr += '0';
-				}
-				else{
-					retstr += '1';
-				}
+			if(i>=0 && str1.charAt(i)!='0' && (j<0 || (j>=0 && str2.charAt(j)=='0'))){
+				retstr += '1';
 			}
-			else if(j>=0 && str1.charAt(i)=='1'){
+			else if(j>=0 && str2.charAt(j)!='0' && (i<0 || (i>=0 && str1.charAt(i)=='0'))){
 				retstr += '1';
 			}
 			else{
@@ -338,16 +333,12 @@ private TheMath(){}
 			}
 		}
 		retstr += '.';
-		for(i=dot1+1, j=dot2+1; i<str1.length() && j<str2.length(); i++, j++){
-			if(i>=0 && str1.charAt(i)=='1'){
-				if(j>=0 && str2.charAt(j)=='1'){
-					retstr += '0';
-				}
-				else{
-					retstr += '1';
-				}
+		longer = Math.max(str1.length(), str2.length());
+		for(i=dot1+1, j=dot2+1; i<longer && j<longer; i++, j++){
+			if(i<str1.length() && str1.charAt(i)!='0' && (j<str2.length() && str2.charAt(j)=='0')){
+				retstr += '1';
 			}
-			else if(j>=0 && str1.charAt(i)=='1'){
+			else if(j<str2.length() && str2.charAt(j)!='0' && (i<str2.length() && str1.charAt(i)=='0')){
 				retstr += '1';
 			}
 			else{
@@ -365,8 +356,8 @@ private TheMath(){}
 		int dot1 = str1.indexOf('.'); if(dot1<0){dot1=str1.length();}
 		int dot2 = str2.indexOf('.'); if(dot2<0){dot2=str2.length();}
 		int longer = Math.max(dot1, dot2);
-		int i = longer - dot1;
-		int j = longer - dot2;
+		int i = dot1 - longer;
+		int j = dot2 - longer;
 		String retstr = "";
 		for(; i<dot1 && j<dot2; i++, j++){
 			if(i>=0 && str1.charAt(i)=='1'){
@@ -380,11 +371,12 @@ private TheMath(){}
 			}
 		}
 		retstr += '.';
-		for(i=dot1+1, j=dot2+1; i<str1.length() && j<str2.length(); i++, j++){
-			if(i>=0 && str1.charAt(i)=='1'){
+		longer = Math.max(str1.length(), str2.length());
+		for(i=dot1+1, j=dot2+1; i<longer && j<longer; i++, j++){
+			if(i<str1.length() && str1.charAt(i)=='1'){
 				retstr += '1';
 			}
-			else if(j>=0 && str2.charAt(j)=='1'){
+			else if(j<str2.length() && str2.charAt(j)=='1'){
 				retstr += '1';
 			}
 			else{
@@ -402,43 +394,24 @@ private TheMath(){}
 		int dot1 = str1.indexOf('.'); if(dot1<0){dot1=str1.length();}
 		int dot2 = str2.indexOf('.'); if(dot2<0){dot2=str2.length();}
 		int longer = Math.max(dot1, dot2);
-		int i = longer - dot1;
-		int j = longer - dot2;
+		int i = dot1 - longer;
+		int j = dot2 - longer;
 		String retstr = "";
 		for(; i<dot1 && j<dot2; i++, j++){
-			if(i>=0){
-				if(j>=0){
-					if(str1.charAt(i)==str2.charAt(j) && str1.charAt(i)=='1'){
-						retstr += '1';
-					}
-					else{
-						retstr += '0';
-					}
-				}
-				else{
-					retstr += '0';
-				}
+			if(i>=0 && j>=0 && str1.charAt(i)==str2.charAt(j) && str1.charAt(i)=='1'){
+				retstr += '1';
 			}
-			else if(j>=0){
+			else{
 				retstr += '0';
 			}
 		}
 		retstr += '.';
-		for(i=dot1+1, j=dot2+1; i<str1.length() && j<str2.length(); i++, j++){
-			if(i>=0){
-				if(j>=0){
-					if(str1.charAt(i)==str2.charAt(j) && str1.charAt(i)=='1'){
-						retstr += '1';
-					}
-					else{
-						retstr += '0';
-					}
-				}
-				else{
-					retstr += '0';
-				}
+		longer = Math.max(str1.length(), str2.length());
+		for(i=dot1+1, j=dot2+1; i<longer && j<longer; i++, j++){
+			if(i<str1.length() && j<str2.length() && str1.charAt(i)==str2.charAt(j) && str1.charAt(i)=='1'){
+				retstr += '1';
 			}
-			else if(j>=0){
+			else{
 				retstr += '0';
 			}
 		}

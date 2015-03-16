@@ -307,7 +307,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.And(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
+					ret = TheMath.And(parent.getNodeVal1(0.0), parent.getNodeVal2(0.0));
 				}
 				return ret;
 			}
@@ -332,7 +332,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.Xor(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
+					ret = TheMath.Xor(parent.getNodeVal1(0.0), parent.getNodeVal2(0.0));
 				}
 				return ret;
 			}
@@ -357,7 +357,7 @@ public class MathParser extends ParseTreeDouble{
 			public Double eval(ParseTree<Double> parent){
 				Double ret = 0.0;
 				if(parent != null){
-					ret = TheMath.Or(parent.getNodeVal1(0.0), parent.getNodeVal2(1.0));
+					ret = TheMath.Or(parent.getNodeVal1(0.0), parent.getNodeVal2(0.0));
 				}
 				return ret;
 			}
