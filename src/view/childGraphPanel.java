@@ -50,7 +50,6 @@ public class childGraphPanel extends JPanel{
 		if(coordinates != null){
 			for(int x = 0; x < coordinates.length-1; x++)
 			{
-//				g.drawLine((int)(originx+coordinates[x][0]*ratioW), (int)(originy-coordinates[x][1]*ratioH), (int)(originx+coordinates[x][0]*ratioW), (int)(originy-coordinates[x][1]*ratioH));
 				g.drawLine((int)(originx+coordinates[x][0]*ratioW), (int)(originy-coordinates[x][1]*ratioH), (int)(originx+coordinates[x+1][0]*ratioW), (int)(originy-coordinates[x+1][1]*ratioH));
 			}
 		}
