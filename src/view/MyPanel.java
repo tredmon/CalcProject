@@ -43,6 +43,8 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 	private int numtype = 10;
 	private char angletype = 'd';
 	private boolean shifttyped = false;
+	private int cursor = 0;
+	//TODO: draw the cursor
 
 	public MyPanel(GraphPanel gp) {
 		super();
@@ -444,13 +446,12 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 		Object source = ae.getSource();
 		if(this.buttonClear == source) {
 			textfield.setText("");
+			cursor = 0;
 		}
 		else if (this.buttonBackspace == source) {
-			String tempstring = "";
-			for (int i=0; i < textfield.getText().length() - 1; i++) {
-				tempstring += textfield.getText().charAt(i);
-			}
-			textfield.setText(tempstring);
+			cursor -= 1;
+			if(cursor < 0){cursor = 0;}
+			textfield.setText(textfield.getText().substring(0,cursor) + textfield.getText().substring(cursor+1));
 		}
 		else if (this.buttonEquals == source) {
 			if (this.rbuttonBinary.isSelected() == true) {
@@ -472,31 +473,32 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 			parser = new MathParser(memory, numtype, angletype);
 			parser.parse(textfield.getText());
 			textfield.setText(parser.evalOutString());
+			cursor = textfield.getText().length();
 			gp.EvalEquation(parser);
 		}
 		else if (this.M == source) {
-			textfield.setText(memory);
+			addAtCursor(memory);
 		}
 		else if (this.Mplus == source) {
 			memory = textfield.getText();
 		}
 		else if (this.Or == source) {
-			textfield.setText(textfield.getText() + "|");
+			addAtCursor("|");
 		}
 		else if (this.Xor == source) {
-			textfield.setText(textfield.getText() + "~");
+			addAtCursor("~");
 		}
 		else if (this.Not == source) {
-			textfield.setText(textfield.getText() + "!");
+			addAtCursor("!");
 		}
 		else if (this.And == source) {
-			textfield.setText(textfield.getText() + "&");
+			addAtCursor("&");
 		}
 		else if (this.Lsh == source) {
-			textfield.setText(textfield.getText() + "<<");
+			addAtCursor("<<");
 		}
 		else if (this.Rsh == source) {
-			textfield.setText(textfield.getText() + ">>");
+			addAtCursor(">>");
 		}
 		else if (this.rbuttonBinary == source) {
 			parser = new MathParser(memory, numtype, angletype);
@@ -504,6 +506,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 			numtype = 2;
 			parser.setBase(numtype);
 			textfield.setText(parser.evalString());
+			cursor = textfield.getText().length();
 			button0.setEnabled(true);
 			button1.setEnabled(true);
 			button2.setEnabled(false);
@@ -527,6 +530,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 			numtype = 10;
 			parser.setBase(numtype);
 			textfield.setText(parser.evalString());
+			cursor = textfield.getText().length();
 			button0.setEnabled(true);
 			button1.setEnabled(true);
 			button2.setEnabled(true);
@@ -550,6 +554,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 			numtype = 8;
 			parser.setBase(numtype);
 			textfield.setText(parser.evalString());
+			cursor = textfield.getText().length();
 			button0.setEnabled(true);
 			button1.setEnabled(true);
 			button2.setEnabled(true);
@@ -573,6 +578,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 			numtype = 16;
 			parser.setBase(numtype);
 			textfield.setText(parser.evalString());
+			cursor = textfield.getText().length();
 			button0.setEnabled(true);
 			button1.setEnabled(true);
 			button2.setEnabled(true);
@@ -597,13 +603,18 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 			angletype = 'r';
 		}
 		else {
-			textfield.setText(textfield.getText() + "" + ((JButton) source).getText());
+			addAtCursor(((JButton) source).getText());
 		}
 
 
 	}
 
-
+	public void addAtCursor(String add){
+		String precursor = textfield.getText().substring(0,cursor);
+		String postcursor = textfield.getText().substring(cursor);
+		textfield.setText(precursor + add + postcursor);
+		cursor += add.length();
+	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -615,6 +626,18 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (KeyEvent.getKeyText(e.getKeyCode()).equals("Shift")) {
 			this.shifttyped = true;
+		}
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("Left")){
+			this.cursor -= 1;
+			if(this.cursor < 0){
+				this.cursor = 0;
+			}
+		}
+		else if(KeyEvent.getKeyText(e.getKeyCode()).equals("Right")){
+			this.cursor += 1;
+			if(this.cursor > textfield.getText().length()){
+				this.cursor = textfield.getText().length();
+			}
 		}
 
 	}
