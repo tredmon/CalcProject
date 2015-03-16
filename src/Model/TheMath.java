@@ -479,20 +479,26 @@ private TheMath(){}
 	}
 	
 	public static double lShift(double input, double input2){
+		return rShift(input, -1*input2);
+//		return Double.longBitsToDouble(Double.doubleToRawLongBits(input) << (long)input2);
+//		return Integer.parseInt(input) << Integer.parseInt(input2);
+	}
+	
+	public static double rShift(double input, double input2){
 		String numstr = doubleToBase(input, 2);
-		int olddot = numstr.indexOf('.');
+		int olddot = numstr.indexOf('.'); if(olddot<0){olddot = numstr.length(); numstr+=".0";}
 		int newdot = (int) (olddot - input2);
 		String nodot = numstr.substring(0,olddot)+numstr.substring(olddot+1);
 		String retstr = "";
 		if(newdot >= nodot.length()){
 			retstr = nodot;
-			for(int i=nodot.length()-1; i<newdot; i++){
+			for(int i=nodot.length(); i<newdot; i++){
 				retstr += '0';
 			}
 			retstr += ".0";
 		}
 		else if(newdot < 0){
-			retstr += "0.";
+			retstr = "0.";
 			for(int i=newdot; i<0; i++){
 				retstr += '0';
 			}
@@ -502,12 +508,6 @@ private TheMath(){}
 			retstr = nodot.substring(0,newdot)+'.'+nodot.substring(newdot);
 		}
 		return baseToDouble(retstr, 2);
-//		return Double.longBitsToDouble(Double.doubleToRawLongBits(input) << (long)input2);
-//		return Integer.parseInt(input) << Integer.parseInt(input2);
-	}
-	
-	public static double rShift(double input, double input2){
-		return lShift(input, -1*input2);
 //		return Double.longBitsToDouble(Double.doubleToRawLongBits(input) >> (long)input2);
 //		return Integer.parseInt(input) >> Integer.parseInt(input2);
 	}

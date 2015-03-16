@@ -266,10 +266,9 @@ public class MathParser extends ParseTreeDouble{
 			@Override
 			public String evalOutString(ParseTree<Double> parent){
 				String ret = "";
-				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+				if(parent != null && parent.getNode1()!=null){
 					ret = parent.getNode1().evalOutString();
-					String tmpstr = parent.getNode2().evalOutString();
-					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+					if(((MathParser)parent).isOnlyNumber(ret) && (parent.getNode2()==null || parent.getNode2()==emptytree || ((MathParser)parent).isOnlyNumber(parent.getNode2().evalOutString()))){
 						ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
 					}
 					else{
@@ -291,10 +290,9 @@ public class MathParser extends ParseTreeDouble{
 			@Override
 			public String evalOutString(ParseTree<Double> parent){
 				String ret = "";
-				if(parent != null && parent.getNode1()!=null && parent.getNode2()!=null){
+				if(parent != null && parent.getNode1()!=null){
 					ret = parent.getNode1().evalOutString();
-					String tmpstr = parent.getNode2().evalOutString();
-					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
+					if(((MathParser)parent).isOnlyNumber(ret) && (parent.getNode2()==null || parent.getNode2()==emptytree || ((MathParser)parent).isOnlyNumber(parent.getNode2().evalOutString()))){
 						ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
 					}
 					else{
