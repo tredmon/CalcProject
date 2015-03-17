@@ -849,9 +849,33 @@ public class MathParser extends ParseTreeDouble{
 					else{
 						ret += tmp;
 					}
-					//TODO: ensure that the parentheses that ret starts with and ends with are matched together
 					if(!ret.startsWith(getParse()) && !ret.endsWith(getParseEnd())){
-						ret = getParse() + ret + getParseEnd();
+						int count = 1;
+						boolean needparenth = false;
+						for(int i=getParse().length(); i<ret.length() && !needparenth; i++){
+							int start = ret.indexOf(getParse(), i);
+							int end = ret.indexOf(getParseEnd(), i);
+							if(start>=0 && end>=0){
+								if(start<end){
+									count++;
+									i = start + getParse().length();
+								}
+							}
+							else if(start>=0){
+								count++;
+								i = start + getParse().length();
+							}
+							else{
+								count--;
+								i = end + getParseEnd().length();
+							}
+							if(count <= 0 && i<ret.length()){
+								needparenth = true;
+							}
+						}
+						if(needparenth){
+							ret = getParse() + ret + getParseEnd();
+						}
 					}
 				}
 				else{
