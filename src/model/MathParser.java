@@ -884,7 +884,6 @@ public class MathParser extends ParseTreeDouble{
 			public String parse(ParseTree<Double> parent, String parse){
 				String ret = parse;
 				if(parent != null){
-/*
 					int instr = parse.indexOf("-");
 					if(instr >= 0){
 						char[] valid;
@@ -931,30 +930,33 @@ public class MathParser extends ParseTreeDouble{
 							}
 						}
 						if(!found){
-							System.out.println("pre:\""+ret.substring(0,instr)+"\" negative:\""+ret.substring(instr, i)+"\" post:\""+ret.substring(i)+"\" s:"+instr+" e:"+i);
-							ParseTree<Double> p = parent.clone();
-							p.setFunction(this);
-							p.setData(((ParseTreeDouble)p).parseData(ret.substring(instr, i), MathParser.this.getBase()));
-							p.setNode1(emptytree);
-							p.setNode2(emptytree);
-							if(instr > 0){
-								parent.parse(ret.substring(0, instr));
-								parent.push(p);
+							String datstr = ret.substring(instr,i);
+							if(datstr.length() > 1){
+								String prestr = ret.substring(0,instr);
+								String posstr = ret.substring(i);
+								ParseTree<Double> p = parent.clone();
+								p.setFunction(this);
+								p.setData(((ParseTreeDouble)p).parseData(datstr, MathParser.this.getBase()));
+								p.setNode1(emptytree);
+								p.setNode2(emptytree);
+								if(instr > 0){
+									parent.parse(prestr);
+									parent.push(p);
+								}
+								else{
+									parent.clone(p);
+								}
+								ret = posstr;
 							}
-							else{
-								parent.clone(p);
-							}
-							ret = ret.substring(i);
 						}
 					}
-					else{
-*/
+					else if(getParse().equals("")){
 						parent.setFunction(this);
 						parent.setData(((ParseTreeDouble)parent).parseData(parse, MathParser.this.getBase()));
 						parent.setNode1(emptytree);
 						parent.setNode2(emptytree);
 						ret = "";
-//					}
+					}
 				}
 				return ret;
 			}
@@ -975,12 +977,11 @@ public class MathParser extends ParseTreeDouble{
 				return ret;
 			}
 		});
-		//TODO: ensure that negatives work
-//		try {
-//			add(this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "-",Integer.MAX_VALUE-1,"DATANEG"));
-//		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-//			System.out.println("ERR: unable to create the negative number function for the parser");
-//		}
+		try {
+			add(this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "-",Integer.MAX_VALUE-1,"DATANEG"));
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			System.out.println("ERR: unable to create the negative number function for the parser");
+		}
 		add(new ParseFunc<Double>("X",Integer.MIN_VALUE+1,"VARX"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
