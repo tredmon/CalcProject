@@ -883,26 +883,28 @@ public class MathParser extends ParseTreeDouble{
 			public String parse(ParseTree<Double> parent, String parse){
 				String ret = parse;
 				if(parent != null){
-					if(parse.startsWith("-")){
+					int instr = parse.indexOf("-");
+					if(instr >= 0){
 						char[] valid;
 						switch(MathParser.this.getBase()){
 							case 16:
-								valid = new char[]{'-','.','0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+								valid = new char[]{'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
 								break;
 							case 10:
-								valid = new char[]{'-','.','0','1','2','3','4','5','6','7','8','9'};
+								valid = new char[]{'0','1','2','3','4','5','6','7','8','9'};
 								break;
 							case 8:
-								valid = new char[]{'-','.','0','1','2','3','4','5','6','7'};
+								valid = new char[]{'0','1','2','3','4','5','6','7'};
 								break;
 							case 2:
-								valid = new char[]{'-','.','0','1'};
+								valid = new char[]{'0','1'};
 								break;
 							default:
 								valid = new char[]{};
 						}
+						boolean founddot = false;
 						boolean found = true;
-						int i=0;
+						int i = instr + 1;
 						for(; i<ret.length() && found; i++){
 							boolean tmpfound = false;
 							for(int j=0; j<ret.length() && !tmpfound; j++){
@@ -911,14 +913,35 @@ public class MathParser extends ParseTreeDouble{
 								}
 							}
 							if(!tmpfound){
-								found = false;
+								if(ret.charAt(i)=='.'){
+									if(founddot){
+										found = false;
+										i--;
+									}
+									else{
+										founddot = true;
+									}
+								}
+								else{
+									found = false;
+									i--;
+								}
 							}
 						}
 						if(!found){
-							parent.setFunction(this);
-							parent.setData(((ParseTreeDouble)parent).parseData(parse, MathParser.this.getBase()));
-							parent.setNode1(emptytree);
-							parent.setNode2(emptytree);
+							System.out.println("pre:\""+ret.substring(0,instr)+"\" negative:\""+ret.substring(instr, i)+"\" post:\""+ret.substring(i)+"\" s:"+instr+" e:"+i);
+							ParseTree<Double> p = parent.clone();
+							p.setFunction(this);
+							p.setData(((ParseTreeDouble)p).parseData(ret.substring(instr, i), MathParser.this.getBase()));
+							p.setNode1(emptytree);
+							p.setNode2(emptytree);
+							if(instr > 0){
+								parent.parse(ret.substring(0, instr));
+								parent.push(p);
+							}
+							else{
+								parent.clone(p);
+							}
 							ret = ret.substring(i);
 						}
 					}
@@ -951,7 +974,7 @@ public class MathParser extends ParseTreeDouble{
 		});
 		//TODO: ensure that negatives work
 		try {
-			add(this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "-",Integer.MAX_VALUE,"DATANEG"));
+			add(this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "-",Integer.MAX_VALUE-1,"DATANEG"));
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			System.out.println("ERR: unable to create the negative number function for the parser");
 		}
