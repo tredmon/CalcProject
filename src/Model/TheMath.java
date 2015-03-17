@@ -6,34 +6,6 @@ private TheMath(){}
 	public static final double PI = Math.PI;
 	public static final double E = Math.E;
 	
-	private static String o0 = "000"; 
-	private static String o1 = "001";
-	private static String o2 = "010";
-	private static String o3 = "011";
-	private static String o4 = "100";
-	private static String o5 = "101";
-	private static String o6 = "110";
-	private static String o7 = "111";
-	
-	private static String h0 = "0000"; 
-	private static String h1 = "0001";
-	private static String h2 = "0010";
-	private static String h3 = "0011";
-	private static String h4 = "0100";
-	private static String h5 = "0101";
-	private static String h6 = "0110";
-	private static String h7 = "0111";
-	private static String h8 = "1000";
-	private static String h9 = "1001";
-	private static String ha = "1010";
-	private static String hb = "1011";
-	private static String hc = "1100";
-	private static String hd = "1101";
-	private static String he = "1110";
-	private static String hf = "1111";
-	
-//	private static char[] hexnums = 
-//	{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 	
 	public static String deciToBinary(String input){
 		return doubleToBase(baseToDouble(input, 10), 2);
@@ -551,7 +523,7 @@ private TheMath(){}
 		start = end+1;
 		end = num.length();
 		double frac = 0.0;
-		for(int i=end-1, j=1; i>=start; i--, j++){
+		for(int i=end-1; i>=start; i--){
 			frac += ((double)charToBaseInt(num.charAt(i), base));
 			frac /= base;
 		}

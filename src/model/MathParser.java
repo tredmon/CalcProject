@@ -164,7 +164,9 @@ public class MathParser extends ParseTreeDouble{
 			}
 		});
 		try {
-			add(this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "mod",this.getFunctionList().get(this.getFunctionList().size()-1).getOrder(),"MODWORD"));
+			@SuppressWarnings("unchecked")
+			ParseFunc<Double> tmp = (ParseFunc<Double>)this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "mod",this.getFunctionList().get(this.getFunctionList().size()-1).getOrder(),"MODWORD");
+			add(tmp);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			System.out.println("ERR: unable to create the mod function for the parser");
 		}
@@ -411,7 +413,7 @@ public class MathParser extends ParseTreeDouble{
 				if(parent!=null && parent.getNode2()!=null){
 					ret += "*"+parent.getNode2().evalString();
 				}
-				return mstr;
+				return ret;
 			}
 			@Override
 			public String evalOutString(ParseTree<Double> parent){
@@ -1002,7 +1004,9 @@ public class MathParser extends ParseTreeDouble{
 			}
 		});
 		try {
-			add(this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "-",Integer.MAX_VALUE-1,"DATANEG"));
+			@SuppressWarnings("unchecked")
+			ParseFunc<Double> tmp = (ParseFunc<Double>)this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "-",Integer.MAX_VALUE-1,"DATANEG");
+			add(tmp);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			System.out.println("ERR: unable to create the negative number function for the parser");
 		}

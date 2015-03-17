@@ -12,12 +12,11 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
 
 import model.MathParser;
 
 public class TablePanel extends JPanel{
-
+	private static final long serialVersionUID = 1L;
 	JTable BoundsTable;
 	JTable XYTable; 
 	JScrollPane xyscroller;
@@ -112,6 +111,10 @@ public class TablePanel extends JPanel{
 	}
 	public static class noEditor extends DefaultCellEditor
 	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public noEditor()
 		{
 			super(new JTextField());
@@ -127,6 +130,10 @@ public class TablePanel extends JPanel{
 		}
 	}
 	public class numEditor extends DefaultCellEditor{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public numEditor(){
 			super(new JTextField());
 		}
@@ -134,7 +141,7 @@ public class TablePanel extends JPanel{
 			JTextField input = (JTextField) this.getComponent();
 		    String text = input.getText();
 		    try {
-		       double value = Double.parseDouble(text);
+		       Double.parseDouble(text);
 		    } catch (NumberFormatException dsa) {
 		    	MathParser p = new MathParser();
 		    	p.parse(text);

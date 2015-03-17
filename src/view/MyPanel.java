@@ -10,15 +10,15 @@ import java.awt.event.KeyListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;		
-import javax.swing.border.Border;
 
 import model.MathParser;
 
 public class MyPanel extends JPanel implements ActionListener, KeyListener {
+	private static final long serialVersionUID = 1L;
+
 	private JButton button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, 
 	buttonClear, buttonBackspace, buttonLeftParen, buttonRightParen, buttonExponent, buttonX, buttonDivide,
 	buttonMultiply, buttonSubtract, buttonAdd, buttonEquals, buttonDecimal;

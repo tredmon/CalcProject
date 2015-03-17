@@ -4,7 +4,6 @@ import java.awt.Component;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -23,6 +22,11 @@ public class CalcProjectDriver {
 	public CalcProjectDriver(){
 		gp = new GraphPanel();
 		jfram = new JFrame("Calculator"){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override public void setVisible(boolean set){
 				CalcProjectDriver.this.gp.setVisible(set);
 				super.setVisible(set);

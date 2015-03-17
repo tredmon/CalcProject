@@ -7,7 +7,7 @@ import model.ParseFunc;
 public class TestParse {
 	public static void main(String[] args) {
 		MathParser tree = new MathParser();
-		for(ParseFunc p : tree.getFunctionList()){
+		for(ParseFunc<Double> p : tree.getFunctionList()){
 			System.out.print(p.getName()+" ");
 		}
 		System.out.println();

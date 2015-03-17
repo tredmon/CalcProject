@@ -3,14 +3,11 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-
-
-
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 public class childGraphPanel extends JPanel{
 
+	private static final long serialVersionUID = 1L;
 	double[][] coordinates;
 	private double xMin;
 	private double xMax;

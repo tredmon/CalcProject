@@ -1,10 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
@@ -12,7 +8,8 @@ import javax.swing.table.TableModel;
 import model.MathParser;
 
 public class GraphPanel extends JFrame{
-	  TablePanel Panel;
+	private static final long serialVersionUID = 1L;
+	TablePanel Panel;
 	  childGraphPanel GraphPanel;
 	  MathParser eq;
 	 
