@@ -847,8 +847,9 @@ public class MathParser extends ParseTreeDouble{
 						ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
 					}
 					else{
-						ret += parent.getNode1().evalOutString();
+						ret += tmp;
 					}
+					//TODO: ensure that the parentheses that ret starts with and ends with are matched together
 					if(!ret.startsWith(getParse()) && !ret.endsWith(getParseEnd())){
 						ret = getParse() + ret + getParseEnd();
 					}
