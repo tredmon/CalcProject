@@ -311,16 +311,29 @@ private TheMath(){}
 	public static double root(double base, double root){
 		return Math.pow(base, (1/root));
 	}
-	
+
 	public static double Xor(double input, double input2){
 		String str1 = doubleToBase(input, 2);
 		String str2 = doubleToBase(input2, 2);
+		boolean neg1 = false;
+		boolean neg2 = false;
+		if(str1.startsWith("-")){
+			str1 = str1.substring(1);
+			neg1 = true;
+		}
+		if(str2.startsWith("-")){
+			str2 = str2.substring(1);
+			neg2 = true;
+		}
 		int dot1 = str1.indexOf('.'); if(dot1<0){dot1=str1.length();}
 		int dot2 = str2.indexOf('.'); if(dot2<0){dot2=str2.length();}
 		int longer = Math.max(dot1, dot2);
 		int i = dot1 - longer;
 		int j = dot2 - longer;
 		String retstr = "";
+		if((neg1 && !neg2) || (!neg1 && neg2)){
+			retstr = "-";
+		}
 		for(; i<dot1 && j<dot2; i++, j++){
 			if(i>=0 && str1.charAt(i)!='0' && (j<0 || (j>=0 && str2.charAt(j)=='0'))){
 				retstr += '1';
@@ -353,12 +366,25 @@ private TheMath(){}
 	public static double Or(double input, double input2){
 		String str1 = doubleToBase(input, 2);
 		String str2 = doubleToBase(input2, 2);
+		boolean neg1 = false;
+		boolean neg2 = false;
+		if(str1.startsWith("-")){
+			str1 = str1.substring(1);
+			neg1 = true;
+		}
+		if(str2.startsWith("-")){
+			str2 = str2.substring(1);
+			neg2 = true;
+		}
 		int dot1 = str1.indexOf('.'); if(dot1<0){dot1=str1.length();}
 		int dot2 = str2.indexOf('.'); if(dot2<0){dot2=str2.length();}
 		int longer = Math.max(dot1, dot2);
 		int i = dot1 - longer;
 		int j = dot2 - longer;
 		String retstr = "";
+		if(neg1 || neg2){
+			retstr = "-";
+		}
 		for(; i<dot1 && j<dot2; i++, j++){
 			if(i>=0 && str1.charAt(i)=='1'){
 				retstr += '1';
@@ -391,12 +417,25 @@ private TheMath(){}
 	public static double And(double input, double input2){
 		String str1 = doubleToBase(input, 2);
 		String str2 = doubleToBase(input2, 2);
+		boolean neg1 = false;
+		boolean neg2 = false;
+		if(str1.startsWith("-")){
+			str1 = str1.substring(1);
+			neg1 = true;
+		}
+		if(str2.startsWith("-")){
+			str2 = str2.substring(1);
+			neg2 = true;
+		}
 		int dot1 = str1.indexOf('.'); if(dot1<0){dot1=str1.length();}
 		int dot2 = str2.indexOf('.'); if(dot2<0){dot2=str2.length();}
 		int longer = Math.max(dot1, dot2);
 		int i = dot1 - longer;
 		int j = dot2 - longer;
 		String retstr = "";
+		if(neg1 && neg2){
+			retstr = "-";
+		}
 		for(; i<dot1 && j<dot2; i++, j++){
 			if(i>=0 && j>=0 && str1.charAt(i)==str2.charAt(j) && str1.charAt(i)=='1'){
 				retstr += '1';

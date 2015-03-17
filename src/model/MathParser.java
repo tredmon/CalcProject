@@ -828,7 +828,7 @@ public class MathParser extends ParseTreeDouble{
 				return ret;
 			}
 		});
-		
+		//TODO: ensure that groupings work
 		add(new ParseGroupFunc<Double>("(",")",Integer.MAX_VALUE,"PARENTH"){
 			@Override
 			public void push(ParseTree<Double> parent, ParseTree<Double> newtree){
@@ -883,11 +883,52 @@ public class MathParser extends ParseTreeDouble{
 			public String parse(ParseTree<Double> parent, String parse){
 				String ret = parse;
 				if(parent != null){
-					parent.setFunction(this);
-					parent.setData(((ParseTreeDouble)parent).parseData(parse, MathParser.this.getBase()));
-					parent.setNode1(emptytree);
-					parent.setNode2(emptytree);
-					ret = "";
+					if(parse.startsWith("-")){
+						char[] valid;
+						switch(MathParser.this.getBase()){
+							case 16:
+								valid = new char[]{'-','.','0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+								break;
+							case 10:
+								valid = new char[]{'-','.','0','1','2','3','4','5','6','7','8','9'};
+								break;
+							case 8:
+								valid = new char[]{'-','.','0','1','2','3','4','5','6','7'};
+								break;
+							case 2:
+								valid = new char[]{'-','.','0','1'};
+								break;
+							default:
+								valid = new char[]{};
+						}
+						boolean found = true;
+						int i=0;
+						for(; i<ret.length() && found; i++){
+							boolean tmpfound = false;
+							for(int j=0; j<ret.length() && !tmpfound; j++){
+								if(ret.charAt(i)==valid[j]){
+									tmpfound = true;
+								}
+							}
+							if(!tmpfound){
+								found = false;
+							}
+						}
+						if(!found){
+							parent.setFunction(this);
+							parent.setData(((ParseTreeDouble)parent).parseData(parse, MathParser.this.getBase()));
+							parent.setNode1(emptytree);
+							parent.setNode2(emptytree);
+							ret = ret.substring(i);
+						}
+					}
+					else{
+						parent.setFunction(this);
+						parent.setData(((ParseTreeDouble)parent).parseData(parse, MathParser.this.getBase()));
+						parent.setNode1(emptytree);
+						parent.setNode2(emptytree);
+						ret = "";
+					}
 				}
 				return ret;
 			}
@@ -908,8 +949,9 @@ public class MathParser extends ParseTreeDouble{
 				return ret;
 			}
 		});
+		//TODO: ensure that negatives work
 		try {
-			add(this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "-",this.getFunctionList().get(this.getFunctionList().size()-1).getOrder(),"DATANEG"));
+			add(this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "-",Integer.MAX_VALUE,"DATANEG"));
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			System.out.println("ERR: unable to create the negative number function for the parser");
 		}
