@@ -43,7 +43,7 @@ public class MathParser extends ParseTreeDouble{
 					}
 					String tmpstr = "";
 					if(parent.getNode2()!=null){
-						parent.getNode2().evalOutString();
+						tmpstr = parent.getNode2().evalOutString();
 					}
 					if(((MathParser)parent).isOnlyNumber(ret) && ((MathParser)parent).isOnlyNumber(tmpstr)){
 						ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
@@ -883,6 +883,7 @@ public class MathParser extends ParseTreeDouble{
 			public String parse(ParseTree<Double> parent, String parse){
 				String ret = parse;
 				if(parent != null){
+/*
 					int instr = parse.indexOf("-");
 					if(instr >= 0){
 						char[] valid;
@@ -946,12 +947,13 @@ public class MathParser extends ParseTreeDouble{
 						}
 					}
 					else{
+*/
 						parent.setFunction(this);
 						parent.setData(((ParseTreeDouble)parent).parseData(parse, MathParser.this.getBase()));
 						parent.setNode1(emptytree);
 						parent.setNode2(emptytree);
 						ret = "";
-					}
+//					}
 				}
 				return ret;
 			}
@@ -973,11 +975,11 @@ public class MathParser extends ParseTreeDouble{
 			}
 		});
 		//TODO: ensure that negatives work
-		try {
-			add(this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "-",Integer.MAX_VALUE-1,"DATANEG"));
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			System.out.println("ERR: unable to create the negative number function for the parser");
-		}
+//		try {
+//			add(this.getFunctionList().get(this.getFunctionList().size()-1).getClass().getDeclaredConstructor(MathParser.class, String.class, Integer.class, String.class).newInstance(this, "-",Integer.MAX_VALUE-1,"DATANEG"));
+//		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+//			System.out.println("ERR: unable to create the negative number function for the parser");
+//		}
 		add(new ParseFunc<Double>("X",Integer.MIN_VALUE+1,"VARX"){
 			@Override
 			public Double eval(ParseTree<Double> parent){
