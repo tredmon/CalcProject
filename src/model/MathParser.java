@@ -844,7 +844,7 @@ public class MathParser extends ParseTreeDouble{
 				if(parent != null && parent.getNode1() != null){
 					String tmp = parent.getNode1().evalOutString();
 					if(((MathParser)parent).isOnlyNumber(tmp)){
-						ret = ((MathParser)parent).dataToString(((MathParser)parent).parseData(tmp), ((MathParser)parent).getBase());
+						ret = ((MathParser)parent).dataToString(eval(parent), ((MathParser)parent).getBase());
 					}
 					else{
 						ret += parent.getNode1().evalOutString();
