@@ -461,8 +461,16 @@ private TheMath(){}
 	
 	public static double Not(double input){
 		String str = doubleToBase(input, 2);
+		boolean neg = false;
+		if(str.startsWith("-")){
+			str = str.substring(1);
+			neg = true;
+		}
 		int dot = str.indexOf('.'); if(dot<0){dot=str.length();}
 		String retstr = "";
+		if(!neg){
+			retstr = "-";
+		}
 		for(int i=0; i<dot; i++){
 			if(str.charAt(i)=='1'){
 				retstr += '0';
